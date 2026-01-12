@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 import { Navbar } from "@/components/navbar";
+import { ReadingProgress } from "@/components/reading-progress";
 
 export default function RootLayout({
   children,
@@ -53,6 +54,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ReadingProgress />
           <Navbar />
           <SmoothScroll>
             {children}

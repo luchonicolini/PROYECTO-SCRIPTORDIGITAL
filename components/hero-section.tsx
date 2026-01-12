@@ -34,7 +34,10 @@ export function HeroSection() {
             {/* STAR FIELD (Subtle dust) */}
             <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay" />
 
-            <ParticlesBackground />
+            <ParticlesBackground
+                quantity={60}
+                className="absolute inset-0 w-full h-full pointer-events-none opacity-60"
+            />
 
             <div className="container relative z-10 mx-auto px-6 md:px-12">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -53,18 +56,18 @@ export function HeroSection() {
                             className="inline-block"
                         >
                             <span className="text-violet-300 text-sm font-medium tracking-[0.2em] uppercase border border-violet-500/30 bg-violet-500/10 px-3 py-1 rounded-sm">
-                                Agencia de Desarrollo Premium
+                                Consultoría Estratégica
                             </span>
                         </motion.div>
 
                         <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] text-white">
-                            Elevamos tu <br />
-                            <span className="text-white">Estándar</span> <br />
-                            <span className="text-white/80">Digital Profundo</span>
+                            Donde el <br />
+                            <span className="text-white">Conocimiento</span> <br />
+                            <span className="text-white/80">se encuentra con la Tecnología</span>
                         </h1>
 
                         <p className="text-xl text-white/50 leading-relaxed font-light max-w-lg">
-                            Diseño de vanguardia, tecnología académica y estrategias digitales que posicionan a tu institución en la cima.
+                            La primera consultora que une el mundo de las Leyes y las Letras con la inmediatez del Código. Desde la redacción de su tesis hasta el despliegue de su propia plataforma.
                         </p>
                     </motion.div>
 

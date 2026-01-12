@@ -1,42 +1,69 @@
 
-import { GraduationCap, Gavel, BookOpen, Laptop, Globe, Shield, Search, Map, Code2, Rocket, Github, Twitter, Linkedin, Instagram } from "lucide-react"
+import { BookOpen, Laptop, Globe, Shield, Search, Map, Code2, Rocket, Github, Twitter, Linkedin, Instagram, Mic, Video } from "lucide-react"
 
 export const SERVICES_DATA = {
     ACADEMIA: [
         {
             id: "a1",
-            title: "Dirección de Tesis & Posgrado",
-            desc: "Destrabamos investigaciones complejas con rigor metodológico.",
-            icon: GraduationCap,
+            title: "Dirección & Producción Académica",
+            desc: "Planificación y realización integral de tesis, papers e investigaciones.",
+            icon: BookOpen,
             modal: {
-                problem: "¿Tu tesis está estancada hace meses por falta de feedback?",
-                solution:
-                    "Asignamos un director experto que estructura tu marco teórico, valida hipótesis y corrige estilo académico.",
-                features: ["Adecuación Normas APA/Harvard", "Simulacro de Defensa Oral", "Cronograma de entregas garantizado"],
+                problem: "¿Tienes el conocimiento pero te trabas al redactarlo?",
+                solution: "Servicio de optimización y guía. Organizamos tu caos, planificamos tu trabajo y te acompañamos en la redacción de tesis y ponencias. Estructuramos tus ideas para que cumplan con los más altos estándares académicos.",
+                features: ["Planificación de Trabajos Prácticos", "Corrección de Estilo y Normas", "Investigación Rigurosa"],
+                benefits: [
+                    "Claridad metodológica inmediata",
+                    "Ahorro de tiempo en correcciones",
+                    "Producción académica de alto impacto"
+                ],
+                deliverables: [
+                    "Cronograma de trabajo detallado",
+                    "Borradores corregidos y comentados",
+                    "Manuscrito final adaptado a normas"
+                ]
             },
         },
         {
             id: "a2",
-            title: "Gestión CONEAU & Legales",
-            desc: "Blindaje legal y acreditación para instituciones educativas.",
-            icon: Gavel,
+            title: "Oratoria & Coaching Escénico",
+            desc: "Entrenamiento experto para conferencias, clases y defensa de tesis.",
+            icon: Mic,
             modal: {
-                problem: "¿Te abruma la burocracia de las acreditaciones oficiales?",
-                solution:
-                    "Gestionamos la presentación de carreras y validación institucional ante organismos oficiales sin errores técnicos.",
-                features: ["Redacción de Estatutos", "Presentaciones CONEAU", "Propiedad Intelectual Institucional"],
+                problem: "¿Te genera ansiedad hablar frente a un tribunal o auditorio?",
+                solution: "Coaching integral en oratoria y discursiva. Preparamos tu puesta en escena para que comuniques tus ideas con autoridad y seguridad. Transformamos el pánico en presencia escénica.",
+                features: ["Simulacro de Defensa Oral", "Técnicas de Discursiva", "Manejo del Pánico Escénico"],
+                benefits: [
+                    "Confianza absoluta al exponer",
+                    "Conexión real con la audiencia",
+                    "Manejo profesional de preguntas difíciles"
+                ],
+                deliverables: [
+                    "Grabación de simulacros con feedback",
+                    "Guion de presentación estructurado",
+                    "Kit de técnicas de respiración y voz"
+                ]
             },
         },
         {
             id: "a3",
-            title: "Producción Editorial",
-            desc: "Transformamos conocimiento en libros con diseño de alta gama.",
-            icon: BookOpen,
+            title: "Comunicación Digital (Reels & Foros)",
+            desc: "Estrategias para posicionar tu voz académica en redes y espacios virtuales.",
+            icon: Video,
             modal: {
-                problem: "¿Tus investigaciones quedan guardadas en un cajón?",
-                solution:
-                    "Editamos, diseñamos y publicamos tu obra académica con registro de ISBN y calidad de librería.",
-                features: ["Diseño de Portada Premium", "Maquetación Editorial", "Registro de Propiedad Intelectual"],
+                problem: "¿Tu perfil profesional es invisible en la era digital?",
+                solution: "Te enseñamos a crear contenido de valor (Reels, Foros) y a desenvolverte en el ecosistema digital para potenciar tu carrera. Construimos tu marca personal académica en el mundo digital.",
+                features: ["Guiones para Reels Educativos", "Participación en Foros", "Asesoramiento Integral de Marca"],
+                benefits: [
+                    "Visibilidad profesional ampliada",
+                    "Posicionamiento como referente",
+                    "Networking académico efectivo"
+                ],
+                deliverables: [
+                    "Calendario de contenidos mensual",
+                    "Guiones optimizados para video",
+                    "Auditoría de perfiles sociales"
+                ]
             },
         },
     ],
@@ -49,20 +76,40 @@ export const SERVICES_DATA = {
             modal: {
                 problem: "¿Tu institución sigue dependiendo de Excel y papeles?",
                 solution:
-                    "Creamos plataformas centralizadas para alumnos, pagos y calificaciones. Accesibles desde cualquier lugar.",
+                    "Creamos plataformas centralizadas para alumnos, pagos y calificaciones. Accesibles desde cualquier lugar, seguras y escalables para crecer con tu institución.",
                 features: ["Panel de Control Administrativo", "Portal de Alumnos", "Reportes Automáticos PDF"],
+                benefits: [
+                    "Centralización de la información",
+                    "Reducción de errores administrativos",
+                    "Acceso 24/7 para alumnos y docentes"
+                ],
+                deliverables: [
+                    "Código fuente propiedad del cliente",
+                    "Documentación técnica completa",
+                    "Deploy en servidor productivo"
+                ]
             },
         },
         {
             id: "t2",
             title: "Infraestructura LMS (Moodle/Canvas)",
             desc: "Campus Virtuales propios, rápidos y sin caídas.",
-            icon: Globe, // Using Globe as a proxy for LMS/Online
+            icon: Globe,
             modal: {
                 problem: "¿Se cae el sistema cuando todos los alumnos entran a rendir?",
                 solution:
-                    "Despliegue de servidores dedicados optimizados para alta concurrencia. Tus datos, tu control.",
+                    "Despliegue de servidores dedicados optimizados para alta concurrencia. Configuramos entornos de aprendizaje robustos que soportan miles de usuarios simultáneos.",
                 features: ["Servidores de Alta Disponibilidad", "Backups Diarios Automáticos", "Personalización de Marca (White Label)"],
+                benefits: [
+                    "Experiencia de usuario fluida",
+                    "Seguridad de datos garantizada",
+                    "Independencia tecnológica"
+                ],
+                deliverables: [
+                    "Plataforma LMS instalada y configurada",
+                    "Capacitación para administradores",
+                    "Plan de mantenimiento preventivo"
+                ]
             },
         },
         {
@@ -73,8 +120,18 @@ export const SERVICES_DATA = {
             modal: {
                 problem: "¿Qué pasaría si pierdes los datos de tus clientes hoy?",
                 solution:
-                    "Auditoría de vulnerabilidades y blindaje de infraestructura para cumplir normativas de protección de datos.",
+                    "Auditoría de vulnerabilidades y blindaje de infraestructura para cumplir normativas. Implementamos protocolos de seguridad bancaria en tu ecosistema educativo.",
                 features: ["Encriptación de Punta a Punta", "Tests de Penetración", "Protocolos de Recuperación ante Desastres"],
+                benefits: [
+                    "Continuidad del negocio asegurada",
+                    "Confianza de alumnos y socios",
+                    "Blindaje contra ciberataques"
+                ],
+                deliverables: [
+                    "Informe de auditoría de seguridad",
+                    "Plan de remediación de vulnerabilidades",
+                    "Certificado de seguridad implementada"
+                ]
             },
         },
     ],
@@ -139,9 +196,11 @@ export const FAQ_ITEMS = [
 ]
 
 export const NAV_LINKS = [
+    { name: "Manifiesto", href: "#manifiesto" },
     { name: "Servicios", href: "#servicios" },
     { name: "Metodología", href: "#metodologia" },
-    { name: "Manifiesto", href: "#manifiesto" },
+    { name: "Equipo", href: "#equipo" },
+    { name: "FAQ", href: "#faq" },
 ]
 
 export const SOCIAL_LINKS = [

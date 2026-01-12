@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button"
 import { Send } from "lucide-react"
 import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/data"
 
+import { ParticlesBackground } from "@/components/particles-background"
+
 export function Footer() {
     return (
-        <footer className="bg-[#050511] border-t border-white/5">
-            <div className="container mx-auto px-4 py-16">
+        <footer className="relative bg-[#050511] border-t border-white/5 overflow-hidden">
+            <ParticlesBackground quantity={30} className="absolute inset-0 h-full w-full pointer-events-none opacity-50" />
+            <div className="container mx-auto px-4 py-16 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     <div className="space-y-6">
                         <Link href="/" className="font-heading text-2xl font-bold tracking-tight block">

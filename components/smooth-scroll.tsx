@@ -26,9 +26,33 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
         rafId = requestAnimationFrame(raf)
 
+        // Handle anchor links
+        const handleAnchorClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement
+            const anchor = target.closest('a')
+
+            if (anchor && anchor.href && anchor.href.includes('#')) {
+                const href = anchor.href
+                const targetId = href.split('#')[1]
+                const targetElem = document.getElementById(targetId)
+
+                if (targetElem) {
+                    e.preventDefault()
+                    lenisRef.current?.scrollTo(targetElem, {
+                        offset: -100, // Adjust for fixed header
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    })
+                }
+            }
+        }
+
+        document.addEventListener('click', handleAnchorClick)
+
         return () => {
             cancelAnimationFrame(rafId)
             lenisRef.current?.destroy()
+            document.removeEventListener('click', handleAnchorClick)
         }
     }, [])
 
