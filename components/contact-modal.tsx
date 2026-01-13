@@ -7,11 +7,12 @@ import {
     DialogTrigger,
     DialogTitle,
     DialogDescription,
+    DialogClose,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MessageCircle, MapPin, CheckCircle2, ArrowRight } from "lucide-react"
+import { Mail, MessageCircle, MapPin, CheckCircle2, ArrowRight, X, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Floating Label Input Component - Refined for NOVA Glass
@@ -31,6 +32,8 @@ const FloatingInput = ({ label, ...props }: React.ComponentProps<typeof Input> &
 
 export function ContactModal({ children }: { children: React.ReactNode }) {
     const [selectedService, setSelectedService] = useState<string | null>(null)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
 
     // Services choices
     const services = [
@@ -45,8 +48,14 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[1000px] p-0 bg-[#050511] border-white/10 text-white overflow-hidden shadow-2xl block">
-                <div className="flex flex-col md:flex-row h-full md:min-h-[600px]">
+            <DialogContent showCloseButton={false} className="sm:max-w-5xl p-0 bg-[#0a0f1c] border-white/10 text-white overflow-hidden shadow-2xl block rounded-3xl">
+
+                {/* Custom Close Button */}
+                <DialogClose className="absolute top-6 right-6 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white focus:outline-none focus:ring-0">
+                    <X className="w-6 h-6" />
+                </DialogClose>
+
+                <div className="flex flex-col md:flex-row h-full md:min-h-[600px] max-h-[90vh]">
 
                     {/* Left Column: Branding (Obsidian Glass) */}
                     <div className="w-full md:w-[40%] bg-black/40 p-8 md:p-12 flex flex-col justify-between relative overflow-hidden backdrop-blur-md border-r border-white/5">
@@ -59,13 +68,13 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                             <span className="text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
                                 Contacto Directo
                             </span>
-                            <DialogTitle className="font-heading text-3xl md:text-4xl font-medium text-white mb-4 leading-tight">
+                            <DialogTitle className="font-heading text-3xl md:text-5xl font-medium text-white mb-6 leading-tight">
                                 Hablemos de <br />
                                 <span className="font-serif italic text-white/60">
                                     Excelencia.
                                 </span>
                             </DialogTitle>
-                            <DialogDescription className="text-gray-400 text-base leading-relaxed font-light">
+                            <DialogDescription className="text-gray-400 text-lg leading-relaxed font-light">
                                 Cuéntanos tu desafío. Nosotros diseñamos la solución técnica y académica a medida.
                             </DialogDescription>
                         </div>
@@ -98,17 +107,17 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Right Column: Form */}
-                    <div className="flex-1 bg-[#050511] p-8 md:p-12 overflow-y-auto">
-                        <div className="max-w-lg mx-auto space-y-8">
+                    <div className="flex-1 bg-[#0a0f1c] p-8 pt-20 md:p-12 md:pt-24 overflow-y-auto custom-scrollbar">
+                        <div className="max-w-xl mx-auto space-y-8">
 
                             {/* Personal Info */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <FloatingInput label="Nombre Completo" />
                                 <FloatingInput label="Email Profesional" type="email" />
                             </div>
 
                             {/* Service Selection (Visual Chips) */}
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider block ml-1">
                                     ¿Qué estás buscando?
                                 </label>
@@ -118,7 +127,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                             key={service.id}
                                             onClick={() => setSelectedService(service.id)}
                                             className={cn(
-                                                "px-4 py-2 rounded-full text-xs font-bold tracking-wide border transition-all duration-200",
+                                                "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
                                                 selectedService === service.id
                                                     ? "bg-[#D4AF37] border-[#D4AF37] text-[#050511] shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                                                     : "bg-white/5 border-white/10 text-gray-400 hover:border-white/20 hover:text-white"
@@ -133,7 +142,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                             {/* Project Details */}
                             <div className="relative group">
                                 <Textarea
-                                    className="min-h-[140px] pt-4 px-4 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus-visible:ring-violet-500/30 rounded-xl resize-none font-light"
+                                    className="min-h-[160px] pt-4 px-4 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus-visible:ring-violet-500/30 rounded-xl resize-none font-light"
                                     placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
                                 />
                                 <div className="absolute bottom-3 right-3 text-[10px] text-gray-600 font-mono">
@@ -142,11 +151,41 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                             </div>
 
                             {/* Submit Button */}
-                            <Button className="w-full h-14 bg-[#D4AF37] hover:bg-[#E5C158] text-[#050511] font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]">
-                                <span className="flex items-center justify-center gap-2">
-                                    Enviar Solicitud
-                                    <ArrowRight className="w-5 h-5" />
-                                </span>
+                            <Button
+                                onClick={() => {
+                                    setIsSubmitting(true)
+                                    // Simulate network request
+                                    setTimeout(() => {
+                                        setIsSubmitting(false)
+                                        setIsSuccess(true)
+                                        // Reset after showing success
+                                        setTimeout(() => {
+                                            setIsSuccess(false)
+                                            // Optional: Close modal here if you can access the close trigger
+                                        }, 4000)
+                                    }, 2000)
+                                }}
+                                disabled={isSubmitting || isSuccess}
+                                className={cn(
+                                    "w-full h-14 font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]",
+                                    isSuccess
+                                        ? "bg-green-500 hover:bg-green-600 text-white"
+                                        : "bg-[#D4AF37] hover:bg-[#E5C158] text-[#050511]"
+                                )}
+                            >
+                                {isSubmitting ? (
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                ) : isSuccess ? (
+                                    <span className="flex items-center justify-center gap-2">
+                                        ¡Mensaje Enviado!
+                                        <CheckCircle2 className="w-5 h-5" />
+                                    </span>
+                                ) : (
+                                    <span className="flex items-center justify-center gap-2">
+                                        Enviar Solicitud
+                                        <ArrowRight className="w-5 h-5" />
+                                    </span>
+                                )}
                             </Button>
 
                         </div>

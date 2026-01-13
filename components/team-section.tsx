@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export function TeamSection() {
     return (
-        <section id="equipo" className="py-32 bg-[#050511] relative overflow-hidden">
+        <section id="equipo" className="py-48 bg-[#050511] relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
 
                 {/* Header */}

@@ -60,7 +60,7 @@ export function ServicesTabs() {
     }, [selectedCard])
 
     return (
-        <section id="servicios" className="py-24 px-4 w-full relative overflow-hidden bg-[#050511]">
+        <section id="servicios" className="py-36 px-4 w-full relative overflow-hidden bg-[#050511]">
             {/* Background decoration */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-purple-900/20 to-transparent rounded-[100%] blur-[100px] -z-10 pointer-events-none" />
 

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 export function Methodology() {
     return (
-        <section id="metodologia" className="py-32 bg-[#050511] relative overflow-hidden">
+        <section id="metodologia" className="py-48 bg-[#050511] relative overflow-hidden">
             {/* Subtle Grid Background (Matches UseCases) */}
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
 

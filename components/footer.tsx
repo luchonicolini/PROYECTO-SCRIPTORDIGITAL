@@ -14,7 +14,7 @@ export function Footer() {
         <footer className="relative bg-[#050511] border-t border-white/5 overflow-hidden">
             <ParticlesBackground quantity={30} className="absolute inset-0 h-full w-full pointer-events-none opacity-50" />
             <div className="container mx-auto px-4 py-16 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
                     <div className="space-y-6">
                         <Link href="/" className="font-heading text-2xl font-bold tracking-tight block">
                             Scriptor<span className="text-primary">Digital</span>
@@ -37,7 +37,7 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold mb-6 text-foreground">Explorar</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
-                            {FOOTER_LINKS.EXPLORE.map((link) => (
+                            {FOOTER_LINKS.EXPLORE.filter(link => link.label !== "Blog").map((link) => (
                                 <li key={link.label}>
                                     <FooterLink href={link.href}>{link.label}</FooterLink>
                                 </li>
@@ -54,24 +54,6 @@ export function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-bold mb-6 text-foreground">Newsletter</h4>
-                        <p className="text-muted-foreground text-sm mb-4">
-                            Suscríbete para recibir las últimas novedades y recursos.
-                        </p>
-                        <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                            <Input
-                                type="email"
-                                placeholder="tu@email.com"
-                                className="bg-background border-input focus-visible:ring-primary"
-                            />
-                            <Button size="icon" className="shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground">
-                                <Send className="w-4 h-4" />
-                                <span className="sr-only">Suscribirse</span>
-                            </Button>
-                        </form>
                     </div>
                 </div>
 

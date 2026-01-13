@@ -11,7 +11,7 @@ export function FAQ() {
     const [openItem, setOpenItem] = useState<string | null>(null)
 
     return (
-        <section className="py-24 relative overflow-hidden bg-[#050511]">
+        <section id="faq" className="py-36 relative overflow-hidden bg-[#050511]">
             {/* Subtle Background (Matches Team/UseCases) */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-900/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-50" />
 
