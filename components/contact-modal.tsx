@@ -34,6 +34,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
     const [selectedService, setSelectedService] = useState<string | null>(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
+    const [message, setMessage] = useState("")
 
     // Services choices
     const services = [
@@ -44,7 +45,16 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
     ]
 
     return (
-        <Dialog>
+        <Dialog onOpenChange={(open) => {
+            if (!open) {
+                // Reset state when modal closes
+                setTimeout(() => {
+                    setIsSuccess(false)
+                    setMessage("")
+                    setSelectedService(null)
+                }, 300)
+            }
+        }}>
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>
@@ -106,116 +116,115 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                         </div>
                     </div>
 
-                    {/* Right Column: Form */}
-                    <div className="flex-1 bg-background p-6 pt-6 md:p-12 md:pt-24 overflow-y-auto custom-scrollbar">
-                        <div className="mt-12 pt-8 border-t border-white/5 relative z-10 hidden md:block">
-                            <div className="flex items-center gap-2 text-muted-foreground text-xs">
-                                <CheckCircle2 className="w-4 h-4 text-primary" />
-                                <span>Respuesta garantizada en <span className="text-foreground">24hs</span>.</span>
+                    {/* Right Column: Form or Success State */}
+                    <div className="flex-1 bg-background p-8 pt-20 md:p-12 md:pt-24 overflow-y-auto custom-scrollbar relative">
+                        {isSuccess ? (
+                            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-center animate-in fade-in zoom-in-95 duration-500">
+                                <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
+                                    <CheckCircle2 className="w-10 h-10 text-green-500" />
+                                </div>
+                                <h3 className="text-2xl font-heading font-medium text-foreground mb-2">
+                                    ¡Mensaje Recibido!
+                                </h3>
+                                <p className="text-muted-foreground max-w-sm mx-auto mb-8 font-light">
+                                    Gracias por contactarnos. Hemos recibido tu solicitud correctamente y te responderemos a la brevedad.
+                                </p>
+                                <DialogClose asChild>
+                                    <Button variant="outline" className="rounded-xl px-8 border-white/10 hover:bg-white/5">
+                                        Cerrar
+                                    </Button>
+                                </DialogClose>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column: Form */}
-                    <div className="flex-1 bg-background p-8 pt-20 md:p-12 md:pt-24 overflow-y-auto custom-scrollbar">
-                        <form
-                            action={async (formData) => {
-                                setIsSubmitting(true)
-                                // Add selected service to formData
-                                if (selectedService) {
-                                    formData.append("service", selectedService)
-                                }
-
-                                import("@/app/actions").then(async ({ sendEmail }) => {
-                                    const result = await sendEmail(formData)
-
-                                    setIsSubmitting(false)
-                                    if (result?.success) {
-                                        setIsSuccess(true)
-                                        setTimeout(() => {
-                                            setIsSuccess(false)
-                                            // Optional: Close modal here
-                                        }, 4000)
-                                    } else {
-                                        // Handle error (could add toast here)
-                                        console.error(result?.error)
-                                        alert("Hubo un error al enviar el mensaje. Por favor intenta nuevamente.")
+                        ) : (
+                            <form
+                                action={async (formData) => {
+                                    setIsSubmitting(true)
+                                    // Add selected service to formData
+                                    if (selectedService) {
+                                        formData.append("service", selectedService)
                                     }
-                                })
-                            }}
-                            className="max-w-xl mx-auto space-y-8"
-                        >
 
-                            {/* Personal Info */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <FloatingInput name="name" label="Nombre Completo" required />
-                                <FloatingInput name="email" label="Email Profesional" type="email" required />
-                            </div>
+                                    import("@/app/actions").then(async ({ sendEmail }) => {
+                                        const result = await sendEmail(formData)
 
-                            {/* Service Selection (Visual Chips) */}
-                            <div className="space-y-4">
-                                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block ml-1">
-                                    ¿Qué estás buscando?
-                                </label>
-                                <div className="flex flex-wrap gap-2">
-                                    {services.map((service) => (
-                                        <button
-                                            type="button"
-                                            key={service.id}
-                                            onClick={() => setSelectedService(service.id)}
-                                            className={cn(
-                                                "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
-                                                selectedService === service.id
-                                                    ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-                                                    : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
-                                            )}
-                                        >
-                                            {service.label}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Project Details */}
-                            <div className="relative group">
-                                <Textarea
-                                    name="message"
-                                    className="min-h-[160px] pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
-                                    placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
-                                    required
-                                />
-                                <div className="absolute bottom-3 right-3 text-[10px] text-muted-foreground font-mono">
-                                    0/500
-                                </div>
-                            </div>
-
-                            {/* Submit Button */}
-                            <Button
-                                type="submit"
-                                disabled={isSubmitting || isSuccess}
-                                className={cn(
-                                    "w-full h-14 font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]",
-                                    isSuccess
-                                        ? "bg-green-500 hover:bg-green-600 text-white"
-                                        : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                                )}
+                                        setIsSubmitting(false)
+                                        if (result?.success) {
+                                            setIsSuccess(true)
+                                            // No auto-close, let user see the success message
+                                        } else {
+                                            // Handle error (could add toast here)
+                                            console.error(result?.error)
+                                            alert("Hubo un error al enviar el mensaje. Por favor intenta nuevamente.")
+                                        }
+                                    })
+                                }}
+                                className="max-w-xl mx-auto space-y-8"
                             >
-                                {isSubmitting ? (
-                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                ) : isSuccess ? (
-                                    <span className="flex items-center justify-center gap-2">
-                                        ¡Mensaje Enviado!
-                                        <CheckCircle2 className="w-5 h-5" />
-                                    </span>
-                                ) : (
-                                    <span className="flex items-center justify-center gap-2">
-                                        Enviar Solicitud
-                                        <ArrowRight className="w-5 h-5" />
-                                    </span>
-                                )}
-                            </Button>
 
-                        </form>
+                                {/* Personal Info */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FloatingInput name="name" label="Nombre Completo" required />
+                                    <FloatingInput name="email" label="Email Profesional" type="email" required />
+                                </div>
+
+                                {/* Service Selection (Visual Chips) */}
+                                <div className="space-y-4">
+                                    <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block ml-1">
+                                        ¿Qué estás buscando?
+                                    </label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {services.map((service) => (
+                                            <button
+                                                type="button"
+                                                key={service.id}
+                                                onClick={() => setSelectedService(service.id)}
+                                                className={cn(
+                                                    "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
+                                                    selectedService === service.id
+                                                        ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                                                        : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                                                )}
+                                            >
+                                                {service.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Project Details */}
+                                <div className="relative group">
+                                    <Textarea
+                                        name="message"
+                                        className="min-h-[160px] pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
+                                        placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
+                                        required
+                                        maxLength={500}
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                    />
+                                    <div className="absolute bottom-3 right-3 text-[10px] text-muted-foreground font-mono">
+                                        {message.length}/500
+                                    </div>
+                                </div>
+
+                                {/* Submit Button */}
+                                <Button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full h-14 font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] bg-primary hover:bg-primary/90 text-primary-foreground"
+                                >
+                                    {isSubmitting ? (
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                    ) : (
+                                        <span className="flex items-center justify-center gap-2">
+                                            Enviar Solicitud
+                                            <ArrowRight className="w-5 h-5" />
+                                        </span>
+                                    )}
+                                </Button>
+
+                            </form>
+                        )}
                     </div>
 
                 </div>
