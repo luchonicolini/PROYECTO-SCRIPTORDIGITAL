@@ -49,81 +49,104 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.98 0.01 260);
-  --foreground: oklch(0.12 0.04 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.04 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.04 260);
-  /* Violet (Hero Match) */
-  --primary: oklch(0.58 0.25 270);
-  --primary-foreground: oklch(0.985 0 0);
 
-  /* Deep Purple */
-  --secondary: oklch(0.45 0.20 280);
-  --secondary-foreground: oklch(0.985 0 0);
+  /* 
+     THEME: SOFT DARK ("Scriptor Night")
+     Concept: Elegant, official, not pitch black.
+     Colors: Deep Slate + White + Antique Gold.
+  */
 
-  --muted: oklch(0.96 0.02 270);
-  --muted-foreground: oklch(0.50 0.05 270);
-  --accent: oklch(0.96 0.02 260);
-  --accent-foreground: oklch(0.15 0.05 260);
+  /* Background: Rich Royal Blue (Lighter/Vibrant) */
+  --background: #172554;
+
+  /* Foreground: Soft White for readability on dark */
+  --foreground: #F8FAFC;
+
+  /* Card: Glassy Slate */
+  --card: rgba(15, 23, 42, 0.6);
+  --card-foreground: #F8FAFC;
+
+  --popover: #0F172A;
+  --popover-foreground: #F8FAFC;
+
+  /* Primary: ANTIQUE GOLD (Classic) */
+  --primary: #D4AF37;
+  --primary-foreground: #0F172A;
+
+  /* Secondary: Cool Slate/Indigo */
+  --secondary: #6366F1;
+  --secondary-foreground: #F8FAFC;
+
+  /* Muted: Subtle light grey (High Contrast for Royal Blue) */
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #E2E8F0;
+
+  --accent: rgba(212, 175, 55, 0.1);
+  --accent-foreground: #D4AF37;
+
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.02 260);
-  --input: oklch(0.92 0.02 260);
-  --ring: oklch(0.55 0.25 290);
-  --chart-1: oklch(0.55 0.25 290);
-  --chart-2: oklch(0.75 0.20 200);
-  --chart-3: oklch(0.65 0.25 340);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.98 0.01 260);
-  --sidebar-foreground: oklch(0.12 0.04 260);
-  --sidebar-primary: oklch(0.55 0.25 290);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.96 0.02 260);
-  --sidebar-accent-foreground: oklch(0.15 0.05 260);
-  --sidebar-border: oklch(0.92 0.02 260);
-  --sidebar-ring: oklch(0.55 0.25 290);
+
+  --border: rgba(255, 255, 255, 0.08);
+  /* Subtle white border */
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(212, 175, 55, 0.5);
+
+  /* Chart colors */
+  --chart-1: #D4AF37;
+  --chart-2: #6366F1;
+  --chart-3: #94A3B8;
+  --chart-4: #F8FAFC;
+  --chart-5: #E2E8F0;
+
+  --sidebar: #0F172A;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #0F172A;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #D4AF37;
 }
 
+/* 
+   Explicitly overriding .dark to behave as light for now, 
+   or we can leave it as the "Night Mode" option.
+   For this request, I will set .dark to match root to enforce consistency 
+   unless the user asks for a toggle. 
+*/
 .dark {
-  --background: #050511;
-  /* Deep Midnight Blue */
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.12 0.06 260);
-  /* Slightly lighter blue for cards */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.12 0.06 260);
-  --popover-foreground: oklch(0.985 0 0);
-  /* Violet (Hero Match) */
-  --primary: oklch(0.65 0.25 270);
-  --primary-foreground: oklch(0.985 0 0);
-
-  /* Deep Purple */
-  --secondary: oklch(0.45 0.20 280);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.15 0.06 260);
-  --muted-foreground: oklch(0.70 0.04 260);
-  --accent: oklch(0.20 0.10 290);
-  /* Deep Purple Accent */
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.25 0.06 260);
-  --input: oklch(0.25 0.06 260);
-  --ring: oklch(0.65 0.25 290);
-  --chart-1: oklch(0.65 0.25 290);
-  --chart-2: oklch(0.75 0.20 200);
-  --chart-3: oklch(0.75 0.20 340);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.10 0.05 260);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.65 0.25 290);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.15 0.06 260);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.25 0.06 260);
-  --sidebar-ring: oklch(0.65 0.25 290);
+  --background: #172554;
+  /* Kept previous dark navy as an option if needed later */
+  --foreground: #F1F5F9;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #F1F5F9;
+  --popover: #0a0f1c;
+  --popover-foreground: #F1F5F9;
+  --primary: #D4AF37;
+  --primary-foreground: #050511;
+  --secondary: #6366F1;
+  --secondary-foreground: #F1F5F9;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #E2E8F0;
+  --accent: rgba(212, 175, 55, 0.1);
+  --accent-foreground: #D4AF37;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(212, 175, 55, 0.5);
+  --chart-1: #D4AF37;
+  --chart-2: #6366F1;
+  --chart-3: #94A3B8;
+  --chart-4: #0F172A;
+  --chart-5: #E2E8F0;
+  --sidebar: #050511;
+  --sidebar-foreground: #F1F5F9;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #050511;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #F1F5F9;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #D4AF37;
 }
 
 @layer base {
@@ -167,5 +190,9 @@
 
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-md border border-white/10 shadow-lg;
   }
 }

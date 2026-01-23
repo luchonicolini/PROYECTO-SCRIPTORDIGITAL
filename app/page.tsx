@@ -1,19 +1,19 @@
 
 
-import { HeroSection } from "@/components/hero-section"
-import { SocialProof } from "@/components/social-proof"
-import { UseCases } from "@/components/use-cases"
-import { TrustStrip } from "@/components/trust-strip"
-import { TeamSection } from "@/components/team-section"
-import { FinalCTA } from "@/components/final-cta"
-import { Manifesto } from "@/components/manifesto"
+import { HeroSection } from "@/components/sections/hero-section"
+import { SocialProof } from "@/components/sections/social-proof"
+import { UseCases } from "@/components/sections/use-cases"
+import { TrustStrip } from "@/components/sections/trust-strip"
+import { TeamSection } from "@/components/sections/team-section"
+import { FinalCTA } from "@/components/sections/final-cta"
+import { Manifesto } from "@/components/sections/manifesto"
 
-import { Methodology } from "@/components/methodology"
+import { Methodology } from "@/components/sections/methodology"
 
-import { FAQ } from "@/components/faq"
-import { Footer } from "@/components/footer"
+import { FAQ } from "@/components/sections/faq"
+import { Footer } from "@/components/sections/footer"
 
-import { ServicesTabs } from "@/components/services-tabs"
+import { ServicesTabs } from "@/components/sections/services-tabs"
 
 export default function Home() {
   return (
@@ -30,19 +30,27 @@ export default function Home() {
       <UseCases />
 
       {/* 2. The Solution (Menu) */}
-      <ServicesTabs />
+      <section id="servicios">
+        <ServicesTabs />
+      </section>
 
       {/* 3. Trust & Process */}
-      <Methodology />
+      <section id="metodologia">
+        <Methodology />
+      </section>
 
       {/* 3.5 Security Guarantees */}
       <TrustStrip />
 
       {/* 4. Leadership */}
-      <TeamSection />
+      <section id="equipo">
+        <TeamSection />
+      </section>
 
       {/* 6. FAQ */}
-      <FAQ />
+      <section id="faq">
+        <FAQ />
+      </section>
 
       {/* 7. Final Conversion */}
       <FinalCTA />

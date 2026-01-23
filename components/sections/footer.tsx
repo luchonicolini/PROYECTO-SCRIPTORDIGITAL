@@ -1,24 +1,30 @@
 "use client"
 
+import { motion } from "framer-motion"
 import Link from "next/link"
 
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Send } from "lucide-react"
 import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/data"
 
 import { ParticlesBackground } from "@/components/particles-background"
+import { Logo } from "@/components/logo"
+import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 export function Footer() {
     return (
-        <footer className="relative bg-[#050511] border-t border-white/5 overflow-hidden">
-            <ParticlesBackground quantity={30} className="absolute inset-0 h-full w-full pointer-events-none opacity-50" />
+        <footer className="relative bg-background border-t border-border overflow-hidden text-foreground">
+            <ParticlesBackground quantity={50} className="absolute inset-0 h-full w-full pointer-events-none opacity-40" />
             <div className="container mx-auto px-4 py-16 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
-                    <div className="space-y-6">
-                        <Link href="/" className="font-heading text-2xl font-bold tracking-tight block">
-                            Scriptor<span className="text-primary">Digital</span>
-                        </Link>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16"
+                >
+                    <motion.div variants={fadeInUp} className="space-y-6">
+                        <div className="block mb-6">
+                            <Logo />
+                        </div>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                             Elevando el estándar de la educación digital y la presencia institucional con tecnología de vanguardia y diseño premium.
                         </p>
@@ -32,9 +38,9 @@ export function Footer() {
                                 />
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={fadeInUp}>
                         <h4 className="font-bold mb-6 text-foreground">Explorar</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
                             {FOOTER_LINKS.EXPLORE.filter(link => link.label !== "Blog").map((link) => (
@@ -43,9 +49,9 @@ export function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={fadeInUp}>
                         <h4 className="font-bold mb-6 text-foreground">Legal</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
                             {FOOTER_LINKS.LEGAL.map((link) => (
@@ -54,16 +60,16 @@ export function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
                     <p>
                         © 2026 Scriptor Digital. Todos los derechos reservados.
                     </p>
                     <div className="flex gap-8">
-                        <Link href="#" className="hover:text-foreground transition-colors">Privacidad</Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">Términos</Link>
+                        <Link href="/privacy" className="hover:text-foreground transition-colors">Privacidad</Link>
+                        <Link href="/terms" className="hover:text-foreground transition-colors">Términos</Link>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useCallback } from "react"
 
 interface Particle {
     x: number
@@ -39,18 +39,7 @@ export function ParticlesBackground({
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 })
     const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1
 
-    const resizeCanvas = () => {
-        if (canvasRef.current && context.current) {
-            circles.current.length = 0
-            canvasSize.current.w = canvasRef.current.offsetWidth
-            canvasSize.current.h = canvasRef.current.offsetHeight
-            canvasRef.current.width = canvasSize.current.w * dpr
-            canvasRef.current.height = canvasSize.current.h * dpr
-            context.current.scale(dpr, dpr)
-        }
-    }
-
-    const circleParams = (): Particle => {
+    const circleParams = useCallback((): Particle => {
         const x = Math.floor(Math.random() * canvasSize.current.w)
         const y = Math.floor(Math.random() * canvasSize.current.h)
         const translateX = 0
@@ -75,16 +64,9 @@ export function ParticlesBackground({
             vx: 0,
             vy: 0
         }
-    }
+    }, [])
 
-    const drawParticles = () => {
-        resizeCanvas()
-        for (let i = 0; i < quantity; i++) {
-            circles.current.push(circleParams())
-        }
-    }
-
-    const drawCircle = (circle: Particle, update = false) => {
+    const drawCircle = useCallback((circle: Particle, update = false) => {
         if (context.current) {
             const { x, y, translateX, translateY, size, alpha } = circle
             context.current.translate(translateX, translateY)
@@ -98,9 +80,9 @@ export function ParticlesBackground({
                 circles.current.push(circle)
             }
         }
-    }
+    }, [dpr])
 
-    const clearContext = () => {
+    const clearContext = useCallback(() => {
         if (context.current) {
             context.current.clearRect(
                 0,
@@ -109,88 +91,108 @@ export function ParticlesBackground({
                 canvasSize.current.h
             )
         }
-    }
+    }, [])
 
-    const animate = () => {
-        clearContext()
-        circles.current.forEach((circle: Particle, i: number) => {
-            // Check connections
-            for (let j = i + 1; j < circles.current.length; j++) {
-                const p2 = circles.current[j]
-                const dx = circle.x - p2.x
-                const dy = circle.y - p2.y
-                const distance = Math.sqrt(dx * dx + dy * dy)
-                const connectionDistance = 150
+    const resizeCanvas = useCallback(() => {
+        if (canvasRef.current && context.current) {
+            circles.current.length = 0
+            canvasSize.current.w = canvasRef.current.offsetWidth
+            canvasSize.current.h = canvasRef.current.offsetHeight
+            canvasRef.current.width = canvasSize.current.w * dpr
+            canvasRef.current.height = canvasSize.current.h * dpr
+            context.current.scale(dpr, dpr)
+        }
+    }, [dpr])
 
-                if (distance < connectionDistance) {
-                    if (context.current) {
-                        const opacity = 1 - distance / connectionDistance
-                        context.current.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.2})`
-                        context.current.lineWidth = 0.5
-                        context.current.beginPath()
-                        context.current.moveTo(circle.x, circle.y)
-                        context.current.lineTo(p2.x, p2.y)
-                        context.current.stroke()
-                    }
-                }
-            }
+    const drawParticles = useCallback(() => {
+        resizeCanvas()
+        for (let i = 0; i < quantity; i++) {
+            circles.current.push(circleParams())
+        }
+    }, [quantity, resizeCanvas, circleParams])
 
-            // Move
-            circle.x += circle.dx + (Math.random() - 0.5) * 0.1
-            circle.y += circle.dy + (Math.random() - 0.5) * 0.1
-            circle.translateX +=
-                (mouse.current.x / (staticity / circle.magnetism) -
-                    circle.translateX) /
-                ease
-            circle.translateY +=
-                (mouse.current.y / (staticity / circle.magnetism) -
-                    circle.translateY) /
-                ease
-
-            if (circle.x < -circle.size || circle.x > canvasSize.current.w + circle.size) {
-                circle.dx = -circle.dx
-            }
-            if (circle.y < -circle.size || circle.y > canvasSize.current.h + circle.size) {
-                circle.dy = -circle.dy
-            }
-
-            // Fade in
-            if (circle.alpha < circle.targetAlpha) {
-                circle.alpha += 0.01
-            } else if (circle.alpha > circle.targetAlpha) {
-                circle.alpha -= 0.01
-            }
-
-            drawCircle(circle, true)
-        })
-        window.requestAnimationFrame(animate)
-    }
-
-    const initCanvas = () => {
+    const initCanvas = useCallback(() => {
         resizeCanvas()
         drawParticles()
-    }
+    }, [drawParticles, resizeCanvas])
 
     useEffect(() => {
         if (canvasRef.current) {
             context.current = canvasRef.current.getContext("2d")
         }
         initCanvas()
-        animate()
+
+        let animationFrameId: number
+
+        const render = () => {
+            clearContext()
+            circles.current.forEach((circle: Particle, i: number) => {
+                // Check connections
+                for (let j = i + 1; j < circles.current.length; j++) {
+                    const p2 = circles.current[j]
+                    const dx = circle.x - p2.x
+                    const dy = circle.y - p2.y
+                    const distance = Math.sqrt(dx * dx + dy * dy)
+                    const connectionDistance = 150
+
+                    if (distance < connectionDistance) {
+                        if (context.current) {
+                            const opacity = 1 - distance / connectionDistance
+                            context.current.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.2})`
+                            context.current.lineWidth = 0.5
+                            context.current.beginPath()
+                            context.current.moveTo(circle.x, circle.y)
+                            context.current.lineTo(p2.x, p2.y)
+                            context.current.stroke()
+                        }
+                    }
+                }
+
+                // Move
+                circle.x += circle.dx + (Math.random() - 0.5) * 0.1
+                circle.y += circle.dy + (Math.random() - 0.5) * 0.1
+                circle.translateX +=
+                    (mouse.current.x / (staticity / circle.magnetism) -
+                        circle.translateX) /
+                    ease
+                circle.translateY +=
+                    (mouse.current.y / (staticity / circle.magnetism) -
+                        circle.translateY) /
+                    ease
+
+                if (circle.x < -circle.size || circle.x > canvasSize.current.w + circle.size) {
+                    circle.dx = -circle.dx
+                }
+                if (circle.y < -circle.size || circle.y > canvasSize.current.h + circle.size) {
+                    circle.dy = -circle.dy
+                }
+
+                // Fade in
+                if (circle.alpha < circle.targetAlpha) {
+                    circle.alpha += 0.01
+                } else if (circle.alpha > circle.targetAlpha) {
+                    circle.alpha -= 0.01
+                }
+
+                drawCircle(circle, true)
+            })
+            animationFrameId = window.requestAnimationFrame(render)
+        }
+
+        render()
 
         const handleResize = () => initCanvas()
         window.addEventListener("resize", handleResize)
 
         return () => {
             window.removeEventListener("resize", handleResize)
+            cancelAnimationFrame(animationFrameId)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [initCanvas, ease, staticity, clearContext, drawCircle])
 
     useEffect(() => {
         initCanvas()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [refresh])
+    }, [refresh, initCanvas])
 
     return (
         <canvas

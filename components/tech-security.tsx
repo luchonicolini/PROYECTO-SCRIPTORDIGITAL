@@ -20,7 +20,7 @@ export function TechSecurity() {
     ]
 
     return (
-        <section className="py-12 bg-black border-y border-white/10">
+        <section className="py-12 bg-background border-y border-border">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
                     {features.map((feature, index) => (
@@ -30,9 +30,9 @@ export function TechSecurity() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="flex items-center gap-3 text-white/50 hover:text-white transition-colors duration-300"
+                            className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
                         >
-                            <feature.icon className="w-5 h-5 text-violet-500" />
+                            <feature.icon className="w-5 h-5 text-cyan-500" />
                             <span className="text-sm font-medium tracking-wide uppercase">{feature.text}</span>
                         </motion.div>
                     ))}
