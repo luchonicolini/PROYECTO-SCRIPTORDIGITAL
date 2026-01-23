@@ -14,11 +14,35 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MessageCircle, MapPin, CheckCircle2, ArrowRight, X, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+// New imports for Form
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage,
+} from "@/components/ui/form"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+// Server action
+import { sendEmail } from "@/app/actions"
 
-// Floating Label Input Component - Refined for NOVA Glass
-const FloatingInput = ({ label, ...props }: React.ComponentProps<typeof Input> & { label: string }) => (
+// Schema definition
+const formSchema = z.object({
+    name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
+    email: z.string().email("Ingresa un email válido."),
+    service: z.string().optional(),
+    message: z.string()
+        .min(10, "Cuéntanos un poco más (min. 10 caracteres).")
+        .max(500, "El mensaje no puede superar los 500 caracteres."),
+})
+
+// Custom Floating Label Input for React Hook Form
+const FloatingFormInput = ({ field, label, ...props }: any) => (
     <div className="relative group">
         <Input
+            {...field}
             {...props}
             className="peer h-14 pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder-transparent focus:border-primary/50 focus:ring-0 transition-all rounded-xl"
             placeholder=" "
@@ -31,10 +55,7 @@ const FloatingInput = ({ label, ...props }: React.ComponentProps<typeof Input> &
 )
 
 export function ContactModal({ children }: { children: React.ReactNode }) {
-    const [selectedService, setSelectedService] = useState<string | null>(null)
-    const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
-    const [message, setMessage] = useState("")
 
     // Services choices
     const services = [
@@ -44,20 +65,52 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
         { id: "consultoria", label: "Consultoría" },
     ]
 
+    // Form initialization
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            service: "",
+            message: "",
+        },
+    })
+
+    const messageLength = form.watch("message").length
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        // Create FormData from values to match server action signature
+        const formData = new FormData()
+        formData.append("name", values.name)
+        formData.append("email", values.email)
+        formData.append("service", values.service || "")
+        formData.append("message", values.message)
+
+        const result = await sendEmail(formData)
+
+        if (result?.success) {
+            setIsSuccess(true)
+            form.reset()
+        } else {
+            console.error(result?.error)
+            alert("Hubo un error al enviar el mensaje. Por favor intenta nuevamente.")
+        }
+    }
+
     return (
         <Dialog onOpenChange={(open) => {
             if (!open) {
                 // Reset state when modal closes
                 setTimeout(() => {
                     setIsSuccess(false)
-                    setMessage("")
-                    setSelectedService(null)
+                    form.reset()
                 }, 300)
             }
         }}>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild suppressHydrationWarning>
                 {children}
             </DialogTrigger>
+
             <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-white/10 text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl">
 
                 {/* Custom Close Button */}
@@ -84,13 +137,12 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                     Excelencia.
                                 </span>
                             </DialogTitle>
-                            {/* Hide description on very small screens if needed, mostly ok to keep but maybe shorten line height */}
                             <DialogDescription className="hidden md:block text-muted-foreground text-lg leading-relaxed font-light">
                                 Cuéntanos tu desafío. Nosotros diseñamos la solución técnica y académica a medida.
                             </DialogDescription>
                         </div>
 
-                        {/* Contact details - Hidden on mobile to save space, focus on form */}
+                        {/* Contact details */}
                         <div className="relative z-10 space-y-6 mt-6 hidden md:block">
                             {[
                                 { icon: Mail, label: "EMAIL", value: "hola@scriptordigital.com", color: "text-secondary" },
@@ -109,7 +161,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                             ))}
                         </div>
 
-                        {/* Trust Indicator - Mobile/Desktop */}
+                        {/* Trust Indicator */}
                         <div className="relative z-10 mt-4 md:mt-0 flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                             <span className="text-xs font-medium text-muted-foreground">Respuesta en max. 24hs</span>
@@ -136,94 +188,100 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                 </DialogClose>
                             </div>
                         ) : (
-                            <form
-                                action={async (formData) => {
-                                    setIsSubmitting(true)
-                                    // Add selected service to formData
-                                    if (selectedService) {
-                                        formData.append("service", selectedService)
-                                    }
+                            <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-xl mx-auto space-y-8">
 
-                                    import("@/app/actions").then(async ({ sendEmail }) => {
-                                        const result = await sendEmail(formData)
-
-                                        setIsSubmitting(false)
-                                        if (result?.success) {
-                                            setIsSuccess(true)
-                                            // No auto-close, let user see the success message
-                                        } else {
-                                            // Handle error (could add toast here)
-                                            console.error(result?.error)
-                                            alert("Hubo un error al enviar el mensaje. Por favor intenta nuevamente.")
-                                        }
-                                    })
-                                }}
-                                className="max-w-xl mx-auto space-y-8"
-                            >
-
-                                {/* Personal Info */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <FloatingInput name="name" label="Nombre Completo" required />
-                                    <FloatingInput name="email" label="Email Profesional" type="email" required />
-                                </div>
-
-                                {/* Service Selection (Visual Chips) */}
-                                <div className="space-y-4">
-                                    <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block ml-1">
-                                        ¿Qué estás buscando?
-                                    </label>
-                                    <div className="flex flex-wrap gap-2">
-                                        {services.map((service) => (
-                                            <button
-                                                type="button"
-                                                key={service.id}
-                                                onClick={() => setSelectedService(service.id)}
-                                                className={cn(
-                                                    "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
-                                                    selectedService === service.id
-                                                        ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-                                                        : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
-                                                )}
-                                            >
-                                                {service.label}
-                                            </button>
-                                        ))}
+                                    {/* Personal Info */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <FormField
+                                            control={form.control}
+                                            name="name"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <FloatingFormInput field={field} label="Nombre Completo" />
+                                                    </FormControl>
+                                                    <FormMessage className="text-red-400 font-light text-xs ml-1" />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="email"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <FloatingFormInput field={field} label="Email Profesional" type="email" />
+                                                    </FormControl>
+                                                    <FormMessage className="text-red-400 font-light text-xs ml-1" />
+                                                </FormItem>
+                                            )}
+                                        />
                                     </div>
-                                </div>
 
-                                {/* Project Details */}
-                                <div className="relative group">
-                                    <Textarea
+                                    {/* Service Selection */}
+                                    <div className="space-y-4">
+                                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block ml-1">
+                                            ¿Qué estás buscando?
+                                        </label>
+                                        <div className="flex flex-wrap gap-2">
+                                            {services.map((service) => (
+                                                <button
+                                                    type="button"
+                                                    key={service.id}
+                                                    onClick={() => form.setValue("service", service.id)}
+                                                    className={cn(
+                                                        "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
+                                                        form.watch("service") === service.id
+                                                            ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                                                            : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                                                    )}
+                                                >
+                                                    {service.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Project Details */}
+                                    <FormField
+                                        control={form.control}
                                         name="message"
-                                        className="min-h-[160px] pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
-                                        placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
-                                        required
-                                        maxLength={500}
-                                        value={message}
-                                        onChange={(e) => setMessage(e.target.value)}
+                                        render={({ field }) => (
+                                            <FormItem className="relative group">
+                                                <FormControl>
+                                                    <Textarea
+                                                        {...field}
+                                                        className="min-h-[160px] pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
+                                                        placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
+                                                    />
+                                                </FormControl>
+                                                <div className="absolute bottom-3 right-3 text-[10px] text-muted-foreground font-mono">
+                                                    {messageLength}/500
+                                                </div>
+                                                <FormMessage className="text-red-400 font-light text-xs ml-1" />
+                                            </FormItem>
+                                        )}
                                     />
-                                    <div className="absolute bottom-3 right-3 text-[10px] text-muted-foreground font-mono">
-                                        {message.length}/500
-                                    </div>
-                                </div>
 
-                                {/* Submit Button */}
-                                <Button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="w-full h-14 font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] bg-primary hover:bg-primary/90 text-primary-foreground"
-                                >
-                                    {isSubmitting ? (
-                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                    ) : (
-                                        <span className="flex items-center justify-center gap-2">
-                                            Enviar Solicitud
-                                            <ArrowRight className="w-5 h-5" />
-                                        </span>
-                                    )}
-                                </Button>
+                                    {/* Submit Button */}
+                                    <Button
+                                        type="submit"
+                                        disabled={form.formState.isSubmitting}
+                                        className="w-full h-14 font-bold tracking-wide rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] bg-primary hover:bg-primary/90 text-primary-foreground"
+                                    >
+                                        {form.formState.isSubmitting ? (
+                                            <Loader2 className="w-5 h-5 animate-spin" />
+                                        ) : (
+                                            <span className="flex items-center justify-center gap-2">
+                                                Enviar Solicitud
+                                                <ArrowRight className="w-5 h-5" />
+                                            </span>
+                                        )}
+                                    </Button>
 
-                            </form>
+                                </form>
+                            </Form>
                         )}
                     </div>
 
