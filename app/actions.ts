@@ -9,6 +9,14 @@ export async function sendEmail(formData: FormData) {
     const email = formData.get("email") as string
     const service = formData.get("service") as string
     const message = formData.get("message") as string
+    const honeypot = formData.get("company_role") as string
+
+    // HONEYPOT CHECK: If the hidden field is filled, it's a bot.
+    // Silently return success to not alert the bot.
+    if (honeypot) {
+        console.log("Spam attempt blocked (Honeypot caught)")
+        return { success: true }
+    }
 
     if (!name || !email || !message) {
         return { error: "Faltan campos requeridos" }

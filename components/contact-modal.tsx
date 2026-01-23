@@ -36,6 +36,8 @@ const formSchema = z.object({
     message: z.string()
         .min(10, "Cuéntanos un poco más (min. 10 caracteres).")
         .max(500, "El mensaje no puede superar los 500 caracteres."),
+    // Honeypot field (hidden from users)
+    company_role: z.string().optional(),
 })
 
 // Custom Floating Label Input for React Hook Form
@@ -73,6 +75,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
             email: "",
             service: "",
             message: "",
+            company_role: "", // Honeypot default
         },
     })
 
@@ -85,6 +88,8 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
         formData.append("email", values.email)
         formData.append("service", values.service || "")
         formData.append("message", values.message)
+        // Honeypot
+        formData.append("company_role", values.company_role || "")
 
         const result = await sendEmail(formData)
 
@@ -111,7 +116,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                 {children}
             </DialogTrigger>
 
-            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-white/10 text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl">
+            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-white/10 text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
 
                 {/* Custom Close Button */}
                 <DialogClose className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 rounded-full bg-black/20 hover:bg-white/10 transition-colors text-foreground focus:outline-none focus:ring-0">
@@ -145,20 +150,32 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                         {/* Contact details */}
                         <div className="relative z-10 space-y-6 mt-6 hidden md:block">
                             {[
-                                { icon: Mail, label: "EMAIL", value: "hola@scriptordigital.com", color: "text-secondary" },
-                                { icon: MessageCircle, label: "WHATSAPP", value: "+54 9 11 1234 5678", color: "text-primary" },
+                                { icon: Mail, label: "EMAIL", value: "scriptordigitaloficial@gmail.com", color: "text-secondary", href: "mailto:scriptordigitaloficial@gmail.com" },
+                                { icon: MessageCircle, label: "WHATSAPP", value: "+54 9 11 3420 6516", color: "text-primary", href: "https://wa.me/5491134206516" },
                                 { icon: MapPin, label: "OFICINAS", value: "Buenos Aires • Madrid", color: "text-muted-foreground" }
-                            ].map((item, idx) => (
-                                <div key={idx} className="flex items-center gap-4 group cursor-default">
-                                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
-                                        <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
-                                    </div>
-                                    <div>
-                                        <div className="text-[10px] font-bold text-muted-foreground/60 tracking-widest mb-1">{item.label}</div>
-                                        <div className="text-foreground/90 font-medium text-sm">{item.value}</div>
-                                    </div>
-                                </div>
-                            ))}
+                            ].map((item, idx) => {
+                                const Wrapper = item.href ? "a" : "div"
+                                return (
+                                    <Wrapper
+                                        key={idx}
+                                        href={item.href}
+                                        target={item.href?.startsWith("http") ? "_blank" : undefined}
+                                        rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                        className={cn(
+                                            "flex items-center gap-4 group transition-all duration-300",
+                                            item.href ? "cursor-pointer hover:translate-x-1" : "cursor-default"
+                                        )}
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
+                                            <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-bold text-muted-foreground/60 tracking-widest mb-1">{item.label}</div>
+                                            <div className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors">{item.value}</div>
+                                        </div>
+                                    </Wrapper>
+                                )
+                            })}
                         </div>
 
                         {/* Trust Indicator */}
@@ -193,6 +210,18 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
 
                                     {/* Personal Info */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* HONEYPOT - Invisible Field */}
+                                        <FormField
+                                            control={form.control}
+                                            name="company_role"
+                                            render={({ field }) => (
+                                                <FormItem className="absolute opacity-0 -z-50 w-[1px] h-[1px] overflow-hidden p-0 m-0 pointer-events-none">
+                                                    <FormControl>
+                                                        <Input {...field} tabIndex={-1} autoComplete="off" />
+                                                    </FormControl>
+                                                </FormItem>
+                                            )}
+                                        />
                                         <FormField
                                             control={form.control}
                                             name="name"

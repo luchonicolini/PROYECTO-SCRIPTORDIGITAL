@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 
 import { Navbar } from "@/components/navbar";
 import { ReadingProgress } from "@/components/reading-progress";
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
   children,
@@ -60,6 +61,7 @@ export default function RootLayout({
           <Navbar />
           <SmoothScroll>
             {children}
+            <Analytics />
           </SmoothScroll>
         </ThemeProvider>
         <script
@@ -79,7 +81,7 @@ export default function RootLayout({
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "sales",
-                "email": "contacto@scriptordigital.com"
+                "email": "scriptordigitaloficial@gmail.com"
               },
               "sameAs": [
                 "https://github.com/scriptordigital",

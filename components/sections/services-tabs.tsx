@@ -5,6 +5,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
 import { Check, ArrowRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ContactModal } from "@/components/contact-modal"
 // import { DialogHeader } from "@/components/ui/dialog" // Unused
 
 import { SERVICES_DATA } from "@/lib/data"
@@ -327,15 +328,16 @@ export function ServicesTabs() {
                                             <p className="text-muted-foreground text-sm hidden md:block">
                                                 * Garantía de conformidad y soporte post-entrega incluido.
                                             </p>
-                                            <Button
-                                                asChild
-                                                className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
-                                            >
-                                                <a href="#contact" className="flex items-center gap-2">
-                                                    Solicitar Presupuesto
-                                                    <ArrowRight className="w-5 h-5" />
-                                                </a>
-                                            </Button>
+                                            <ContactModal>
+                                                <Button
+                                                    className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
+                                                >
+                                                    <span className="flex items-center gap-2">
+                                                        Solicitar Presupuesto
+                                                        <ArrowRight className="w-5 h-5" />
+                                                    </span>
+                                                </Button>
+                                            </ContactModal>
                                         </div>
                                     </div>
                                 </div>
