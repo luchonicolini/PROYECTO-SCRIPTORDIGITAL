@@ -42,63 +42,29 @@ export function Manifesto() {
                         </p>
                     </motion.div>
 
-                    {/* Right Column: Image + Code Window Container */}
+                    {/* Right Column: System Core Visual */}
+                    {/* Right Column: Living Knowledge Architecture Visual */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative h-[600px] w-full rounded-3xl overflow-hidden group"
+                        className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group"
                     >
-                        {/* Library Background Image */}
                         <Image
-                            src="/images/manifesto-bg.png"
-                            alt="Library background"
+                            src="/images/living-knowledge.png"
+                            alt="The Living Knowledge Architecture - Fusion of Library and Digital Nexus"
                             fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                        {/* Dark Overlay for contrast */}
-                        <div className="absolute inset-0 bg-black/40" />
+                        {/* Subtle overlay for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
-                        {/* Floating Glass Code Slab - Keeping Dark for Contrast but adapting border */}
-                        <div className="absolute inset-0 flex items-center justify-center p-6">
-                            <div className="w-full max-w-md bg-black/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl transform transition-transform hover:-translate-y-2 duration-500">
-                                {/* Header / Status Bar */}
-                                <div className="px-6 py-4 flex items-center justify-between border-b border-white/5 bg-white/5">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                                        <span className="text-xs font-medium tracking-widest text-primary/80 uppercase">System.Core</span>
-                                    </div>
-                                    <div className="text-[10px] text-white/30 font-mono">v2.0.4</div>
-                                </div>
-
-                                {/* Code Content */}
-                                <div className="p-8 font-mono text-sm leading-loose">
-                                    <div className="text-gray-500 mb-4">{"// Definición de Valor"}</div>
-
-                                    <div className="text-secondary">interface <span className="text-white font-bold">DigitalExcellence</span> <span className="text-white/40">{`{`}</span></div>
-
-                                    <div className="pl-6 border-l border-white/5 my-2 space-y-2">
-                                        <div>
-                                            <span className="text-indigo-400">input</span>: <span className="text-primary">&quot;Academic_Rigor&quot;</span>;
-                                        </div>
-                                        <div>
-                                            <span className="text-indigo-400">process</span>: <span className="text-primary">&quot;Premium_Dev&quot;</span>;
-                                        </div>
-                                        <div>
-                                            <span className="text-indigo-400">output</span>: <span className="text-primary">&quot;Market_Leader&quot;</span>;
-                                        </div>
-                                    </div>
-
-                                    <div className="text-white/40">{`}`}</div>
-
-                                    <div className="mt-8 flex items-center gap-3 text-xs text-primary bg-primary/10 p-3 rounded-lg border border-primary/20">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        <span>Compilation Successful</span>
-                                    </div>
-                                </div>
-                            </div>
+                        {/* Optional Label Overlay */}
+                        <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                            <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+                            <span className="text-[10px] uppercase tracking-widest text-white/80 font-medium">Nexus.Academia // v3.0</span>
                         </div>
                     </motion.div>
 
