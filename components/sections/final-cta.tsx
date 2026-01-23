@@ -55,9 +55,12 @@ export function FinalCTA() {
                             variant="outline"
                             size="lg"
                             className="h-14 px-8 rounded-full border-border hover:bg-muted text-foreground font-medium text-base w-full md:w-auto"
+                            asChild
                         >
-                            <MessageCircle className="mr-2 w-5 h-5" />
-                            Hablemos por WhatsApp
+                            <a href="https://wa.me/5491134206516" target="_blank" rel="noopener noreferrer">
+                                <MessageCircle className="mr-2 w-5 h-5" />
+                                Hablemos por WhatsApp
+                            </a>
                         </Button>
                     </motion.div>
 

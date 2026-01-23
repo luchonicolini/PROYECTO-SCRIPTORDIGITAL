@@ -148,23 +148,19 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                         </div>
 
                         {/* Contact details */}
-                        <div className="relative z-10 space-y-6 mt-6 hidden md:block">
+                        <div className="relative z-10 space-y-6 mt-6 block">
                             {[
                                 { icon: Mail, label: "EMAIL", value: "scriptordigitaloficial@gmail.com", color: "text-secondary", href: "mailto:scriptordigitaloficial@gmail.com" },
                                 { icon: MessageCircle, label: "WHATSAPP", value: "+54 9 11 3420 6516", color: "text-primary", href: "https://wa.me/5491134206516" },
                                 { icon: MapPin, label: "OFICINAS", value: "Buenos Aires • Madrid", color: "text-muted-foreground" }
-                            ].map((item, idx) => {
-                                const Wrapper = item.href ? "a" : "div"
-                                return (
-                                    <Wrapper
+                            ].map((item, idx) => (
+                                item.href ? (
+                                    <a
                                         key={idx}
                                         href={item.href}
-                                        target={item.href?.startsWith("http") ? "_blank" : undefined}
-                                        rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                                        className={cn(
-                                            "flex items-center gap-4 group transition-all duration-300",
-                                            item.href ? "cursor-pointer hover:translate-x-1" : "cursor-default"
-                                        )}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-4 group transition-all duration-300 cursor-pointer hover:translate-x-1"
                                     >
                                         <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
                                             <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
@@ -173,9 +169,19 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                             <div className="text-[10px] font-bold text-muted-foreground/60 tracking-widest mb-1">{item.label}</div>
                                             <div className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors">{item.value}</div>
                                         </div>
-                                    </Wrapper>
+                                    </a>
+                                ) : (
+                                    <div key={idx} className="flex items-center gap-4 group cursor-default">
+                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
+                                            <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-bold text-muted-foreground/60 tracking-widest mb-1">{item.label}</div>
+                                            <div className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors">{item.value}</div>
+                                        </div>
+                                    </div>
                                 )
-                            })}
+                            ))}
                         </div>
 
                         {/* Trust Indicator */}
