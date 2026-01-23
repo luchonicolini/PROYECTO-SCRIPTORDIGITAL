@@ -81,17 +81,34 @@ export function Navbar() {
                         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                         animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
                         exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                        className="fixed inset-0 top-0 bg-background/95 z-40 flex flex-col items-center justify-center space-y-8"
+                        className="fixed inset-0 bg-background/98 z-40 flex flex-col items-center justify-center"
                     >
-                        {NAV_LINKS.map((item) => (
-                            <button
-                                key={item.name}
-                                onClick={() => scrollToSection(item.href)}
-                                className="text-3xl font-serif italic text-foreground/80 hover:text-primary transition-colors"
-                            >
-                                {item.name}
-                            </button>
-                        ))}
+                        {/* Mobile Background Decoration */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+
+                        <nav className="flex flex-col items-center gap-8 relative z-10">
+                            {NAV_LINKS.map((item, i) => (
+                                <motion.button
+                                    key={item.name}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 + i * 0.1 }}
+                                    onClick={() => scrollToSection(item.href)}
+                                    className="text-2xl font-serif text-foreground/80 hover:text-primary transition-colors tracking-wide"
+                                >
+                                    {item.name}
+                                </motion.button>
+                            ))}
+                        </nav>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="absolute bottom-12 left-0 w-full flex justify-center"
+                        >
+                            <p className="text-xs text-muted-foreground uppercase tracking-widest">Scriptor Digital © 2024</p>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
