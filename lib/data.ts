@@ -177,9 +177,9 @@ export const FAQ_ITEMS = [
     },
     {
         id: "item-2",
-        question: "¿Ofrecen factura A?",
+        question: "¿Emiten facturas fiscales para reintegros?",
         answer:
-            "Sí, emitimos facturas tipo A o B según corresponda. Todo nuestro trabajo se realiza bajo un marco legal formal y transparente, ideal para rendiciones de cuentas institucionales.",
+            "Sí. Operamos con total formalidad fiscal, emitiendo Facturas 'A' o 'B' según la condición tributaria del cliente. Esto le permite deducir costos o gestionar reintegros ante universidades y organismos financiadores.",
     },
     {
         id: "item-3",

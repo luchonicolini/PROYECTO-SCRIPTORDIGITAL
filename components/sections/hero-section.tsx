@@ -80,9 +80,9 @@ export function HeroSection() {
                             animate="visible"
                             transition={{ duration: 0.8 }}
                             className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground leading-[1.1] mb-6"
-                        >    Donde el <br />
-                            <span className="text-primary font-bold">Conocimiento</span> <br />
-                            <span className="text-foreground/80">se encuentra con la Tecnología</span>
+                        >    Consultoría <br />
+                            <span className="text-primary font-bold">Académica</span> & <br />
+                            <span className="text-foreground/80">Desarrollo Tecnológico</span>
                         </motion.h1>
 
                         <motion.p
@@ -92,7 +92,7 @@ export function HeroSection() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light max-w-lg mb-8"
                         >
-                            La primera consultora que une el mundo de las Leyes y las Letras con la inmediatez del Código. Desde la redacción de su tesis hasta el despliegue de su propia plataforma.
+                            Potenciamos su carrera profesional uniendo la profundidad del Derecho con la innovación del Software. Desde su tesis doctoral hasta su propia plataforma digital.
                         </motion.p>
 
                         {/* CTA BUTTONS (NEW) */}

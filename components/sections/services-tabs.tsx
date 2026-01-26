@@ -86,7 +86,7 @@ export function ServicesTabs() {
                         transition={{ ...smoothTransition, delay: 0.1 }}
                         className="text-3xl md:text-5xl font-heading text-foreground font-medium"
                     >
-                        Soluciones <span className="italic text-foreground/80">Especializadas</span>
+                        Soluciones Híbridas: <span className="italic text-foreground/80">Academia + Tech</span>
                     </motion.h2>
                 </div>
 

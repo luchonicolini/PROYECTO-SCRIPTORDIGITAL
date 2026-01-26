@@ -22,8 +22,8 @@ export function FinalCTA() {
                         className="space-y-6"
                     >
                         <h2 className="text-5xl md:text-7xl font-serif text-foreground font-medium leading-tight tracking-tight">
-                            ¿Listo para elevar <br />
-                            <span className="italic text-muted-foreground">su estándar?</span>
+                            ¿Listo para digitalizar <br />
+                            <span className="italic text-muted-foreground">su excelencia académica?</span>
                         </h2>
 
                         <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto">

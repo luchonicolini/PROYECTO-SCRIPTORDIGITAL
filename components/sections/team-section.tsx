@@ -36,7 +36,7 @@ export function TeamSection() {
                         <div className="p-8 md:p-10 space-y-4">
                             <div>
                                 <h3 className="text-2xl font-serif text-foreground font-medium">
-                                    Dra. Mercedes Díaz Colodrero
+                                    Escribana y Especialista Mercedes Díaz Colodrero
                                 </h3>
                                 <p className="text-primary text-sm font-bold tracking-widest uppercase mt-2">
                                     Directora Académica
@@ -62,15 +62,15 @@ export function TeamSection() {
                         <div className="p-8 md:p-10 space-y-4">
                             <div>
                                 <h3 className="text-2xl font-serif text-foreground font-medium">
-                                    Luciano
+                                    Luciano Nicolini
                                 </h3>
                                 <p className="text-primary text-sm font-bold tracking-widest uppercase mt-2">
-                                    Director de Infraestructura
+                                    Desarrollador iOS & Web
                                 </p>
                             </div>
                             <div className="h-px w-12 bg-border group-hover:w-full transition-all duration-500" />
                             <p className="text-muted-foreground text-base leading-relaxed font-light">
-                                &quot;Especialista en desarrollo de ecosistemas digitales seguros. Responsable de la arquitectura de servidores y protección de datos.&quot;
+                                &quot;Programador especialista en desarrollo iOS y soluciones Web. Arquitecto de ecosistemas digitales escalables y seguros.&quot;
                             </p>
                         </div>
                     </div>

@@ -78,7 +78,7 @@ export default function PrivacyPage() {
                 <section>
                     <h2 className="text-2xl font-semibold text-foreground mb-4">7. Contacto</h2>
                     <p>
-                        Si tiene alguna pregunta sobre esta Política de Privacidad, por favor contáctenos a través de nuestro formulario web o enviando un correo a info@scriptordigital.com.
+                        Si tiene alguna pregunta sobre esta Política de Privacidad, por favor contáctenos a través de nuestro formulario web o enviando un correo a scriptordigitaloficial@gmail.com.
                     </p>
                 </section>
             </div>
