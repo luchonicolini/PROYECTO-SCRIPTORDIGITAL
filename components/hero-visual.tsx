@@ -41,7 +41,7 @@ export function HeroVisual() {
                     {/* Code Content */}
                     <div className="pl-8 text-muted-foreground/80 text-xs sm:text-sm">
                         <div className="mb-4">
-                            <span className="text-muted-foreground/40">// Definición de Valor</span>
+                            <span className="text-muted-foreground/40">{"// Definición de Valor"}</span>
                         </div>
 
                         <div>
@@ -49,15 +49,15 @@ export function HeroVisual() {
                         </div>
 
                         <div className="pl-6 py-1">
-                            <span className="text-blue-400">input</span>: <span className="text-green-400">"Academic_Rigor"</span>;
+                            <span className="text-blue-400">input</span>: <span className="text-green-400">&quot;Academic_Rigor&quot;</span>;
                         </div>
 
                         <div className="pl-6 py-1">
-                            <span className="text-blue-400">process</span>: <span className="text-green-400">"Premium_Dev"</span>;
+                            <span className="text-blue-400">process</span>: <span className="text-green-400">&quot;Premium_Dev&quot;</span>;
                         </div>
 
                         <div className="pl-6 py-1">
-                            <span className="text-blue-400">output</span>: <span className="text-green-400">"Market_Leader"</span>;
+                            <span className="text-blue-400">output</span>: <span className="text-green-400">&quot;Market_Leader&quot;</span>;
                         </div>
 
                         <div>

@@ -41,6 +41,7 @@ const formSchema = z.object({
 })
 
 // Custom Floating Label Input for React Hook Form
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const FloatingFormInput = ({ field, label, ...props }: any) => (
     <div className="relative group">
         <Input
