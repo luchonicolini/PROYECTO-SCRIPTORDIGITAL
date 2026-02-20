@@ -22,41 +22,37 @@ export default function Home() {
       <HeroSection />
       <SocialProof />
 
-      {/* 1. Philosophy (Manifesto) */}
-      <section id="manifiesto">
-        <Manifesto />
-      </section>
-
-      {/* 1.5 Pain Points */}
+      {/* 1. Uso / El Dolor Principal */}
       <UseCases />
 
-      {/* 2. The Solution (Menu) */}
+      {/* 2. Solución / Core Business */}
       <section id="servicios">
         <ServicesTabs />
       </section>
 
-      {/* 2.5 Lead Magnet / Workshop */}
+      {/* 3. Lead Magnet / Aporte de Valor Gratuito */}
       <Workshop />
 
-      {/* 3. Trust & Process */}
+      {/* 4. Construcción de Confianza: Metodología y Seguridad */}
       <section id="metodologia">
         <Methodology />
       </section>
-
-      {/* 3.5 Security Guarantees */}
       <TrustStrip />
 
-      {/* 4. Leadership */}
+      {/* 5. Autoridad / Perfiles y Expertos */}
       <section id="equipo">
         <TeamSection />
       </section>
 
-      {/* 6. FAQ */}
+      {/* 6. Identidad Filosófica Profunda */}
+      <section id="manifiesto">
+        <Manifesto />
+      </section>
+
+      {/* 7. Empuje Final de Conversión */}
       <section id="faq">
         <FAQ />
       </section>
-
-      {/* 7. Final Conversion */}
       <FinalCTA />
 
       <Footer />

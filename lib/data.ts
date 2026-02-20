@@ -196,11 +196,11 @@ export const FAQ_ITEMS = [
 ]
 
 export const NAV_LINKS = [
-    { name: "Manifiesto", href: "#manifiesto" },
     { name: "Servicios", href: "#servicios" },
-    { name: "Metodología", href: "#metodologia" },
     { name: "Taller", href: "#taller" },
+    { name: "Metodología", href: "#metodologia" },
     { name: "Equipo", href: "#equipo" },
+    { name: "Manifiesto", href: "#manifiesto" },
     { name: "FAQ", href: "#faq" },
 ]
 
