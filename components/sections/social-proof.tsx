@@ -8,36 +8,36 @@ export function SocialProof() {
                     Potenciado por estándares de clase mundial
                 </p>
 
-                <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale transition-all duration-500 hover:grayscale-0 hover:opacity-100">
+                <div className="flex flex-wrap justify-center gap-4 md:gap-8 items-center">
 
-                    {/* 1. Métricas de Éxito */}
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <GraduationCap className="h-7 w-7" />
-                        <span className="font-serif text-xl font-medium">+50 Tesis Aprobadas</span>
+                    {/* Badge 1: Métricas de Éxito */}
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border border-secondary/20 hover:bg-secondary/20 hover:border-secondary/30 transition-all duration-300">
+                        <GraduationCap className="h-5 w-5 text-primary" />
+                        <span className="font-serif text-sm md:text-base font-medium text-foreground/90 tracking-wide">+50 Tesis Aprobadas</span>
                     </div>
 
-                    {/* 2. Privacidad (Reemplazando un poco de lo perdido en TrustStrip) */}
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <LockKeyhole className="h-6 w-6" />
-                        <span className="font-serif text-lg">100% Confidencial</span>
+                    {/* Badge 2: Privacidad */}
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border border-secondary/20 hover:bg-secondary/20 hover:border-secondary/30 transition-all duration-300">
+                        <LockKeyhole className="h-5 w-5 text-primary" />
+                        <span className="font-serif text-sm md:text-base font-medium text-foreground/90 tracking-wide">100% Confidencial</span>
                     </div>
 
-                    {/* 3. Normas APA (Icon + Text) */}
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <BookOpenCheck className="h-6 w-6" />
-                        <span className="font-serif text-lg">Normas APA</span>
+                    {/* Badge 3: Normas APA */}
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border border-secondary/20 hover:bg-secondary/20 hover:border-secondary/30 transition-all duration-300">
+                        <BookOpenCheck className="h-5 w-5 text-primary" />
+                        <span className="font-serif text-sm md:text-base font-medium text-foreground/90 tracking-wide">Normas APA</span>
                     </div>
 
-                    {/* 4. CONEAU (Icon + Text) */}
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <Landmark className="h-6 w-6" />
-                        <span className="font-serif text-lg">CONEAU</span>
+                    {/* Badge 4: CONEAU */}
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border border-secondary/20 hover:bg-secondary/20 hover:border-secondary/30 transition-all duration-300">
+                        <Landmark className="h-5 w-5 text-primary" />
+                        <span className="font-serif text-sm md:text-base font-medium text-foreground/90 tracking-wide">Aval CONEAU</span>
                     </div>
 
-                    {/* 5. SSL / Security */}
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <ShieldCheck className="h-6 w-6" />
-                        <span className="font-sans text-sm font-semibold tracking-wider">SSL SECURE</span>
+                    {/* Badge 5: SSL / Security */}
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border border-secondary/20 hover:bg-secondary/20 hover:border-secondary/30 transition-all duration-300">
+                        <ShieldCheck className="h-5 w-5 text-primary" />
+                        <span className="font-sans text-xs md:text-sm font-bold tracking-[0.2em] text-foreground/90 uppercase">SSL Secure</span>
                     </div>
 
                 </div>
