@@ -23,13 +23,13 @@ export function FAQ() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-4 lg:sticky lg:top-32"
+                        className="lg:col-span-4 lg:sticky lg:top-32 space-y-4"
                     >
-                        <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-6 block">
-                            Soporte & Dudas
+                        <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">
+                            SOPORTE & DUDAS
                         </span>
-                        <h2 className="text-5xl md:text-6xl font-serif text-foreground mb-6 leading-tight">
-                            Preguntas <br />
+                        <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                            Preguntas <br className="hidden md:block" />
                             <span className="text-muted-foreground italic">Frecuentes</span>
                         </h2>
                         <div className="h-px w-12 bg-border mb-6" />

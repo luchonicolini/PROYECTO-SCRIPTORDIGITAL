@@ -17,9 +17,15 @@ export function Manifesto() {
                         transition={{ duration: 0.8 }}
                         className="space-y-8"
                     >
-                        <h2 className="font-heading text-5xl md:text-6xl font-medium leading-tight text-foreground">
-                            El Manifiesto <span className="text-primary italic font-serif">Scriptor</span>
-                        </h2>
+                        <div>
+                            <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">
+                                NUESTRA FILOSOFÍA
+                            </span>
+                            <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                                El Manifiesto <br className="hidden md:block" />
+                                <span className="text-muted-foreground italic">Scriptor</span>
+                            </h2>
+                        </div>
 
                         <div className="space-y-6 text-lg text-muted-foreground leading-relaxed font-light">
                             <p>

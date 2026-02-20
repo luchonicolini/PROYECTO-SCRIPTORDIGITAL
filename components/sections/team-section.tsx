@@ -9,13 +9,14 @@ export function TeamSection() {
 
                 {/* Header */}
                 <div className="mb-24 text-center max-w-3xl mx-auto space-y-4">
-                    <span className="text-primary font-bold tracking-[0.2em] text-xs uppercase block">
+                    <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         LIDERAZGO
                     </span>
-                    <h2 className="font-heading text-4xl md:text-5xl font-medium text-foreground leading-tight">
-                        La Alianza <span className="text-muted-foreground italic font-serif">Academia-Tech</span>
+                    <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                        La Alianza <br className="hidden md:block" />
+                        <span className="text-muted-foreground italic">Academia-Tech</span>
                     </h2>
-                    <p className="text-muted-foreground text-lg leading-relaxed font-light">
+                    <p className="text-muted-foreground text-lg leading-relaxed font-light mt-6">
                         La unión de dos mundos. El rigor científico de la academia y la potencia escalable de la ingeniería de software.
                     </p>
                 </div>

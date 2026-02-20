@@ -69,13 +69,13 @@ export function ServicesTabs() {
 
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 {/* HEADER */}
-                <div className="text-center mb-12 space-y-4">
+                <div className="mb-16 text-center max-w-3xl mx-auto space-y-4">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={smoothTransition}
-                        className="text-sm font-medium tracking-[0.2em] text-primary uppercase"
+                        className="block text-sm font-bold tracking-[0.2em] text-primary uppercase"
                     >
                         Nuestra Expertise
                     </motion.span>
@@ -84,9 +84,10 @@ export function ServicesTabs() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ ...smoothTransition, delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-heading text-foreground font-medium"
+                        className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight"
                     >
-                        Soluciones Híbridas: <span className="italic text-foreground/80">Academia + Tech</span>
+                        Soluciones Híbridas: <br className="hidden md:block" />
+                        <span className="italic text-muted-foreground">Academia + Tech</span>
                     </motion.h2>
                 </div>
 

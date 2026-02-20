@@ -17,15 +17,16 @@ export function Methodology() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-24 text-center max-w-3xl mx-auto"
+                    className="mb-24 text-center max-w-3xl mx-auto space-y-4"
                 >
-                    <span className="text-primary font-bold tracking-[0.2em] text-xs uppercase mb-4 block">
+                    <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         NUESTRO PROCESO
                     </span>
-                    <h2 className="font-heading text-4xl md:text-5xl font-medium text-foreground mb-6 leading-tight">
-                        El camino hacia la <span className="text-muted-foreground italic font-serif">Excelencia</span>
+                    <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                        El camino hacia la <br className="hidden md:block" />
+                        <span className="text-muted-foreground italic">Excelencia</span>
                     </h2>
-                    <p className="text-muted-foreground text-lg leading-relaxed font-light">
+                    <p className="text-muted-foreground text-lg leading-relaxed font-light mt-6">
                         Un recorrido estructurado y transparente. Desde la primera idea hasta la entrega final,
                         cada paso está diseñado para garantizar resultados excepcionales.
                     </p>

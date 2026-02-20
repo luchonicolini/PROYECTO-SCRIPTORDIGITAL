@@ -42,12 +42,12 @@ export function UseCases() {
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                    <div className="mb-24 text-center max-w-2xl mx-auto">
-                        <span className="text-xs font-bold tracking-[0.3em] text-primary uppercase">
+                    <div className="mb-24 text-center max-w-3xl mx-auto space-y-4">
+                        <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
                             Diagnóstico
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-serif text-foreground leading-tight">
-                            Desafíos que <br />
+                        <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                            Desafíos que <br className="hidden md:block" />
                             <span className="text-muted-foreground italic">Debemos Resolver</span>
                         </h2>
                     </div>
