@@ -3,7 +3,6 @@
 import { HeroSection } from "@/components/sections/hero-section"
 import { SocialProof } from "@/components/sections/social-proof"
 import { UseCases } from "@/components/sections/use-cases"
-import { TrustStrip } from "@/components/sections/trust-strip"
 import { TeamSection } from "@/components/sections/team-section"
 import { FinalCTA } from "@/components/sections/final-cta"
 import { Manifesto } from "@/components/sections/manifesto"
@@ -33,11 +32,10 @@ export default function Home() {
       {/* 3. Lead Magnet / Aporte de Valor Gratuito */}
       <Workshop />
 
-      {/* 4. Construcción de Confianza: Metodología y Seguridad */}
+      {/* 4. Construcción de Confianza: Metodología */}
       <section id="metodologia">
         <Methodology />
       </section>
-      <TrustStrip />
 
       {/* 5. Autoridad / Perfiles y Expertos */}
       <section id="equipo">
