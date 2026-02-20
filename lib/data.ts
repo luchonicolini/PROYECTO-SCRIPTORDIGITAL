@@ -199,6 +199,7 @@ export const NAV_LINKS = [
     { name: "Manifiesto", href: "#manifiesto" },
     { name: "Servicios", href: "#servicios" },
     { name: "Metodología", href: "#metodologia" },
+    { name: "Taller", href: "#taller" },
     { name: "Equipo", href: "#equipo" },
     { name: "FAQ", href: "#faq" },
 ]

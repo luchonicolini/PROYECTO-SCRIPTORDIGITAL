@@ -1,0 +1,21 @@
+
+> scriptor-digital@0.1.0 lint
+> eslint
+
+
+C:\Users\luciano\Downloads\PROYECTO-SCRIPTORDIGITAL-main\PROYECTO-SCRIPTORDIGITAL-main\Downloads\PROYECTO-SCRIPTORDIGITAL\scriptor-digital\components\contact-modal.tsx
+  89:27  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+C:\Users\luciano\Downloads\PROYECTO-SCRIPTORDIGITAL-main\PROYECTO-SCRIPTORDIGITAL-main\Downloads\PROYECTO-SCRIPTORDIGITAL\scriptor-digital\components\contact-modal.tsx:89:27
+  87 |     })
+  88 |
+> 89 |     const messageLength = form.watch("message").length
+     |                           ^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  90 |
+  91 |     async function onSubmit(values: z.infer<typeof formSchema>) {
+  92 |         // Create FormData from values to match server action signature  react-hooks/incompatible-library
+
+Ô£û 1 problem (0 errors, 1 warning)
+

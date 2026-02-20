@@ -22,7 +22,7 @@ import {
     FormItem,
     FormMessage,
 } from "@/components/ui/form"
-import { useForm } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 // Server action
@@ -80,7 +80,17 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
         },
     })
 
-    const messageLength = form.watch("message").length
+    // Optimizacion: Usar useWatch en lugar de form.watch directamente en el render para memoización
+    const selectedService = useWatch({
+        control: form.control,
+        name: "service"
+    })
+
+    const messageValue = useWatch({
+        control: form.control,
+        name: "message"
+    })
+    const messageLength = messageValue ? messageValue.length : 0
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Create FormData from values to match server action signature
@@ -268,7 +278,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                                     onClick={() => form.setValue("service", service.id)}
                                                     className={cn(
                                                         "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
-                                                        form.watch("service") === service.id
+                                                        selectedService === service.id
                                                             ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                                                             : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
                                                     )}

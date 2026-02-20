@@ -14,6 +14,7 @@ import { FAQ } from "@/components/sections/faq"
 import { Footer } from "@/components/sections/footer"
 
 import { ServicesTabs } from "@/components/sections/services-tabs"
+import { Workshop } from "@/components/sections/workshop"
 
 export default function Home() {
   return (
@@ -33,6 +34,9 @@ export default function Home() {
       <section id="servicios">
         <ServicesTabs />
       </section>
+
+      {/* 2.5 Lead Magnet / Workshop */}
+      <Workshop />
 
       {/* 3. Trust & Process */}
       <section id="metodologia">

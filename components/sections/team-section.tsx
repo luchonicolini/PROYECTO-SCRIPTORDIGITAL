@@ -1,4 +1,4 @@
-"use client"
+
 
 import Image from "next/image"
 
@@ -27,7 +27,7 @@ export function TeamSection() {
                     <div className="group relative bg-card border border-border rounded-3xl overflow-hidden hover:bg-muted/50 transition-all duration-500">
                         <div className="aspect-[4/3] relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                             <Image
-                                src="/team/mercedes.jpg"
+                                src="/team/mercedes.webp"
                                 alt="Dra. Mercedes Díaz Colodrero"
                                 fill
                                 className="object-cover object-center"
@@ -44,7 +44,7 @@ export function TeamSection() {
                             </div>
                             <div className="h-px w-12 bg-border group-hover:w-full transition-all duration-500" />
                             <p className="text-muted-foreground text-base leading-relaxed font-light">
-                                &quot;Teóloga y especialista en gestión educativa. Garante del rigor metodológico y la excelencia en cada producción intelectual.&quot;
+                                &quot;Especialista en docencia universitaria y gestión educativa. Garante del rigor metodológico y la excelencia en cada producción intelectual.&quot;
                             </p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ export function TeamSection() {
                     <div className="group relative bg-card border border-border rounded-3xl overflow-hidden hover:bg-muted/50 transition-all duration-500">
                         <div className="aspect-[4/3] relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                             <Image
-                                src="/team/luciano.jpg"
+                                src="/team/luciano.webp"
                                 alt="Luciano"
                                 fill
                                 className="object-cover object-[center_60%] scale-110"

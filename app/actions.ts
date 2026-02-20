@@ -46,7 +46,7 @@ export async function sendEmail(formData: FormData) {
         }
 
         return { success: true, data }
-    } catch (error) {
+    } catch {
         return { error: "Error al enviar el email" }
     }
 }
