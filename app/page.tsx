@@ -2,10 +2,10 @@
 
 import { HeroSection } from "@/components/sections/hero-section"
 import { SocialProof } from "@/components/sections/social-proof"
+import { Manifesto } from "@/components/sections/manifesto"
 import { UseCases } from "@/components/sections/use-cases"
 import { TeamSection } from "@/components/sections/team-section"
 import { FinalCTA } from "@/components/sections/final-cta"
-import { Manifesto } from "@/components/sections/manifesto"
 
 import { Methodology } from "@/components/sections/methodology"
 
@@ -21,30 +21,30 @@ export default function Home() {
       <HeroSection />
       <SocialProof />
 
-      {/* 1. Uso / El Dolor Principal */}
+      {/* 1. Identidad Filosófica Profunda */}
+      <section id="manifiesto">
+        <Manifesto />
+      </section>
+
+      {/* 2. Uso / El Dolor Principal */}
       <UseCases />
 
-      {/* 2. Solución / Core Business */}
+      {/* 3. Solución / Core Business */}
       <section id="servicios">
         <ServicesTabs />
       </section>
 
-      {/* 3. Lead Magnet / Aporte de Valor Gratuito */}
+      {/* 4. Lead Magnet / Aporte de Valor Gratuito */}
       <Workshop />
 
-      {/* 4. Construcción de Confianza: Metodología */}
+      {/* 5. Construcción de Confianza: Metodología */}
       <section id="metodologia">
         <Methodology />
       </section>
 
-      {/* 5. Autoridad / Perfiles y Expertos */}
+      {/* 6. Autoridad / Perfiles y Expertos */}
       <section id="equipo">
         <TeamSection />
-      </section>
-
-      {/* 6. Identidad Filosófica Profunda */}
-      <section id="manifiesto">
-        <Manifesto />
       </section>
 
       {/* 7. Empuje Final de Conversión */}
