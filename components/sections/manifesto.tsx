@@ -22,8 +22,7 @@ export function Manifesto() {
                                 NUESTRA FILOSOFÍA
                             </span>
                             <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                                El Manifiesto <br className="hidden md:block" />
-                                <span className="text-muted-foreground italic">Scriptor</span>
+                                El Manifiesto <span className="text-muted-foreground italic">Scriptor</span>
                             </h2>
                         </div>
 

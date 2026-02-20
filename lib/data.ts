@@ -171,27 +171,27 @@ export const METHODOLOGY_STEPS = [
 export const FAQ_ITEMS = [
     {
         id: "item-1",
-        question: "¿La plataforma es 100% de mi propiedad?",
+        question: "¿Cómo y cuándo me pasan el presupuesto?",
         answer:
-            "Absolutamente. A diferencia de las soluciones SaaS alquiladas, nosotros construimos infraestructura digital que te pertenece. Te entregamos todo el código fuente y los accesos administrativos una vez finalizado el proyecto.",
+            "En nuestra primera reunión de diagnóstico (que es sin cargo), evaluamos el estado actual de tu proyecto, los objetivos y la complejidad. Al finalizar esa misma charla, te entregamos una cotización exacta y opciones de planes de trabajo. Sin sorpresas ni costos ocultos.",
     },
     {
         id: "item-2",
-        question: "¿Emiten facturas fiscales para reintegros?",
+        question: "¿Garantizan la confidencialidad de mi tesis o investigación?",
         answer:
-            "Sí. Operamos con total formalidad fiscal, emitiendo Facturas 'A' o 'B' según la condición tributaria del cliente. Esto le permite deducir costos o gestionar reintegros ante universidades y organismos financiadores.",
+            "Absolutamente. Firmamos un Acuerdo de Confidencialidad (NDA) antes de comenzar. Tu investigación, datos, autoría y resultados te pertenecen al 100%. Nosotros operamos como tus asesores y directores técnicos, manteniendo estricta reserva profesional.",
     },
     {
         id: "item-3",
-        question: "¿Qué pasa si necesito soporte?",
+        question: "¿Trabajan con Normas APA, Vancouver, etc.?",
         answer:
-            "Todos nuestros desarrollos incluyen un período de garantía post-lanzamiento. Además, ofrecemos planes de mantenimiento opcionales para asegurar que tu plataforma evolucione junto con tu institución sin que tengas que contratar técnicos internos.",
+            "Sí. Nos adaptamos a los requisitos de estilo de tu universidad o revista científica. Ya sea APA (7ma edición), Vancouver, Chicago, Harvard, o formatos específicos de tu facultad, garantizamos el cumplimiento milimétrico del formato exigido.",
     },
     {
         id: "item-4",
-        question: "¿Cuánto tiempo demora el desarrollo?",
+        question: "¿Cuánto tiempo demora el proceso de asesoría?",
         answer:
-            "Depende de la complejidad. Una web institucional promedio toma entre 2 a 4 semanas. Un campus virtual o aplicación a medida puede tomar de 4 a 8 semanas. Cumplimos estrictamente los plazos pactados por contrato.",
+            "Depende completamente de la etapa en la que te encuentres. Una corrección y optimización final puede tomar de 2 a 4 semanas. Un acompañamiento integral desde el plan de tesis hasta la defensa oral puede abarcar varios meses. Definimos un cronograma estricto en el primer encuentro.",
     },
 ]
 

@@ -29,8 +29,7 @@ export function FAQ() {
                             SOPORTE & DUDAS
                         </span>
                         <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                            Preguntas <br className="hidden md:block" />
-                            <span className="text-muted-foreground italic">Frecuentes</span>
+                            Preguntas <span className="text-muted-foreground italic">Frecuentes</span>
                         </h2>
                         <div className="h-px w-12 bg-border mb-6" />
                         <p className="text-lg text-muted-foreground leading-relaxed font-light">

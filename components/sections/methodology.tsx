@@ -23,8 +23,7 @@ export function Methodology() {
                         NUESTRO PROCESO
                     </span>
                     <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                        El camino hacia la <br className="hidden md:block" />
-                        <span className="text-muted-foreground italic">Excelencia</span>
+                        El camino hacia la <span className="text-muted-foreground italic">Excelencia</span>
                     </h2>
                     <p className="text-muted-foreground text-lg leading-relaxed font-light mt-6">
                         Un recorrido estructurado y transparente. Desde la primera idea hasta la entrega final,

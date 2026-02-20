@@ -1,11 +1,14 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { PlayCircle, CheckCircle, ArrowRight, Lightbulb } from "lucide-react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { PlayCircle, CheckCircle, ArrowRight, Lightbulb, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ContactModal } from "@/components/contact-modal"
 
 export function Workshop() {
+    const [showComingSoon, setShowComingSoon] = useState(false)
+
     const features = [
         "Identificá y superá el bloqueo del escritor",
         "Estructurá tu hipótesis en 3 pasos simples",
@@ -21,25 +24,63 @@ export function Workshop() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
+                {/* Section Header */}
+                <div className="mb-16 text-center max-w-3xl mx-auto space-y-4">
+                    <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
+                        CONTENIDO DE VALOR
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                        Taller <span className="text-muted-foreground italic">Estratégico</span>
+                    </h2>
+                </div>
+
                 <div className="max-w-5xl mx-auto glass-panel rounded-3xl overflow-hidden border border-border/50 shadow-2xl">
                     <div className="grid md:grid-cols-2 gap-0 relative">
 
                         {/* Video / Visual Placeholder Column */}
-                        <div className="bg-muted/30 relative flex items-center justify-center p-12 min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-border/50 overflow-hidden group">
+                        <div
+                            onClick={() => setShowComingSoon(true)}
+                            className="bg-muted/30 relative flex items-center justify-center p-12 min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-border/50 overflow-hidden group cursor-pointer"
+                        >
                             {/* Abstract Graphic */}
                             <div className="absolute inset-0 flex items-center justify-center opacity-20 transition-all duration-700 group-hover:scale-105 group-hover:opacity-30">
                                 <div className="w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_60%)] animate-pulse" />
                             </div>
 
-                            <div className="relative z-10 flex flex-col items-center text-center space-y-4 cursor-pointer hover:scale-105 transition-transform duration-300">
-                                <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center backdrop-blur-md border border-primary/30 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                                    <PlayCircle className="w-10 h-10 text-primary translate-x-0.5" />
-                                </div>
-                                <div>
-                                    <p className="text-foreground font-medium text-lg tracking-wide">Taller Gratuito</p>
-                                    <p className="text-muted-foreground text-sm">Duración: 15 min</p>
-                                </div>
-                            </div>
+                            <AnimatePresence>
+                                {showComingSoon ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        className="relative z-20 flex flex-col items-center justify-center text-center p-6 bg-background/80 backdrop-blur-md border border-primary/20 rounded-2xl shadow-xl max-w-[85%]"
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            setShowComingSoon(false)
+                                        }}
+                                    >
+                                        <Clock className="w-8 h-8 text-primary mb-3" />
+                                        <h4 className="font-serif text-xl font-medium text-foreground mb-2">Próximamente</h4>
+                                        <p className="text-xs text-muted-foreground mb-4">Estamos finalizando la edición de esta Masterclass para brindarte el mejor nivel.</p>
+                                        <Button variant="ghost" size="sm" className="h-8 text-xs font-bold uppercase tracking-wider">Cerrar</Button>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        className="relative z-10 flex flex-col items-center text-center space-y-4 hover:scale-105 transition-transform duration-300"
+                                    >
+                                        <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center backdrop-blur-md border border-primary/30 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+                                            <PlayCircle className="w-10 h-10 text-primary translate-x-0.5" />
+                                        </div>
+                                        <div>
+                                            <p className="text-foreground font-medium text-lg tracking-wide">Taller Gratuito</p>
+                                            <p className="text-muted-foreground text-sm">Duración: 15 min</p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
 
                         {/* Content Column */}

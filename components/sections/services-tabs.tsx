@@ -86,8 +86,7 @@ export function ServicesTabs() {
                         transition={{ ...smoothTransition, delay: 0.1 }}
                         className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight"
                     >
-                        Soluciones Híbridas: <br className="hidden md:block" />
-                        <span className="italic text-muted-foreground">Academia + Tech</span>
+                        Excelencia en Textos & <span className="italic text-muted-foreground">Desarrollo Software</span>
                     </motion.h2>
                 </div>
 

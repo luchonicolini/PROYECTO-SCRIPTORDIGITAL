@@ -47,8 +47,7 @@ export function UseCases() {
                             Diagnóstico
                         </span>
                         <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                            Desafíos que <br className="hidden md:block" />
-                            <span className="text-muted-foreground italic">Debemos Resolver</span>
+                            Desafíos que <span className="text-muted-foreground italic">Debemos Resolver</span>
                         </h2>
                     </div>
 
