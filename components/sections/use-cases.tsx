@@ -36,7 +36,7 @@ export function UseCases() {
     ]
 
     return (
-        <section className="py-24 bg-secondary/50 relative overflow-hidden">
+        <section className="py-24 bg-secondary/50 dark:bg-background relative overflow-hidden">
             {/* Background Gradient similar to Services */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-gradient-to-r from-secondary/5 to-indigo-500/5 rounded-[100%] blur-[100px] -z-10 pointer-events-none" />
 
