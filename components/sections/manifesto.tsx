@@ -55,7 +55,7 @@ export function Manifesto() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group"
+                        className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-border group"
                     >
                         <Image
                             src="/images/living-knowledge.png"
@@ -67,9 +67,9 @@ export function Manifesto() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
                         {/* Optional Label Overlay */}
-                        <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                        <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-2 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full border border-border">
                             <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-                            <span className="text-[10px] uppercase tracking-widest text-white/80 font-medium">Nexus.Academia // v3.0</span>
+                            <span className="text-[10px] uppercase tracking-widest text-foreground font-medium">Nexus.Academia // v3.0</span>
                         </div>
                     </motion.div>
 

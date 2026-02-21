@@ -4,20 +4,20 @@ import { ArrowLeft, SearchX } from "lucide-react"
 
 export default function NotFound() {
     return (
-        <div className="relative min-h-screen flex flex-col items-center justify-center bg-[#0a0a0b] text-center px-4 overflow-hidden">
+        <div className="relative min-h-screen flex flex-col items-center justify-center bg-background text-center px-4 overflow-hidden">
 
             {/* Background Effects */}
-            <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-[#0a0a0b] to-[#0a0a0b]" />
+            <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-background to-background" />
 
             <div className="relative z-10 max-w-lg space-y-8">
                 {/* Icon */}
-                <div className="mx-auto w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center animate-pulse-slow">
+                <div className="mx-auto w-24 h-24 rounded-full bg-muted/50 border border-border flex items-center justify-center animate-pulse">
                     <SearchX className="w-10 h-10 text-muted-foreground" />
                 </div>
 
                 {/* Typography */}
                 <div className="space-y-4">
-                    <h1 className="text-8xl font-heading font-medium text-white/10 tracking-widest select-none">
+                    <h1 className="text-8xl font-heading font-medium text-foreground/10 tracking-widest select-none">
                         404
                     </h1>
                     <h2 className="text-2xl font-serif text-foreground">

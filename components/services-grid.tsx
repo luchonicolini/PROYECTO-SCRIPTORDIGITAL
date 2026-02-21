@@ -72,7 +72,7 @@ export function ServicesGrid() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className={`p-8 border min-h-[300px] flex flex-col transition-all duration-300 hover:-translate-y-1 bg-white ${service.borderColor}`}
+                            className={`p-8 border min-h-[300px] flex flex-col transition-all duration-300 hover:-translate-y-1 bg-card ${service.borderColor}`}
                         >
                             <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-8 ${service.iconBg} ${service.iconColor}`}>
                                 <service.icon className="w-6 h-6" />

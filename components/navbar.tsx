@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react"
 import { NAV_LINKS } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -42,16 +43,18 @@ export function Navbar() {
             <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
 
                 {/* LOGO */}
-                <Logo />
+                <div className="shrink-0 flex items-center pr-2 lg:pr-6">
+                    <Logo />
+                </div>
 
                 {/* DESKTOP NAVIGATION */}
-                <div className="hidden md:flex items-center gap-10">
+                <div className="hidden md:flex items-center gap-4 lg:gap-8 flex-1 justify-end">
                     {NAV_LINKS.map((item) => (
                         <button
                             key={item.name}
                             onClick={() => scrollToSection(item.href)}
                             className={cn(
-                                "text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 relative group",
+                                "text-[10px] lg:text-xs font-bold tracking-[0.1em] lg:tracking-[0.15em] uppercase transition-colors duration-300 relative group whitespace-nowrap",
                                 isScrolled ? "text-muted-foreground hover:text-primary" : "text-foreground hover:text-foreground/70"
                             )}
                         >
@@ -59,6 +62,11 @@ export function Navbar() {
                             <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                         </button>
                     ))}
+
+                    {/* Theme Toggle Button */}
+                    <div className="ml-2 lg:ml-4 border-l border-border pl-4 lg:pl-8 shrink-0">
+                        <ThemeToggle />
+                    </div>
                 </div>
 
                 {/* MOBILE TOGGLE */}
@@ -107,7 +115,7 @@ export function Navbar() {
                             transition={{ delay: 0.5 }}
                             className="absolute bottom-12 left-0 w-full flex justify-center"
                         >
-                            <p className="text-xs text-muted-foreground uppercase tracking-widest">Scriptor Digital © 2024</p>
+                            <p className="text-xs text-muted-foreground uppercase tracking-widest">Scriptor Digital © {new Date().getFullYear()}</p>
                         </motion.div>
                     </motion.div>
                 )}

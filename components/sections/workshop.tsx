@@ -42,11 +42,6 @@ export function Workshop() {
                             onClick={() => setShowComingSoon(true)}
                             className="bg-muted/30 relative flex items-center justify-center p-12 min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-border/50 overflow-hidden group cursor-pointer"
                         >
-                            {/* Abstract Graphic */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-20 transition-all duration-700 group-hover:scale-105 group-hover:opacity-30">
-                                <div className="w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_60%)] animate-pulse" />
-                            </div>
-
                             <AnimatePresence>
                                 {showComingSoon ? (
                                     <motion.div

@@ -15,10 +15,10 @@ export function HeroVisual() {
             <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-pulse-slow z-0" />
 
             {/* MAIN CARD: GLASS TERMINAL */}
-            <div className="relative z-10 w-full h-full bg-[#0a0a0b]/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/5 flex flex-col">
+            <div className="relative z-10 w-full h-full bg-card/80 backdrop-blur-md border border-border/50 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border/20 flex flex-col">
 
                 {/* Header Bar */}
-                <div className="h-10 px-4 flex items-center justify-between border-b border-white/5 bg-white/5">
+                <div className="h-10 px-4 flex items-center justify-between border-b border-border/50 bg-muted/20">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-red-500/80" />
                         <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -45,7 +45,7 @@ export function HeroVisual() {
                         </div>
 
                         <div>
-                            <span className="text-purple-400">interface</span> <span className="text-foreground font-bold">DigitalExcellence</span> <span className="text-white">{"{"}</span>
+                            <span className="text-purple-400">interface</span> <span className="text-foreground font-bold">DigitalExcellence</span> <span className="text-foreground">{"{"}</span>
                         </div>
 
                         <div className="pl-6 py-1">
@@ -61,14 +61,14 @@ export function HeroVisual() {
                         </div>
 
                         <div>
-                            <span className="text-white">{"}"}</span>
+                            <span className="text-foreground">{"}"}</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Bottom Status Panel */}
                 <div className="px-6 pb-6">
-                    <div className="bg-[#1a1b1e] border border-white/5 rounded-lg p-3 flex items-center gap-3">
+                    <div className="bg-card border border-border/50 rounded-lg p-3 flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
                         <span className="text-xs font-medium text-yellow-500/90 tracking-wide">Compilation Successful</span>
 
@@ -82,7 +82,7 @@ export function HeroVisual() {
             <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-8 -top-8 z-20 bg-background/90 backdrop-blur border border-white/10 p-3 rounded-xl shadow-xl flex items-center gap-3"
+                className="absolute -right-8 -top-8 z-20 bg-background/90 backdrop-blur border border-border/50 p-3 rounded-xl shadow-xl flex items-center gap-3"
             >
                 <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
                     <Zap className="w-4 h-4 text-blue-400" />

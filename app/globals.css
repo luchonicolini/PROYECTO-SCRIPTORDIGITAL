@@ -50,34 +50,70 @@
 :root {
   --radius: 0.625rem;
 
-  /* 
-     THEME: SOFT DARK ("Scriptor Night")
-     Concept: Elegant, official, not pitch black.
-     Colors: Deep Slate + White + Antique Gold.
-  */
+  /* THEME: HIGH CONTRAST CLASSIC ACADEMIC - LIGHT */
+  --background: #FAFAFA;
+  --foreground: #111827;
 
-  /* Background: Rich Royal Blue (Lighter/Vibrant) */
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #111827;
+
+  --primary: #1E3A8A;
+  /* Azul Marino 900 */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+
+  --muted: #F3F4F6;
+  --muted-foreground: #374151;
+
+  --accent: #DBEAFE;
+  --accent-foreground: #1E3A8A;
+
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #94A3B8;
+  /* Slate 400 - Muy destacado */
+  --input: #94A3B8;
+  --ring: #1E3A8A;
+
+  --chart-1: #1E3A8A;
+  --chart-2: #D4AF37;
+  --chart-3: #94A3B8;
+  --chart-4: #0F172A;
+  --chart-5: #E2E8F0;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #1E3A8A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F5F9;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #94A3B8;
+  --sidebar-ring: #1E3A8A;
+}
+
+.dark {
+  /* THEME: SOFT DARK ("Scriptor Night") */
   --background: #172554;
-
-  /* Foreground: Soft White for readability on dark */
   --foreground: #F8FAFC;
 
-  /* Card: Glassy Slate */
   --card: rgba(15, 23, 42, 0.6);
   --card-foreground: #F8FAFC;
 
   --popover: #0F172A;
   --popover-foreground: #F8FAFC;
 
-  /* Primary: ANTIQUE GOLD (Classic) */
   --primary: #D4AF37;
   --primary-foreground: #0F172A;
 
-  /* Secondary: Cool Slate/Indigo */
   --secondary: #6366F1;
   --secondary-foreground: #F8FAFC;
 
-  /* Muted: Subtle light grey (High Contrast for Royal Blue) */
   --muted: rgba(255, 255, 255, 0.05);
   --muted-foreground: #E2E8F0;
 
@@ -86,12 +122,10 @@
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: rgba(255, 255, 255, 0.08);
-  /* Subtle white border */
-  --input: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.15);
+  --input: rgba(255, 255, 255, 0.15);
   --ring: rgba(212, 175, 55, 0.5);
 
-  /* Chart colors */
   --chart-1: #D4AF37;
   --chart-2: #6366F1;
   --chart-3: #94A3B8;
@@ -104,47 +138,6 @@
   --sidebar-primary-foreground: #0F172A;
   --sidebar-accent: rgba(255, 255, 255, 0.05);
   --sidebar-accent-foreground: #F8FAFC;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #D4AF37;
-}
-
-/* 
-   Explicitly overriding .dark to behave as light for now, 
-   or we can leave it as the "Night Mode" option.
-   For this request, I will set .dark to match root to enforce consistency 
-   unless the user asks for a toggle. 
-*/
-.dark {
-  --background: #172554;
-  /* Kept previous dark navy as an option if needed later */
-  --foreground: #F1F5F9;
-  --card: rgba(255, 255, 255, 0.03);
-  --card-foreground: #F1F5F9;
-  --popover: #0a0f1c;
-  --popover-foreground: #F1F5F9;
-  --primary: #D4AF37;
-  --primary-foreground: #050511;
-  --secondary: #6366F1;
-  --secondary-foreground: #F1F5F9;
-  --muted: rgba(255, 255, 255, 0.05);
-  --muted-foreground: #E2E8F0;
-  --accent: rgba(212, 175, 55, 0.1);
-  --accent-foreground: #D4AF37;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: rgba(212, 175, 55, 0.5);
-  --chart-1: #D4AF37;
-  --chart-2: #6366F1;
-  --chart-3: #94A3B8;
-  --chart-4: #0F172A;
-  --chart-5: #E2E8F0;
-  --sidebar: #050511;
-  --sidebar-foreground: #F1F5F9;
-  --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #050511;
-  --sidebar-accent: rgba(255, 255, 255, 0.05);
-  --sidebar-accent-foreground: #F1F5F9;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #D4AF37;
 }
@@ -193,6 +186,6 @@
   }
 
   .glass-panel {
-    @apply bg-background/80 backdrop-blur-md border border-white/10 shadow-lg;
+    @apply bg-background/80 backdrop-blur-md border border-border shadow-lg rounded-2xl;
   }
 }

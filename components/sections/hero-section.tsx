@@ -17,8 +17,10 @@ export function HeroSection() {
 
     return (
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-background pt-20 pb-32 md:pt-28">
-            {/* Background Effects */}
-            <div className="absolute inset-0 z-0">
+
+
+            {/* Background Effects Originales */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
                 {/* Visual Anchor - Bottom Right */}
                 <div className="absolute bottom-[-20%] right-[-10%] w-[120%] h-[120%] flex items-center justify-center">
 

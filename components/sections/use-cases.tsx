@@ -36,7 +36,7 @@ export function UseCases() {
     ]
 
     return (
-        <section className="py-24 bg-background relative overflow-hidden">
+        <section className="py-24 bg-secondary/50 relative overflow-hidden">
             {/* Background Gradient similar to Services */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-gradient-to-r from-secondary/5 to-indigo-500/5 rounded-[100%] blur-[100px] -z-10 pointer-events-none" />
 
@@ -58,7 +58,7 @@ export function UseCases() {
                         <div
                             key={i}
                             className={cn(
-                                "group relative flex flex-col p-8 md:p-10 rounded-3xl bg-card backdrop-blur-md border border-border overflow-hidden transition-all duration-300",
+                                "group relative flex flex-col p-8 md:p-10 rounded-3xl bg-card backdrop-blur-md border border-border shadow-sm overflow-hidden transition-all duration-300",
                                 item.border,
                                 "hover:shadow-2xl hover:-translate-y-2"
                             )}

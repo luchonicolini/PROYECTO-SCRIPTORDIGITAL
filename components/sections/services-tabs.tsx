@@ -90,6 +90,8 @@ export function ServicesTabs() {
                     </motion.h2>
                 </div>
 
+
+
                 {/* SWITCHER (TABS) */}
                 <div className="relative flex p-1 bg-muted/50 backdrop-blur-sm rounded-full border border-border mb-16">
                     <LayoutGroup>
@@ -198,154 +200,154 @@ export function ServicesTabs() {
                             ))}
                         </motion.div>
                     </AnimatePresence>
-                </div>
-            </div>
 
-            {/* EXPANDED OVERLAY */}
-            <AnimatePresence>
-                {selectedCard && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setSelectedCard(null)}
-                            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
-                        />
+                    {/* EXPANDED OVERLAY */}
+                    <AnimatePresence>
+                        {selectedCard && (
+                            <>
+                                {/* Backdrop */}
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setSelectedCard(null)}
+                                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
+                                />
 
-                        {/* Expanded Card */}
-                        <div className="fixed inset-0 flex items-center justify-center z-[110] p-4 md:p-8 pointer-events-none">
-                            <motion.div
-                                variants={scaleIn}
-                                initial="hidden"
-                                animate="visible"
-                                exit="hidden"
-                                className="w-full max-w-5xl max-h-[90vh] bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden relative pointer-events-auto flex flex-col shadow-2xl"
-                            >
-                                {/* Close Button */}
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        setSelectedCard(null)
-                                    }}
-                                    className="absolute top-6 right-6 z-20 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-foreground"
-                                    aria-label="Close modal"
-                                >
-                                    <X className="w-6 h-6" />
-                                </button>
+                                {/* Expanded Card */}
+                                <div className="fixed inset-0 flex items-center justify-center z-[110] p-4 md:p-8 pointer-events-none">
+                                    <motion.div
+                                        variants={scaleIn}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="hidden"
+                                        className="w-full max-w-5xl max-h-[90vh] bg-background/95 backdrop-blur-xl border border-border rounded-3xl overflow-hidden relative pointer-events-auto flex flex-col shadow-2xl"
+                                    >
+                                        {/* Close Button */}
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                setSelectedCard(null)
+                                            }}
+                                            className="absolute top-6 right-6 z-20 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors text-foreground"
+                                            aria-label="Close modal"
+                                        >
+                                            <X className="w-6 h-6" />
+                                        </button>
 
-                                {/* Content Scroll Area */}
-                                <div className="overflow-y-auto flex-1 custom-scrollbar" data-lenis-prevent>
-                                    <div className="p-8 md:p-12 space-y-10">
-                                        {/* Header Section */}
-                                        <div className="flex flex-col md:flex-row gap-8 md:items-start border-b border-white/10 pb-8 relative">
-                                            {/* Decoration line */}
-                                            <div className="absolute top-0 left-0 w-20 h-1 bg-primary" />
+                                        {/* Content Scroll Area */}
+                                        <div className="overflow-y-auto flex-1 custom-scrollbar" data-lenis-prevent>
+                                            <div className="p-8 md:p-12 space-y-10">
+                                                {/* Header Section */}
+                                                <div className="flex flex-col md:flex-row gap-8 md:items-start border-b border-border/50 pb-8 relative">
+                                                    {/* Decoration line */}
+                                                    <div className="absolute top-0 left-0 w-20 h-1 bg-primary" />
 
-                                            <div className="w-24 h-24 rounded-3xl flex items-center justify-center shrink-0 border bg-white/5 mt-4 md:mt-0 border-primary/20 text-primary">
-                                                <selectedCard.icon className="w-12 h-12" />
-                                            </div>
-                                            <div className="space-y-2 mt-2">
-                                                <h3 className="text-3xl md:text-5xl font-serif font-medium text-foreground leading-tight">
-                                                    {selectedCard.title}
-                                                </h3>
-                                                <p className="text-sm font-bold tracking-widest uppercase py-2 text-primary">
-                                                    {activeTab === "ACADEMIA" ? "SOLUCIONES ACADÉMICAS" : "SOLUCIONES TECNOLÓGICAS"}
-                                                </p>
-                                                <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
-                                                    {selectedCard.desc}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Main Content Grid */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                            {/* Column 1: Context & Solution */}
-                                            <div className="space-y-8">
-                                                <div className="space-y-3">
-                                                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                                        El Desafío
-                                                    </h4>
-                                                    <div className="p-8 rounded-2xl bg-muted/5 border border-white/5 relative overflow-hidden group/box">
-                                                        <div className="absolute top-0 left-0 w-1 h-full bg-primary/20 group-hover/box:bg-primary transition-colors duration-500" />
-                                                        <p className="text-foreground italic font-serif text-xl leading-relaxed relative z-10">
-                                                            &quot;{selectedCard.modal.problem}&quot;
+                                                    <div className="w-24 h-24 rounded-3xl flex items-center justify-center shrink-0 border bg-muted/40 mt-4 md:mt-0 border-primary/20 text-primary">
+                                                        <selectedCard.icon className="w-12 h-12" />
+                                                    </div>
+                                                    <div className="space-y-2 mt-2">
+                                                        <h3 className="text-3xl md:text-5xl font-serif font-medium text-foreground leading-tight">
+                                                            {selectedCard?.title}
+                                                        </h3>
+                                                        <p className="text-sm font-bold tracking-widest uppercase py-2 text-primary">
+                                                            {activeTab === "ACADEMIA" ? "SOLUCIONES ACADÉMICAS" : "SOLUCIONES TECNOLÓGICAS"}
+                                                        </p>
+                                                        <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+                                                            {selectedCard?.desc}
                                                         </p>
                                                     </div>
                                                 </div>
 
-                                                <div className="space-y-3">
-                                                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                                                        La Solución
-                                                    </h4>
-                                                    <p className="text-muted-foreground text-lg leading-relaxed font-light">
-                                                        {selectedCard.modal.solution}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                                {/* Main Content Grid */}
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                                    {/* Column 1: Context & Solution */}
+                                                    <div className="space-y-8">
+                                                        <div className="space-y-3">
+                                                            <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                                                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                                El Desafío
+                                                            </h4>
+                                                            <div className="p-8 rounded-2xl bg-muted/10 border border-border/50 relative overflow-hidden group/box">
+                                                                <div className="absolute top-0 left-0 w-1 h-full bg-primary/20 group-hover/box:bg-primary transition-colors duration-500" />
+                                                                <p className="text-foreground italic font-serif text-xl leading-relaxed relative z-10">
+                                                                    &quot;{selectedCard?.modal?.problem}&quot;
+                                                                </p>
+                                                            </div>
+                                                        </div>
 
-                                            {/* Column 2: Value & Deliverables */}
-                                            <div className="space-y-10">
-                                                {selectedCard.modal.benefits && (
-                                                    <div className="space-y-4">
-                                                        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider border-b border-white/10 pb-2">
-                                                            Beneficios Clave
-                                                        </h4>
-                                                        <ul className="space-y-3">
-                                                            {selectedCard.modal.benefits.map((benefit, i) => (
-                                                                <li key={i} className="flex items-start gap-3 group/item">
-                                                                    <div className="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors">
-                                                                        <Check className="w-3 h-3" />
-                                                                    </div>
-                                                                    <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">{benefit}</span>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
+                                                        <div className="space-y-3">
+                                                            <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                                                                <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                                                                La Solución
+                                                            </h4>
+                                                            <p className="text-muted-foreground text-lg leading-relaxed font-light">
+                                                                {selectedCard?.modal?.solution}
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                )}
 
-                                                <div className="space-y-4">
-                                                    <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider border-b border-border pb-2">
-                                                        Lo Que Entregamos
-                                                    </h4>
-                                                    <ul className="grid gap-3">
-                                                        {(selectedCard.modal.deliverables || selectedCard.modal.features).map((item, i) => (
-                                                            <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border">
-                                                                <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-primary" />
-                                                                {item}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                    {/* Column 2: Value & Deliverables */}
+                                                    <div className="space-y-10">
+                                                        {selectedCard?.modal?.benefits && (
+                                                            <div className="space-y-4">
+                                                                <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider border-b border-border/50 pb-2">
+                                                                    Beneficios Clave
+                                                                </h4>
+                                                                <ul className="space-y-3">
+                                                                    {selectedCard.modal.benefits.map((benefit, i) => (
+                                                                        <li key={i} className="flex items-start gap-3 group/item">
+                                                                            <div className="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors">
+                                                                                <Check className="w-3 h-3" />
+                                                                            </div>
+                                                                            <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">{benefit}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        )}
+
+                                                        <div className="space-y-4">
+                                                            <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider border-b border-border pb-2">
+                                                                Lo Que Entregamos
+                                                            </h4>
+                                                            <ul className="grid gap-3">
+                                                                {(selectedCard?.modal?.deliverables || selectedCard?.modal?.features || []).map((item, i) => (
+                                                                    <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border">
+                                                                        <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-primary" />
+                                                                        {item}
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Footer Action */}
+                                                <div className="pt-8 border-t border-border flex flex-col md:flex-row gap-4 items-center justify-between">
+                                                    <p className="text-muted-foreground text-sm hidden md:block">
+                                                        * Garantía de conformidad y soporte post-entrega incluido.
+                                                    </p>
+                                                    <ContactModal>
+                                                        <Button
+                                                            className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
+                                                        >
+                                                            <span className="flex items-center gap-2">
+                                                                Solicitar Presupuesto
+                                                                <ArrowRight className="w-5 h-5" />
+                                                            </span>
+                                                        </Button>
+                                                    </ContactModal>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {/* Footer Action */}
-                                        <div className="pt-8 border-t border-border flex flex-col md:flex-row gap-4 items-center justify-between">
-                                            <p className="text-muted-foreground text-sm hidden md:block">
-                                                * Garantía de conformidad y soporte post-entrega incluido.
-                                            </p>
-                                            <ContactModal>
-                                                <Button
-                                                    className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
-                                                >
-                                                    <span className="flex items-center gap-2">
-                                                        Solicitar Presupuesto
-                                                        <ArrowRight className="w-5 h-5" />
-                                                    </span>
-                                                </Button>
-                                            </ContactModal>
-                                        </div>
-                                    </div>
+                                    </motion.div>
                                 </div>
-                            </motion.div>
-                        </div>
-                    </>
-                )}
-            </AnimatePresence>
-        </section>
+                            </>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
+        </section >
     )
 }

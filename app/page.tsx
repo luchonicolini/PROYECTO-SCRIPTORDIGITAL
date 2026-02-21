@@ -17,7 +17,7 @@ import { Workshop } from "@/components/sections/workshop"
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white selection:bg-sky-500/30">
+    <main className="min-h-screen text-foreground selection:bg-sky-500/30">
       <HeroSection />
       <SocialProof />
 

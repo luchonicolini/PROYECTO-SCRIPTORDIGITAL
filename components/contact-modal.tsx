@@ -47,7 +47,7 @@ const FloatingFormInput = ({ field, label, ...props }: any) => (
         <Input
             {...field}
             {...props}
-            className="peer h-14 pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder-transparent focus:border-primary/50 focus:ring-0 transition-all rounded-xl"
+            className="peer h-14 pt-4 px-4 bg-muted/20 border-border text-foreground placeholder-transparent focus:border-primary/50 focus:ring-0 transition-all rounded-xl"
             placeholder=" "
         />
         <label className="absolute left-4 top-4 text-muted-foreground/60 text-xs transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground/60 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-primary pointer-events-none">
@@ -127,17 +127,17 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                 {children}
             </DialogTrigger>
 
-            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-white/10 text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
+            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-border text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
 
                 {/* Custom Close Button */}
-                <DialogClose className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 rounded-full bg-black/20 hover:bg-white/10 transition-colors text-foreground focus:outline-none focus:ring-0">
+                <DialogClose className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 rounded-full bg-muted/80 hover:bg-muted transition-colors text-foreground focus:outline-none focus:ring-0">
                     <X className="w-6 h-6" />
                 </DialogClose>
 
                 <div className="flex flex-col md:flex-row h-full">
 
                     {/* Left Column: Branding (Obsidian Glass) */}
-                    <div className="w-full md:w-[40%] bg-black/20 p-6 md:p-12 flex flex-col justify-between relative overflow-hidden backdrop-blur-md border-b md:border-b-0 md:border-r border-white/5 shrink-0">
+                    <div className="w-full md:w-[40%] bg-muted/20 p-6 md:p-12 flex flex-col justify-between relative overflow-hidden backdrop-blur-md border-b md:border-b-0 md:border-r border-border/50 shrink-0">
 
                         {/* Background Effects */}
                         <div className="absolute top-0 right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-secondary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -173,7 +173,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-4 group transition-all duration-300 cursor-pointer hover:translate-x-1"
                                     >
-                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-xl bg-muted/40 border border-border/50 flex items-center justify-center group-hover:bg-muted group-hover:border-border transition-all duration-300">
                                             <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
                                         </div>
                                         <div>
@@ -183,7 +183,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                     </a>
                                 ) : (
                                     <div key={idx} className="flex items-center gap-4 group cursor-default">
-                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/10 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-xl bg-muted/40 border border-border/50 flex items-center justify-center group-hover:bg-muted group-hover:border-border transition-all duration-300">
                                             <item.icon className={cn("w-5 h-5 transition-colors", item.color)} />
                                         </div>
                                         <div>
@@ -216,7 +216,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                     Gracias por contactarnos. Hemos recibido tu solicitud correctamente y te responderemos a la brevedad.
                                 </p>
                                 <DialogClose asChild>
-                                    <Button variant="outline" className="rounded-xl px-8 border-white/10 hover:bg-white/5">
+                                    <Button variant="outline" className="rounded-xl px-8 border-border hover:bg-muted">
                                         Cerrar
                                     </Button>
                                 </DialogClose>
@@ -280,7 +280,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                                         "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
                                                         selectedService === service.id
                                                             ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-                                                            : "bg-muted/5 border-white/10 text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                                                            : "bg-muted/10 border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
                                                     )}
                                                 >
                                                     {service.label}
@@ -298,7 +298,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                                 <FormControl>
                                                     <Textarea
                                                         {...field}
-                                                        className="min-h-[160px] pt-4 px-4 bg-muted/5 border-white/10 text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
+                                                        className="min-h-[160px] pt-4 px-4 bg-muted/20 border-border text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
                                                         placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
                                                     />
                                                 </FormControl>

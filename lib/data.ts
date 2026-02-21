@@ -205,10 +205,10 @@ export const NAV_LINKS = [
 ]
 
 export const SOCIAL_LINKS = [
-    { icon: Github, label: "Github", href: "#" },
-    { icon: Twitter, label: "Twitter", href: "#" },
-    { icon: Linkedin, label: "LinkedIn", href: "#" },
-    { icon: Instagram, label: "Instagram", href: "#" },
+    { icon: Github, label: "Github", href: "https://github.com/scriptordigital" },
+    { icon: Twitter, label: "Twitter", href: "https://twitter.com/scriptordigital" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/scriptor-digital" },
+    { icon: Instagram, label: "Instagram", href: "https://instagram.com/scriptordigital" },
 ]
 
 export const FOOTER_LINKS = {
@@ -219,9 +219,9 @@ export const FOOTER_LINKS = {
         { label: "Blog", href: "#blog" },
     ],
     LEGAL: [
-        { label: "Términos y Condiciones", href: "#" },
-        { label: "Política de Privacidad", href: "#" },
-        { label: "Cookies", href: "#" },
-        { label: "Licencias", href: "#" },
+        { label: "Términos y Condiciones", href: "/terms" },
+        { label: "Política de Privacidad", href: "/privacy" },
+        { label: "Cookies", href: "/privacy" },
+        { label: "Licencias", href: "/terms" },
     ]
 }

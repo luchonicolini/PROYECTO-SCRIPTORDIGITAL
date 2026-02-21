@@ -4,6 +4,16 @@ import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// Utility to escape HTML and prevent XSS in email templates
+function escapeHtml(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+}
+
 export async function sendEmail(formData: FormData) {
     const name = formData.get("name") as string
     const email = formData.get("email") as string
@@ -22,21 +32,27 @@ export async function sendEmail(formData: FormData) {
         return { error: "Faltan campos requeridos" }
     }
 
+    // Escape user input before inserting into HTML
+    const safeName = escapeHtml(name)
+    const safeEmail = escapeHtml(email)
+    const safeService = escapeHtml(service || "No especificado")
+    const safeMessage = escapeHtml(message)
+
     try {
         const data = await resend.emails.send({
             from: "Scriptor Digital <onboarding@resend.dev>", // Default for unverified domains
             to: ["scriptordigitaloficial@gmail.com"],
-            subject: `Nuevo contacto de: ${name} - ${service || "General"}`,
+            subject: `Nuevo contacto de: ${safeName} - ${safeService}`,
             replyTo: email,
             html: `
         <div>
           <h1>Nuevo Mensaje de Contacto</h1>
-          <p><strong>Nombre:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Servicio de Interés:</strong> ${service || "No especificado"}</p>
+          <p><strong>Nombre:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
+          <p><strong>Servicio de Interés:</strong> ${safeService}</p>
           <hr />
           <h3>Mensaje:</h3>
-          <p>${message}</p>
+          <p>${safeMessage}</p>
         </div>
       `,
         })

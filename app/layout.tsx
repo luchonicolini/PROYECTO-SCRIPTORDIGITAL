@@ -3,6 +3,9 @@ import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { Navbar } from "@/components/navbar";
+
+import { Analytics } from "@vercel/analytics/react"
 // Theme: Ivy League Tech (Deep Navy & Gold)
 
 const outfit = Outfit({
@@ -36,9 +39,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { Navbar } from "@/components/navbar";
-import { ReadingProgress } from "@/components/reading-progress";
-import { Analytics } from "@vercel/analytics/react"
+
 
 export default function RootLayout({
   children,
@@ -49,7 +50,6 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body
         className={`${outfit.variable} ${playfair.variable} antialiased font-sans`}
-        style={{ backgroundColor: "#172554", color: "#F8FAFC" }}
       >
         <ThemeProvider
           attribute="class"
@@ -57,7 +57,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ReadingProgress />
+
           <Navbar />
           <SmoothScroll>
             {children}
