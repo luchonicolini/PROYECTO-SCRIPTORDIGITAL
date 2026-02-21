@@ -46,8 +46,8 @@ export function FAQ() {
                                     key={faq.id}
                                     initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ delay: index * 0.05, duration: 0.3 }}
                                 >
                                     <button
                                         onClick={() => setOpenItem(isOpen ? null : faq.id)}
