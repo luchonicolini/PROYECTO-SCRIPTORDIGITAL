@@ -127,17 +127,17 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                 {children}
             </DialogTrigger>
 
-            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-border text-foreground overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
+            <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-border text-foreground overflow-y-auto sm:overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
 
                 {/* Custom Close Button */}
                 <DialogClose className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 rounded-full bg-muted/80 hover:bg-muted transition-colors text-foreground focus:outline-none focus:ring-0">
                     <X className="w-6 h-6" />
                 </DialogClose>
 
-                <div className="flex flex-col md:flex-row h-full">
+                <div className="flex flex-col md:flex-row min-h-full sm:h-full">
 
                     {/* Left Column: Branding (Obsidian Glass) */}
-                    <div className="w-full md:w-[40%] bg-muted/20 p-6 md:p-12 flex flex-col justify-between relative overflow-hidden backdrop-blur-md border-b md:border-b-0 md:border-r border-border/50 shrink-0">
+                    <div className="w-full md:w-[40%] bg-muted/20 p-8 pb-10 md:p-12 flex flex-col justify-between relative overflow-hidden backdrop-blur-md border-b md:border-b-0 md:border-r border-border/50 shrink-0">
 
                         {/* Background Effects */}
                         <div className="absolute top-0 right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-secondary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -203,7 +203,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Right Column: Form or Success State */}
-                    <div className="flex-1 bg-background p-8 pt-20 md:p-12 md:pt-24 overflow-y-auto custom-scrollbar relative">
+                    <div className="flex-1 bg-background p-6 pt-10 md:p-12 md:pt-24 sm:overflow-y-auto sm:custom-scrollbar relative">
                         {isSuccess ? (
                             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-center animate-in fade-in zoom-in-95 duration-500">
                                 <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
@@ -226,7 +226,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                 <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-xl mx-auto space-y-8">
 
                                     {/* Personal Info */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                         {/* HONEYPOT - Invisible Field */}
                                         <FormField
                                             control={form.control}
@@ -277,7 +277,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                                     key={service.id}
                                                     onClick={() => form.setValue("service", service.id)}
                                                     className={cn(
-                                                        "px-5 py-2.5 rounded-full text-sm font-medium tracking-wide border transition-all duration-200",
+                                                        "px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide border transition-all duration-200",
                                                         selectedService === service.id
                                                             ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                                                             : "bg-muted/10 border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -298,7 +298,7 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                                                 <FormControl>
                                                     <Textarea
                                                         {...field}
-                                                        className="min-h-[160px] pt-4 px-4 bg-muted/20 border-border text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
+                                                        className="min-h-[120px] sm:min-h-[160px] pt-4 px-4 bg-muted/20 border-border text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
                                                         placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
                                                     />
                                                 </FormControl>
