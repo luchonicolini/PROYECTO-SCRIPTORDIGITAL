@@ -69,17 +69,20 @@ export function Navbar() {
                     </div>
                 </div>
 
-                {/* MOBILE TOGGLE */}
-                <button
-                    className={cn(
-                        "md:hidden z-50 transition-colors",
-                        isScrolled ? "text-foreground/70 hover:text-foreground" : "text-foreground hover:text-foreground/70"
-                    )}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    {mobileMenuOpen ? <X /> : <Menu />}
-                </button>
+                {/* MOBILE CONTROLS */}
+                <div className="md:hidden flex items-center gap-2 z-50">
+                    <ThemeToggle />
+                    <button
+                        className={cn(
+                            "transition-colors",
+                            isScrolled ? "text-foreground/70 hover:text-foreground" : "text-foreground hover:text-foreground/70"
+                        )}
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X /> : <Menu />}
+                    </button>
+                </div>
             </div>
 
             {/* MOBILE MENU OVERLAY */}
