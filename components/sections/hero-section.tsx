@@ -110,7 +110,7 @@ export function HeroSection() {
                                     size="lg"
                                     className="h-14 px-8 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold tracking-wide text-base w-full sm:w-auto transition-all hover:scale-105 shadow-lg shadow-primary/20"
                                 >
-                                    Solicitar Diagnóstico
+                                    Solicitar Diagnóstico Gratuito
                                     <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                             </ContactModal>

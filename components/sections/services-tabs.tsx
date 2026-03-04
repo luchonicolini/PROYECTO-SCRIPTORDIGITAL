@@ -30,6 +30,8 @@ interface ServiceItem {
 export function ServicesTabs() {
     const [activeTab, setActiveTab] = useState<TabType>("ACADEMIA")
     const [selectedCard, setSelectedCard] = useState<ServiceItem | null>(null)
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+    const [contactModalService, setContactModalService] = useState<string>("")
 
     const isAcademiaActiveTab = activeTab === "ACADEMIA"
     const currentData = isAcademiaActiveTab ? SERVICES_DATA.ACADEMIA : SERVICES_DATA.TECNOLOGIA
@@ -328,16 +330,20 @@ export function ServicesTabs() {
                                                     <p className="text-muted-foreground text-sm hidden md:block">
                                                         * Garantía de conformidad y soporte post-entrega incluido.
                                                     </p>
-                                                    <ContactModal>
-                                                        <Button
-                                                            className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
-                                                        >
-                                                            <span className="flex items-center gap-2">
-                                                                Solicitar Presupuesto
-                                                                <ArrowRight className="w-5 h-5" />
-                                                            </span>
-                                                        </Button>
-                                                    </ContactModal>
+                                                    <Button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            setContactModalService(activeTab === "ACADEMIA" ? "tesis" : "web")
+                                                            setSelectedCard(null)
+                                                            setTimeout(() => setIsContactModalOpen(true), 50)
+                                                        }}
+                                                        className="w-full md:w-auto h-14 px-8 text-lg font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
+                                                    >
+                                                        <span className="flex items-center gap-2">
+                                                            Solicitar Diagnóstico Gratuito
+                                                            <ArrowRight className="w-5 h-5" />
+                                                        </span>
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,6 +354,13 @@ export function ServicesTabs() {
                     </AnimatePresence>
                 </div>
             </div>
+
+            {/* Global Contact Modal for Services */}
+            <ContactModal
+                open={isContactModalOpen}
+                onOpenChange={setIsContactModalOpen}
+                defaultService={contactModalService}
+            />
         </section >
     )
 }

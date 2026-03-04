@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navbar } from "@/components/navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 import { Analytics } from "@vercel/analytics/react"
 // Theme: Ivy League Tech (Deep Navy & Gold)
@@ -63,6 +64,7 @@ export default function RootLayout({
             {children}
             <Analytics />
           </SmoothScroll>
+          <Toaster />
         </ThemeProvider>
         <script
           type="application/ld+json"
@@ -82,13 +84,7 @@ export default function RootLayout({
                 "@type": "ContactPoint",
                 "contactType": "sales",
                 "email": "scriptordigitaloficial@gmail.com"
-              },
-              "sameAs": [
-                "https://github.com/scriptordigital",
-                "https://twitter.com/scriptordigital",
-                "https://linkedin.com/company/scriptor-digital",
-                "https://instagram.com/scriptordigital"
-              ]
+              }
             })
           }}
         />

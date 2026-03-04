@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { SocialProof } from "@/components/sections/social-proof"
 import { Manifesto } from "@/components/sections/manifesto"
 import { UseCases } from "@/components/sections/use-cases"
-import { TeamSection } from "@/components/sections/team-section"
+import { AboutSection } from "@/components/sections/about-section"
 import { FinalCTA } from "@/components/sections/final-cta"
 
 import { Methodology } from "@/components/sections/methodology"
@@ -43,9 +43,7 @@ export default function Home() {
       </section>
 
       {/* 6. Autoridad / Perfiles y Expertos */}
-      <section id="equipo">
-        <TeamSection />
-      </section>
+      <AboutSection />
 
       {/* 7. Empuje Final de Conversión */}
       <section id="faq">

@@ -54,12 +54,11 @@ export function Navbar() {
                             key={item.name}
                             onClick={() => scrollToSection(item.href)}
                             className={cn(
-                                "text-[10px] lg:text-xs font-bold tracking-[0.1em] lg:tracking-[0.15em] uppercase transition-colors duration-300 relative group whitespace-nowrap",
-                                isScrolled ? "text-muted-foreground hover:text-primary" : "text-foreground hover:text-foreground/70"
+                                "text-[10px] lg:text-xs font-bold tracking-[0.1em] lg:tracking-[0.15em] uppercase transition-colors duration-300 whitespace-nowrap",
+                                isScrolled ? "text-muted-foreground hover:text-primary" : "text-foreground hover:text-primary"
                             )}
                         >
                             {item.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                         </button>
                     ))}
 

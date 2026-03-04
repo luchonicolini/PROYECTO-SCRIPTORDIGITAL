@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
     Dialog,
     DialogContent,
@@ -27,6 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 // Server action
 import { sendEmail } from "@/app/actions"
+import { toast } from "sonner"
 
 // Schema definition
 const formSchema = z.object({
@@ -57,7 +58,14 @@ const FloatingFormInput = ({ field, label, ...props }: any) => (
     </div>
 )
 
-export function ContactModal({ children }: { children: React.ReactNode }) {
+interface ContactModalProps {
+    children?: React.ReactNode
+    defaultService?: string
+    open?: boolean
+    onOpenChange?: (open: boolean) => void
+}
+
+export function ContactModal({ children, defaultService, open, onOpenChange }: ContactModalProps) {
     const [isSuccess, setIsSuccess] = useState(false)
 
     // Services choices
@@ -74,11 +82,18 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
         defaultValues: {
             name: "",
             email: "",
-            service: "",
+            service: defaultService || "",
             message: "",
             company_role: "", // Honeypot default
         },
     })
+
+    // Update the service if defaultService changes or modal is reopened
+    useEffect(() => {
+        if (defaultService) {
+            form.setValue("service", defaultService)
+        }
+    }, [defaultService, form])
 
     // Optimizacion: Usar useWatch en lugar de form.watch directamente en el render para memoización
     const selectedService = useWatch({
@@ -109,23 +124,33 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
             form.reset()
         } else {
             console.error(result?.error)
-            alert("Hubo un error al enviar el mensaje. Por favor intenta nuevamente.")
+            toast.error("Error al enviar el mensaje", {
+                description: "Por favor intenta nuevamente."
+            })
         }
     }
 
     return (
-        <Dialog onOpenChange={(open) => {
-            if (!open) {
-                // Reset state when modal closes
-                setTimeout(() => {
-                    setIsSuccess(false)
-                    form.reset()
-                }, 300)
-            }
-        }}>
-            <DialogTrigger asChild suppressHydrationWarning>
-                {children}
-            </DialogTrigger>
+        <Dialog
+            {...(open !== undefined ? { open } : {})}
+            onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                    // Reset state when modal closes
+                    setTimeout(() => {
+                        setIsSuccess(false)
+                        form.reset()
+                    }, 300)
+                }
+                if (onOpenChange) {
+                    onOpenChange(isOpen)
+                }
+            }}
+        >
+            {children && (
+                <DialogTrigger asChild suppressHydrationWarning>
+                    {children}
+                </DialogTrigger>
+            )}
 
             <DialogContent showCloseButton={false} className="w-full h-[100dvh] sm:h-auto sm:max-w-5xl sm:max-h-[90vh] p-0 bg-background border-border text-foreground overflow-y-auto sm:overflow-hidden shadow-2xl block rounded-none sm:rounded-3xl z-[200]">
 
@@ -161,9 +186,9 @@ export function ContactModal({ children }: { children: React.ReactNode }) {
                         {/* Contact details */}
                         <div className="relative z-10 space-y-6 mt-6 block">
                             {[
-                                { icon: Mail, label: "EMAIL", value: "scriptordigitaloficial@gmail.com", color: "text-secondary", href: "mailto:scriptordigitaloficial@gmail.com" },
+                                { icon: Mail, label: "EMAIL", value: "scriptordigitaloficial@gmail.com", color: "text-foreground group-hover:text-primary", href: "mailto:scriptordigitaloficial@gmail.com" },
                                 { icon: MessageCircle, label: "WHATSAPP", value: "+54 9 11 3420 6516", color: "text-primary", href: "https://wa.me/5491134206516" },
-                                { icon: MapPin, label: "OFICINAS", value: "Buenos Aires • Madrid", color: "text-muted-foreground" }
+                                { icon: MapPin, label: "OFICINAS", value: "Buenos Aires • Madrid", color: "text-foreground" }
                             ].map((item, idx) => (
                                 item.href ? (
                                     <a

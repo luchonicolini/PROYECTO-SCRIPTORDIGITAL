@@ -116,9 +116,9 @@ export function Workshop() {
                                 <p className="text-sm text-foreground italic">
                                     ¿Buscás una solución definitiva en lugar de más consejos?
                                 </p>
-                                <ContactModal>
+                                <ContactModal defaultService="tesis">
                                     <Button className="w-full sm:w-auto h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground text-base tracking-wide rounded-xl font-bold shadow-lg shadow-primary/20 transition-all hover:-translate-y-1">
-                                        Contratar Asesoría Completa
+                                        Solicitar Diagnóstico Gratuito
                                         <ArrowRight className="w-5 h-5 ml-2" />
                                     </Button>
                                 </ContactModal>
