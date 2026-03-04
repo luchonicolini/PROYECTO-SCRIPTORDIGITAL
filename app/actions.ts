@@ -14,6 +14,32 @@ function escapeHtml(str: string): string {
         .replace(/'/g, "&#039;")
 }
 
+// WhatsApp Notification Helper
+async function sendWhatsAppNotification(name: string, service: string, email: string) {
+    const phone = process.env.WHATSAPP_PHONE_NUMBER
+    const apikey = process.env.WHATSAPP_API_KEY
+
+    if (!phone || !apikey) {
+        console.warn("WhatsApp credentials not configured. Skipping WhatsApp notification.")
+        return
+    }
+
+    const message = `🚨 *NUEVA CONSULTA - SCRIPTOR DIGITAL* 🚨\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Servicio:* ${service}\n\n👉 Revisa el correo electrónico para ver el mensaje completo.`
+    const encodedMessage = encodeURIComponent(message)
+    const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encodedMessage}&apikey=${apikey}`
+
+    try {
+        const response = await fetch(url, { method: "GET" })
+        if (!response.ok) {
+            console.error("Failed to send WhatsApp notification. Status:", response.status)
+        } else {
+            console.log("WhatsApp notification sent successfully.")
+        }
+    } catch (error) {
+        console.error("Error sending WhatsApp notification:", error)
+    }
+}
+
 export async function sendEmail(formData: FormData) {
     const name = formData.get("name") as string
     const email = formData.get("email") as string
@@ -60,6 +86,9 @@ export async function sendEmail(formData: FormData) {
         if (data.error) {
             return { error: data.error.message }
         }
+
+        // Send WhatsApp Notification in the background (fire and forget)
+        sendWhatsAppNotification(name, service || "No especificado", email).catch(console.error)
 
         return { success: true, data }
     } catch {
