@@ -8,6 +8,8 @@ import { NAV_LINKS } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { ContactModal } from "@/components/contact-modal"
+import { Button } from "@/components/ui/button"
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -61,6 +63,12 @@ export function Navbar() {
                             {item.name}
                         </button>
                     ))}
+
+                    <ContactModal>
+                        <Button className="hidden lg:inline-flex h-10 rounded-full px-5 text-xs font-bold">
+                            Consulta sin cargo
+                        </Button>
+                    </ContactModal>
 
                     {/* Theme Toggle Button */}
                     <div className="ml-2 lg:ml-4 border-l border-border pl-4 lg:pl-8 shrink-0">

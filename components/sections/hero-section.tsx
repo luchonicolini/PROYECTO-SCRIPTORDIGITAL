@@ -2,10 +2,9 @@
 
 
 import { motion } from "framer-motion"
-import { Sparkles, ArrowRight, FileText, ChevronDown } from "lucide-react"
+import { ArrowRight, BookOpenCheck, ChevronDown, Code2, ShieldCheck, Clock3, Check } from "lucide-react"
 
 import { ParticlesBackground } from "@/components/particles-background"
-import { Button } from "@/components/ui/button"
 import { ContactModal } from "@/components/contact-modal"
 
 
@@ -16,7 +15,7 @@ export function HeroSection() {
     }
 
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-background pt-20 pb-32 md:pt-28">
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background pt-28 pb-24 md:pt-32">
 
 
             {/* Background Effects Originales */}
@@ -67,24 +66,33 @@ export function HeroSection() {
             />
 
             <div className="container relative z-10 mx-auto px-6 md:px-12">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-14 lg:gap-20 items-center">
 
                     {/* LEFT COLUMN - Typography */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="space-y-8 max-w-2xl"
+                        className="space-y-8 max-w-3xl"
                     >
+                        <motion.div
+                            variants={itemVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-primary"
+                        >
+                            <span className="h-2 w-2 rounded-full bg-primary" />
+                            Consultoría para profesionales e instituciones
+                        </motion.div>
                         <motion.h1
                             variants={itemVariants}
                             initial="hidden"
                             animate="visible"
                             transition={{ duration: 0.8 }}
-                            className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground leading-[1.1] mb-6"
-                        >    Consultoría <br />
-                            <span className="text-primary font-bold">Académica</span> & <br />
-                            <span className="text-foreground/80">Desarrollo Tecnológico</span>
+                            className="font-heading text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.035em] text-foreground leading-[1.02]"
+                        >
+                            Convertimos proyectos complejos en
+                            <span className="text-primary italic"> avances concretos.</span>
                         </motion.h1>
 
                         <motion.p
@@ -92,9 +100,9 @@ export function HeroSection() {
                             initial="hidden"
                             animate="visible"
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light max-w-lg mb-8"
+                            className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light max-w-2xl"
                         >
-                            Potenciamos su carrera profesional uniendo la profundidad del Derecho con la innovación del Software. Desde su tesis doctoral hasta su propia plataforma digital.
+                            Acompañamos investigaciones académicas y desarrollamos soluciones digitales para profesionales e instituciones que necesitan claridad, método y tecnología confiable.
                         </motion.p>
 
                         {/* CTA BUTTONS (NEW) */}
@@ -103,48 +111,89 @@ export function HeroSection() {
                             initial="hidden"
                             animate="visible"
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="flex flex-col sm:flex-row gap-4 pt-4"
+                            className="grid sm:grid-cols-2 gap-4 pt-2 max-w-2xl"
                         >
-                            <ContactModal>
-                                <Button
-                                    size="lg"
-                                    className="h-14 px-8 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold tracking-wide text-base w-full sm:w-auto transition-all hover:scale-105 shadow-lg shadow-primary/20"
-                                >
-                                    Solicitar Diagnóstico Gratuito
-                                    <ArrowRight className="ml-2 w-5 h-5" />
-                                </Button>
+                            <ContactModal defaultService="tesis">
+                                <button className="group rounded-2xl border border-primary bg-primary p-5 text-left text-primary-foreground shadow-lg shadow-primary/15 transition-all hover:-translate-y-1 hover:shadow-xl">
+                                    <span className="mb-3 flex items-center justify-between">
+                                        <BookOpenCheck className="h-6 w-6" />
+                                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                    </span>
+                                    <span className="block font-bold">Necesito orientación académica</span>
+                                    <span className="mt-1 block text-sm text-primary-foreground/75">Tesis, metodología y defensa oral</span>
+                                </button>
                             </ContactModal>
 
-                            <Button
-                                asChild
-                                variant="outline"
-                                size="lg"
-                                className="h-14 px-8 rounded-full border-primary/20 hover:bg-primary/5 text-foreground font-medium text-base w-full sm:w-auto group"
-                            >
-                                <a href="#manifiesto">
-                                    <FileText className="mr-2 w-5 h-5 text-primary group-hover:text-primary transition-colors" />
-                                    Nuestro Manifiesto
-                                </a>
-                            </Button>
+                            <ContactModal defaultService="web">
+                                <button className="group rounded-2xl border border-border bg-card p-5 text-left text-foreground shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl">
+                                    <span className="mb-3 flex items-center justify-between text-primary">
+                                        <Code2 className="h-6 w-6" />
+                                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                    </span>
+                                    <span className="block font-bold">Necesito una solución tecnológica</span>
+                                    <span className="mt-1 block text-sm text-muted-foreground">Web, aplicaciones y automatización</span>
+                                </button>
+                            </ContactModal>
                         </motion.div>
 
+                        <motion.div
+                            variants={itemVariants}
+                            initial="hidden"
+                            animate="visible"
+                            transition={{ duration: 0.8, delay: 0.55 }}
+                            className="flex flex-wrap gap-x-6 gap-y-3 pt-1 text-sm text-muted-foreground"
+                        >
+                            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-primary" /> Primera consulta sin cargo</span>
+                            <span className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-primary" /> Respuesta en 24 horas</span>
+                            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> Trabajo confidencial</span>
+                        </motion.div>
                     </motion.div>
 
-                    {/* RIGHT COLUMN - Visual Anchor (Abstract Glass Geometry) */}
+                    {/* RIGHT COLUMN - Concrete service preview */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.5 }}
-                        className="relative hidden md:flex items-center justify-center h-full min-h-[500px]"
+                        className="relative hidden lg:block"
                     >
-                        {/* Abstract Representation of "Law + Code" */}
-                        <div className="relative w-full max-w-md aspect-square">
-                            {/* Rotating Ring */}
-                            <div className="absolute inset-0 rounded-full border border-cyan-500/20 border-dashed animate-[spin_10s_linear_infinite]" />
-                            {/* Check or Logo placeholder */}
-                            <div className="absolute inset-20 rounded-full bg-secondary/5 backdrop-blur-3xl border border-secondary/10 flex items-center justify-center">
-                                <Sparkles className="w-24 h-24 text-cyan-400/40" />
+                        <div className="relative mx-auto max-w-lg rounded-[2rem] border border-border bg-card/80 p-3 shadow-2xl backdrop-blur-xl">
+                            <div className="rounded-[1.5rem] border border-border/70 bg-background p-7">
+                                <div className="mb-8 flex items-center justify-between border-b border-border pb-5">
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Diagnóstico inicial</p>
+                                        <p className="mt-1 text-sm text-muted-foreground">Elegí el área de tu proyecto</p>
+                                    </div>
+                                    <span className="rounded-full bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-600 dark:text-green-400">Disponible</span>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
+                                        <div className="flex items-start gap-4">
+                                            <div className="rounded-xl bg-primary p-3 text-primary-foreground"><BookOpenCheck className="h-5 w-5" /></div>
+                                            <div>
+                                                <h3 className="font-heading text-xl font-semibold text-foreground">Área académica</h3>
+                                                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">Definimos el problema, ordenamos el proceso y construimos una hoja de ruta metodológica.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="rounded-2xl border border-border bg-muted/20 p-5">
+                                        <div className="flex items-start gap-4">
+                                            <div className="rounded-xl bg-foreground p-3 text-background"><Code2 className="h-5 w-5" /></div>
+                                            <div>
+                                                <h3 className="font-heading text-xl font-semibold text-foreground">Área tecnológica</h3>
+                                                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">Analizamos procesos y diseñamos una solución digital clara, escalable y fácil de usar.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 rounded-xl bg-muted/50 px-4 py-3 text-center text-xs text-muted-foreground">
+                                    Sin compromiso · Alcance y próximos pasos claros
+                                </div>
                             </div>
+                            <div className="absolute -right-8 -top-8 -z-10 h-36 w-36 rounded-full bg-primary/15 blur-3xl" />
+                            <div className="absolute -bottom-10 -left-10 -z-10 h-44 w-44 rounded-full bg-sky-500/10 blur-3xl" />
                         </div>
                     </motion.div>
                 </div>
