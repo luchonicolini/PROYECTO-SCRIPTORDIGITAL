@@ -8,8 +8,8 @@ export function SocialProof() {
         { icon: GraduationCap, text: "+50 Tesis Aprobadas" },
         { icon: LockKeyhole, text: "100% Confidencial" },
         { icon: BookOpenCheck, text: "Normas APA" },
-        { icon: Landmark, text: "Aval CONEAU" },
-        { icon: ShieldCheck, text: "SSL Secure" },
+        { icon: Landmark, text: "Criterios CONEAU" },
+        { icon: ShieldCheck, text: "Protección de datos" },
     ]
 
     return (

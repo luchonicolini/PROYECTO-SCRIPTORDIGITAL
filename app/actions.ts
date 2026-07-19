@@ -1,6 +1,7 @@
 "use server"
 
 import { Resend } from "resend"
+import { contactSchema } from "@/lib/contact-schema"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -41,11 +42,19 @@ async function sendWhatsAppNotification(name: string, service: string, email: st
 }
 
 export async function sendEmail(formData: FormData) {
-    const name = formData.get("name") as string
-    const email = formData.get("email") as string
-    const service = formData.get("service") as string
-    const message = formData.get("message") as string
-    const honeypot = formData.get("company_role") as string
+    const submission = contactSchema.safeParse({
+        name: formData.get("name"),
+        email: formData.get("email"),
+        service: formData.get("service"),
+        message: formData.get("message"),
+        company_role: formData.get("company_role"),
+    })
+
+    if (!submission.success) {
+        return { error: "Revisa los datos ingresados e intenta nuevamente." }
+    }
+
+    const { name, email, service, message, company_role: honeypot } = submission.data
 
     // HONEYPOT CHECK: If the hidden field is filled, it's a bot.
     // Silently return success to not alert the bot.
@@ -54,8 +63,9 @@ export async function sendEmail(formData: FormData) {
         return { success: true }
     }
 
-    if (!name || !email || !message) {
-        return { error: "Faltan campos requeridos" }
+    if (!process.env.RESEND_API_KEY) {
+        console.error("RESEND_API_KEY is not configured.")
+        return { error: "El formulario no está disponible temporalmente." }
     }
 
     // Escape user input before inserting into HTML
@@ -78,7 +88,7 @@ export async function sendEmail(formData: FormData) {
           <p><strong>Servicio de Interés:</strong> ${safeService}</p>
           <hr />
           <h3>Mensaje:</h3>
-          <p>${safeMessage}</p>
+          <p>${safeMessage.replace(/\r?\n/g, "<br />")}</p>
         </div>
       `,
         })

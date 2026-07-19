@@ -65,7 +65,7 @@ export function Footer() {
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
                     <p>
-                        © 2026 Scriptor Digital. Todos los derechos reservados.
+                        © {new Date().getFullYear()} Scriptor Digital. Todos los derechos reservados.
                     </p>
                     <div className="flex gap-8">
                         <Link href="/privacy" className="hover:text-foreground transition-colors">Privacidad</Link>

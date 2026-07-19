@@ -24,23 +24,12 @@ import {
 } from "@/components/ui/form"
 import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 // Server action
 import { sendEmail } from "@/app/actions"
 import { toast } from "sonner"
+import { contactSchema, type ContactFormValues } from "@/lib/contact-schema"
 
 // Schema definition
-const formSchema = z.object({
-    name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
-    email: z.string().email("Ingresa un email válido."),
-    service: z.string().optional(),
-    message: z.string()
-        .min(10, "Cuéntanos un poco más (min. 10 caracteres).")
-        .max(500, "El mensaje no puede superar los 500 caracteres."),
-    // Honeypot field (hidden from users)
-    company_role: z.string().optional(),
-})
-
 // Custom Floating Label Input for React Hook Form
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const FloatingFormInput = ({ field, label, ...props }: any) => (
@@ -77,8 +66,8 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
     ]
 
     // Form initialization
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<ContactFormValues>({
+        resolver: zodResolver(contactSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -107,7 +96,7 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
     })
     const messageLength = messageValue ? messageValue.length : 0
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: ContactFormValues) {
         // Create FormData from values to match server action signature
         const formData = new FormData()
         formData.append("name", values.name)
@@ -270,7 +259,7 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
                                             render={({ field }) => (
                                                 <FormItem>
                                                     <FormControl>
-                                                        <FloatingFormInput field={field} label="Nombre Completo" />
+                                                        <FloatingFormInput field={field} label="Nombre completo" autoComplete="name" />
                                                     </FormControl>
                                                     <FormMessage className="text-red-400 font-light text-xs ml-1" />
                                                 </FormItem>
@@ -282,7 +271,7 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
                                             render={({ field }) => (
                                                 <FormItem>
                                                     <FormControl>
-                                                        <FloatingFormInput field={field} label="Email Profesional" type="email" />
+                                                        <FloatingFormInput field={field} label="Email profesional" type="email" autoComplete="email" />
                                                     </FormControl>
                                                     <FormMessage className="text-red-400 font-light text-xs ml-1" />
                                                 </FormItem>
@@ -307,6 +296,7 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
                                                             ? "bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                                                             : "bg-muted/10 border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
                                                     )}
+                                                    aria-pressed={selectedService === service.id}
                                                 >
                                                     {service.label}
                                                 </button>
@@ -325,6 +315,7 @@ export function ContactModal({ children, defaultService, open, onOpenChange }: C
                                                         {...field}
                                                         className="min-h-[120px] sm:min-h-[160px] pt-4 px-4 bg-muted/20 border-border text-foreground placeholder:text-muted-foreground/20 focus-visible:ring-primary/30 rounded-xl resize-none font-light"
                                                         placeholder="Cuéntanos brevemente sobre tu proyecto o necesidad..."
+                                                        maxLength={500}
                                                     />
                                                 </FormControl>
                                                 <div className="absolute bottom-3 right-3 text-[10px] text-muted-foreground font-mono">
