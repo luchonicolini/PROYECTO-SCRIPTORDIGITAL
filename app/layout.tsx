@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
 
 import { Analytics } from "@vercel/analytics/react"
+import Script from "next/script"
 // Theme: Ivy League Tech (Deep Navy & Gold)
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://scriptordigital.vercel.app"
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -20,23 +22,28 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Scriptor Digital | Agencia de Desarrollo Premium",
+    default: "Scriptor Digital | Consultoría académica y tecnología",
     template: "%s | Scriptor Digital",
   },
-  description: "Elevando el estándar de la educación digital y la presencia institucional con tecnología de vanguardia y diseño premium. Web, Apps y Estrategia Digital.",
+  description: "Orientación metodológica y soluciones digitales para profesionales e instituciones. Investigación, desarrollo web y tecnología educativa.",
+  alternates: { canonical: "/" },
+  applicationName: "Scriptor Digital",
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://scriptordigital.com",
-    title: "Scriptor Digital | Agencia de Desarrollo Premium",
-    description: "Elevando el estándar de la educación digital y la presencia institucional con tecnología de vanguardia y diseño premium.",
+    url: siteUrl,
+    title: "Scriptor Digital | Consultoría académica y tecnología",
+    description: "Orientación metodológica y soluciones digitales para profesionales e instituciones.",
     siteName: "Scriptor Digital",
+    images: [{ url: "/images/hero-bg.png", alt: "Scriptor Digital — Consultoría académica y desarrollo tecnológico" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scriptor Digital | Agencia de Desarrollo Premium",
-    description: "Elevando el estándar de la educación digital y la presencia institucional.",
+    title: "Scriptor Digital | Consultoría académica y tecnología",
+    description: "Orientación metodológica y soluciones digitales para profesionales e instituciones.",
+    images: ["/images/hero-bg.png"],
   },
 };
 
@@ -60,22 +67,22 @@ export default function RootLayout({
         >
 
           <Navbar />
-          <SmoothScroll>
-            {children}
-            <Analytics />
-          </SmoothScroll>
+          {children}
+          <Analytics />
           <Toaster />
         </ThemeProvider>
-        <script
+        <Script
+          id="scriptor-organization-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Scriptor Digital",
-              "url": "https://scriptordigital.com",
-              "logo": "https://scriptordigital.com/logo.png",
-              "description": "Elevando el estándar de la educación digital y la presencia institucional con tecnología de vanguardia y diseño premium.",
+              "url": siteUrl,
+              "logo": `${siteUrl}/icon.png`,
+              "description": "Orientación metodológica y soluciones digitales para profesionales e instituciones.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "AR"

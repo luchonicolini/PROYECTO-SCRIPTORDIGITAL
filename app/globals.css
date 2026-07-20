@@ -38,6 +38,9 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-soft: var(--brand-gold-soft);
+  --color-editorial: var(--editorial);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -49,6 +52,9 @@
 
 :root {
   --radius: 0.625rem;
+  --brand-gold: #D4AF37;
+  --brand-gold-soft: #E4C558;
+  --editorial: #0E1A38;
 
   /* THEME: HIGH CONTRAST CLASSIC ACADEMIC - LIGHT */
   --background: #FAFAFA;
@@ -61,7 +67,6 @@
   --popover-foreground: #111827;
 
   --primary: #1E3A8A;
-  /* Azul Marino 900 */
   --primary-foreground: #FFFFFF;
 
   --secondary: #F1F5F9;
@@ -77,7 +82,6 @@
   --destructive-foreground: #FFFFFF;
 
   --border: #94A3B8;
-  /* Slate 400 - Muy destacado */
   --input: #94A3B8;
   --ring: #1E3A8A;
 
@@ -102,10 +106,10 @@
   --background: #172554;
   --foreground: #F8FAFC;
 
-  --card: rgba(15, 23, 42, 0.6);
+  --card: #101A38;
   --card-foreground: #F8FAFC;
 
-  --popover: #0F172A;
+  --popover: #0B132B;
   --popover-foreground: #F8FAFC;
 
   --primary: #D4AF37;
@@ -114,7 +118,7 @@
   --secondary: #6366F1;
   --secondary-foreground: #F8FAFC;
 
-  --muted: rgba(255, 255, 255, 0.05);
+  --muted: rgba(255, 255, 255, 0.08);
   --muted-foreground: #E2E8F0;
 
   --accent: rgba(212, 175, 55, 0.1);
@@ -122,9 +126,9 @@
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: rgba(255, 255, 255, 0.15);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: rgba(212, 175, 55, 0.5);
+  --border: rgba(255, 255, 255, 0.22);
+  --input: rgba(255, 255, 255, 0.35);
+  --ring: #D4AF37;
 
   --chart-1: #D4AF37;
   --chart-2: #6366F1;
@@ -136,15 +140,15 @@
   --sidebar-foreground: #F8FAFC;
   --sidebar-primary: #D4AF37;
   --sidebar-primary-foreground: #0F172A;
-  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent: rgba(255, 255, 255, 0.08);
   --sidebar-accent-foreground: #F8FAFC;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.18);
   --sidebar-ring: #D4AF37;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/70;
   }
 
   html.lenis,
@@ -172,9 +176,43 @@
     @apply bg-background text-foreground;
     overflow-x: hidden;
   }
+
+  html {
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer utilities {
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 0.75rem)); }
+  }
+
+  .marquee-track {
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+
   .force-gpu {
     transform: translateZ(0);
     will-change: transform, opacity;

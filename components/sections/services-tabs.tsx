@@ -65,13 +65,13 @@ export function ServicesTabs() {
     }, [selectedCard])
 
     return (
-        <section id="servicios" className="py-36 px-4 w-full relative overflow-hidden bg-background">
+        <section id="servicios" className="py-24 md:py-32 px-4 w-full relative overflow-hidden bg-background">
             {/* Background decoration */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-primary/5 to-transparent rounded-[100%] blur-[100px] -z-10 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 {/* HEADER */}
-                <div className="mb-16 text-center max-w-3xl mx-auto space-y-4">
+                <div className="mb-12 text-center max-w-3xl mx-auto space-y-4">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -79,23 +79,23 @@ export function ServicesTabs() {
                         transition={smoothTransition}
                         className="block text-sm font-bold tracking-[0.2em] text-primary uppercase"
                     >
-                        Nuestra Expertise
+                        Cómo podemos ayudarte
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ ...smoothTransition, delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight"
+                    className="font-heading text-4xl font-medium leading-tight text-foreground md:text-5xl"
                     >
-                        Excelencia en Textos & <span className="italic text-muted-foreground">Desarrollo Software</span>
+                        Dos áreas de trabajo, <span className="italic text-muted-foreground">un mismo método</span>
                     </motion.h2>
                 </div>
 
 
 
                 {/* SWITCHER (TABS) */}
-                <div className="relative flex p-1 bg-muted/50 backdrop-blur-sm rounded-full border border-border mb-16">
+                <div className="relative flex p-1 bg-muted/50 backdrop-blur-sm rounded-full border border-border mb-12" role="tablist" aria-label="Áreas de servicio">
                     <LayoutGroup>
                         {(["ACADEMIA", "TECNOLOGIA"] as TabType[]).map((tab) => {
                             const isActive = activeTab === tab
@@ -103,6 +103,9 @@ export function ServicesTabs() {
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
+                                    role="tab"
+                                    aria-selected={isActive}
+                                    aria-controls={`panel-${tab.toLowerCase()}`}
                                     className={cn(
                                         "relative px-8 py-3 rounded-full text-sm font-semibold tracking-wide transition-colors duration-300 z-10",
                                         isActive
@@ -136,16 +139,20 @@ export function ServicesTabs() {
                             animate="visible"
                             exit="hidden"
                             variants={staggerContainer}
+                            id={`panel-${activeTab.toLowerCase()}`}
+                            role="tabpanel"
                             className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
                         >
                             {currentData.map((item) => (
-                                <motion.div
+                                <motion.button
+                                    type="button"
                                     key={item.id}
                                     variants={fadeInUp}
                                     onClick={() => setSelectedCard(item)}
+                                    aria-label={`Ver detalles de ${item.title}`}
                                     className={cn(
-                                        "group relative flex flex-col p-8 md:p-10 rounded-3xl cursor-pointer overflow-hidden transition-all duration-300",
-                                        "glass-panel hover:shadow-2xl hover:-translate-y-2 min-h-[480px]",
+                                        "group relative flex flex-col p-7 md:p-8 rounded-3xl cursor-pointer overflow-hidden transition-all duration-300 text-left",
+                                        "glass-panel hover:shadow-xl hover:-translate-y-1 min-h-[390px] focus-visible:ring-2 focus-visible:ring-primary",
                                         hoverBorderClass
                                     )}
                                 >
@@ -158,16 +165,14 @@ export function ServicesTabs() {
                                             <item.icon className="w-8 h-8 transition-colors duration-300 text-primary" />
                                         </div>
 
-                                        <div className={cn(
-                                            "p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0 bg-primary text-primary-foreground"
-                                        )}>
+                                        <div className="p-2 rounded-full bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                                             <ArrowRight className="w-5 h-5" />
                                         </div>
                                     </div>
 
                                     {/* Content */}
                                     <div className="space-y-6 flex-1">
-                                        <h3 className="text-2xl md:text-3xl font-serif text-foreground font-medium group-hover:text-foreground/90 leading-tight">
+                                        <h3 className="font-heading text-2xl font-medium leading-tight text-foreground group-hover:text-foreground/90 md:text-3xl">
                                             {item.title}
                                         </h3>
 
@@ -178,12 +183,11 @@ export function ServicesTabs() {
                                         </p>
 
                                         {/* Key Features Preview */}
-                                        <div className="pt-4 space-y-3">
+                                        <div className="pt-2 space-y-2.5">
                                             {item.modal.features.slice(0, 3).map((feature, i) => (
                                                 <div key={i} className="flex items-start gap-3">
-                                                    <span className="text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest bg-primary/10 text-primary">
-                                                        {feature}
-                                                    </span>
+                                                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                                                <span className="text-base leading-relaxed text-muted-foreground">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -192,13 +196,14 @@ export function ServicesTabs() {
                                     {/* Footer */}
                                     <div className="mt-8 pt-6 border-t border-border">
                                         <span className={cn(
-                                            "text-sm font-bold uppercase tracking-widest transition-colors",
+                                            "flex items-center justify-between text-sm font-bold transition-colors",
                                             themeClass
                                         )}>
-                                            Ver Detalles Completos
+                                            Ver detalles
+                                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                         </span>
                                     </div>
-                                </motion.div>
+                                </motion.button>
                             ))}
                         </motion.div>
                     </AnimatePresence>
@@ -224,6 +229,9 @@ export function ServicesTabs() {
                                         animate="visible"
                                         exit="hidden"
                                         className="w-full max-w-5xl max-h-[90vh] bg-background/95 backdrop-blur-xl border border-border rounded-3xl overflow-hidden relative pointer-events-auto flex flex-col shadow-2xl"
+                                        role="dialog"
+                                        aria-modal="true"
+                                        aria-labelledby="service-dialog-title"
                                     >
                                         {/* Close Button */}
                                         <button
@@ -232,7 +240,7 @@ export function ServicesTabs() {
                                                 setSelectedCard(null)
                                             }}
                                             className="absolute top-6 right-6 z-20 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors text-foreground"
-                                            aria-label="Close modal"
+                                            aria-label="Cerrar detalles del servicio"
                                         >
                                             <X className="w-6 h-6" />
                                         </button>
@@ -249,7 +257,7 @@ export function ServicesTabs() {
                                                         <selectedCard.icon className="w-12 h-12" />
                                                     </div>
                                                     <div className="space-y-2 mt-2">
-                                                        <h3 className="text-3xl md:text-5xl font-serif font-medium text-foreground leading-tight">
+                                            <h3 id="service-dialog-title" className="font-heading text-3xl font-medium leading-tight text-foreground md:text-5xl">
                                                             {selectedCard?.title}
                                                         </h3>
                                                         <p className="text-sm font-bold tracking-widest uppercase py-2 text-primary">
@@ -272,7 +280,7 @@ export function ServicesTabs() {
                                                             </h4>
                                                             <div className="p-8 rounded-2xl bg-muted/10 border border-border/50 relative overflow-hidden group/box">
                                                                 <div className="absolute top-0 left-0 w-1 h-full bg-primary/20 group-hover/box:bg-primary transition-colors duration-500" />
-                                                                <p className="text-foreground italic font-serif text-xl leading-relaxed relative z-10">
+                                                                <p className="relative z-10 font-heading text-xl italic leading-relaxed text-foreground">
                                                                     &quot;{selectedCard?.modal?.problem}&quot;
                                                                 </p>
                                                             </div>
@@ -328,7 +336,7 @@ export function ServicesTabs() {
                                                 {/* Footer Action */}
                                                 <div className="pt-8 border-t border-border flex flex-col md:flex-row gap-4 items-center justify-between">
                                                     <p className="text-muted-foreground text-sm hidden md:block">
-                                                        * Garantía de conformidad y soporte post-entrega incluido.
+                                                        Alcance y soporte definidos en la propuesta de cada proyecto.
                                                     </p>
                                                     <Button
                                                         onClick={(e) => {

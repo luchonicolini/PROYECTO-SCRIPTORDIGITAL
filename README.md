@@ -58,6 +58,8 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 
 3.  **Iniciar el servidor de desarrollo:**
 
+    Copia `.env.example` como `.env.local` y completa, como mínimo, `RESEND_API_KEY` para habilitar el formulario de contacto.
+
     ```bash
     npm run dev
     ```

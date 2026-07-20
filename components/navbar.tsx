@@ -8,6 +8,9 @@ import { NAV_LINKS } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { ContactModal } from "@/components/contact-modal"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -24,14 +27,6 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
-
-    const scrollToSection = (href: string) => {
-        const element = document.getElementById(href.replace('#', ''));
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-        setMobileMenuOpen(false);
-    };
 
     return (
         <header
@@ -50,17 +45,23 @@ export function Navbar() {
                 {/* DESKTOP NAVIGATION */}
                 <div className="hidden md:flex items-center gap-4 lg:gap-8 flex-1 justify-end">
                     {NAV_LINKS.map((item) => (
-                        <button
+                        <Link
                             key={item.name}
-                            onClick={() => scrollToSection(item.href)}
+                            href={item.href}
                             className={cn(
-                                "text-[10px] lg:text-xs font-bold tracking-[0.1em] lg:tracking-[0.15em] uppercase transition-colors duration-300 whitespace-nowrap",
+                            "text-xs font-bold tracking-[0.1em] lg:tracking-[0.15em] uppercase transition-colors duration-300 whitespace-nowrap",
                                 isScrolled ? "text-muted-foreground hover:text-primary" : "text-foreground hover:text-primary"
                             )}
                         >
                             {item.name}
-                        </button>
+                        </Link>
                     ))}
+
+                    <ContactModal>
+                        <Button className="hidden lg:inline-flex h-10 rounded-full px-5 text-xs font-bold">
+                            Consulta sin cargo
+                        </Button>
+                    </ContactModal>
 
                     {/* Theme Toggle Button */}
                     <div className="ml-2 lg:ml-4 border-l border-border pl-4 lg:pl-8 shrink-0">
@@ -72,12 +73,15 @@ export function Navbar() {
                 <div className="md:hidden flex items-center gap-2 z-50">
                     <ThemeToggle />
                     <button
+                        type="button"
                         className={cn(
-                            "transition-colors",
+                            "rounded-md p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                             isScrolled ? "text-foreground/70 hover:text-foreground" : "text-foreground hover:text-foreground/70"
                         )}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="Toggle menu"
+                        aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+                        aria-expanded={mobileMenuOpen}
+                        aria-controls="menu-mobile"
                     >
                         {mobileMenuOpen ? <X /> : <Menu />}
                     </button>
@@ -88,6 +92,7 @@ export function Navbar() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
+                        id="menu-mobile"
                         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                         animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
                         exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
@@ -98,16 +103,20 @@ export function Navbar() {
 
                         <nav className="flex flex-col items-center gap-8 relative z-10">
                             {NAV_LINKS.map((item, i) => (
-                                <motion.button
+                                <motion.div
                                     key={item.name}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 + i * 0.1 }}
-                                    onClick={() => scrollToSection(item.href)}
-                                    className="text-2xl font-serif text-foreground/80 hover:text-primary transition-colors tracking-wide"
                                 >
-                                    {item.name}
-                                </motion.button>
+                                    <Link
+                                        href={item.href}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="font-heading text-2xl tracking-wide text-foreground/80 transition-colors hover:text-primary"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </motion.div>
                             ))}
                         </nav>
 
