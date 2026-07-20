@@ -1,0 +1,52 @@
+name: Reportar un problema
+description: Informa un error reproducible del sitio o del código.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Gracias por ayudarnos a mejorar Scriptor Digital. No incluyas credenciales ni datos personales.
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción
+      description: Explica qué ocurrió y qué esperabas que ocurriera.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      placeholder: |
+        1. Ir a...
+        2. Seleccionar...
+        3. Observar...
+    validations:
+      required: true
+  - type: input
+    id: route
+    attributes:
+      label: Página afectada
+      placeholder: https://scriptordigital.vercel.app/...
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Tema
+      options:
+        - Claro
+        - Oscuro
+        - Ambos
+        - No corresponde
+  - type: textarea
+    id: environment
+    attributes:
+      label: Dispositivo y navegador
+      placeholder: Windows 11, Chrome 128, pantalla de 1366 px
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmación
+      options:
+        - label: Confirmo que no incluí credenciales ni datos personales.
+          required: true

@@ -1,7 +1,11 @@
 {
   "name": "scriptor-digital",
   "version": "0.1.0",
+  "description": "Sitio institucional de Scriptor Digital: orientación académica y desarrollo de soluciones digitales.",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
