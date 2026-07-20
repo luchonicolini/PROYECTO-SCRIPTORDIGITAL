@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contacto comercial
+    url: https://scriptordigital.vercel.app/contacto
+    about: Utiliza este canal para consultas sobre servicios o proyectos.
+  - name: Reporte de seguridad
+    url: mailto:scriptordigitaloficial@gmail.com
+    about: Informa vulnerabilidades de forma privada; no abras un issue público.

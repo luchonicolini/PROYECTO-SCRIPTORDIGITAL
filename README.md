@@ -1,80 +1,134 @@
 # Scriptor Digital
 
-Este repositorio contiene el código fuente para el sitio web de **Scriptor Digital**, una experiencia web de alto rendimiento diseñada con un enfoque en estética premium, minimalismo y funcionalidad avanzada.
+Sitio institucional de **Scriptor Digital**, una consultora que combina orientación académica y desarrollo de soluciones digitales para profesionales e instituciones.
 
-## 🚀 Descripción del Proyecto
+[Ver sitio en producción](https://scriptordigital.vercel.app/) · [Contacto](https://scriptordigital.vercel.app/contacto) · [Reportar un problema](https://github.com/luchonicolini/PROYECTO-SCRIPTORDIGITAL/issues)
 
-Scriptor Digital es una plataforma web moderna construida para ofrecer una experiencia de usuario excepcional. El diseño sigue una línea "Editorial/Museo", caracterizada por:
+## Sobre el proyecto
 
-- **Estética Ultra-Premium:** Uso de tipografías elegantes, espaciado generoso y una paleta de colores sofisticada.
-- **Interactividad:** Animaciones suaves y transiciones fluidas impulsadas por *Framer Motion*.
-- **Rendimiento:** Optimización de carga y renderizado utilizando las últimas características de *Next.js 15*.
-- **Accesibilidad y Funcionalidad:** Componentes robustos construidos sobre *Radix UI* y *Lucide Icons*.
+La aplicación presenta dos líneas de servicio claramente diferenciadas:
 
-### Secciones Clave
+- **Orientación académica:** metodología, planificación, revisión y preparación de defensas, preservando siempre la autoría de cada persona.
+- **Web y aplicaciones:** diseño y desarrollo de productos digitales, automatizaciones y herramientas de gestión orientadas a ventas y crecimiento.
 
-El sitio está estructurado en varias secciones estratégicas para comunicar la propuesta de valor:
+La experiencia fue diseñada con una dirección visual editorial, navegación responsive, tema claro/oscuro y recorridos específicos para cada tipo de necesidad.
 
-1.  **Hero Section:** Introducción impactante con diseño visual fuerte.
-2.  **Metodología:** Explicación del proceso de trabajo y confianza.
-3.  **Manifiesto:** Declaración de principios y filosofía de la marca.
-4.  **Casos de Uso:** Problemas que resuelve y soluciones que ofrece.
-5.  **Tecnología y Seguridad:** Detalles sobre la infraestructura y seguridad.
-6.  **Equipo:** Presentación de las personas detrás del proyecto.
-7.  **FAQ:** Respuestas a preguntas frecuentes.
+## Funcionalidades
 
-## 🛠️ Stack Tecnológico
+- Portada orientada a conversión con dos rutas de servicio.
+- Páginas independientes para servicios, casos, equipo y contacto.
+- Tema claro y oscuro con contraste accesible.
+- Formulario validado en cliente y servidor.
+- Envío de consultas mediante Resend.
+- Notificación interna opcional por WhatsApp mediante CallMeBot.
+- Estados de éxito, error y funciones próximas claramente comunicados.
+- Sitemap, robots, metadatos Open Graph y datos estructurados.
+- Encabezados de seguridad y analítica con Vercel Analytics.
 
-El proyecto utiliza las tecnologías más recientes en el ecosistema de React:
+## Tecnologías
 
--   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
--   **Librería UI:** [React 19](https://react.dev/)
--   **Estilos:** [Tailwind CSS 4](https://tailwindcss.com/)
--   **Animaciones:** [Framer Motion](https://www.framer.com/motion/)
--   **Componentes:** [Radix UI](https://www.radix-ui.com/) (primitivas accesibles) & [Lucide React](https://lucide.dev/) (íconos)
--   **Validación:** Zod & React Hook Form
--   **Otros:** Lenis (Smooth Scroll), Resend (Emails)
+| Área | Herramientas |
+| --- | --- |
+| Framework | Next.js 16, App Router y React 19 |
+| Lenguaje | TypeScript |
+| Estilos | Tailwind CSS 4 |
+| Interfaz | Radix UI y Lucide React |
+| Animaciones | Framer Motion |
+| Formularios | React Hook Form y Zod |
+| Email | Resend |
+| Despliegue | Vercel |
 
-## 💻 Instalación y Uso Local
+## Rutas principales
 
-Sigue estos pasos para ejecutar el proyecto en tu máquina local:
+| Ruta | Contenido |
+| --- | --- |
+| `/` | Presentación general y propuesta de valor |
+| `/asesoria-academica` | Servicios de orientación académica |
+| `/soluciones-tecnologicas` | Desarrollo web, móvil y automatización |
+| `/casos` | Escenarios representativos de trabajo |
+| `/nosotros` | Equipo y enfoque profesional |
+| `/contacto` | Canales de contacto y formulario |
+| `/privacy` | Política de privacidad |
+| `/terms` | Términos de uso |
 
-1.  **Clonar el repositorio:**
+## Desarrollo local
 
-    ```bash
-    git clone https://github.com/luchonicolini/PROYECTO-SCRIPTORDIGITAL.git
-    cd scriptor-digital
-    ```
+### Requisitos
 
-2.  **Instalar dependencias:**
+- Node.js 20.9 o posterior.
+- npm 10 o posterior recomendado.
 
-    ```bash
-    npm install
-    # o
-    yarn install
-    # o
-    pnpm install
-    ```
+### Instalación
 
-3.  **Iniciar el servidor de desarrollo:**
+```bash
+git clone https://github.com/luchonicolini/PROYECTO-SCRIPTORDIGITAL.git
+cd PROYECTO-SCRIPTORDIGITAL
+npm ci
+```
 
-    Copia `.env.example` como `.env.local` y completa, como mínimo, `RESEND_API_KEY` para habilitar el formulario de contacto.
+Copia `.env.example` como `.env.local` y completa únicamente las variables necesarias:
 
-    ```bash
-    npm run dev
-    ```
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+RESEND_API_KEY=re_xxxxxxxxx
+WHATSAPP_PHONE_NUMBER=54911xxxxxxxx
+WHATSAPP_API_KEY=xxxxxxxx
+```
 
-4.  **Abrir en el navegador:**
+Las variables de WhatsApp son opcionales. `RESEND_API_KEY` es necesaria para enviar el formulario. Ningún archivo `.env.local` debe incorporarse al repositorio.
 
-    Visita [http://localhost:3000](http://localhost:3000) para ver el resultado.
+Inicia el entorno de desarrollo:
 
-## 📂 Estructura del Proyecto
+```bash
+npm run dev
+```
 
--   `/app`: Rutas y layouts de Next.js (App Router).
--   `/components`: Componentes reutilizables de React (UI, secciones, etc.).
--   `/public`: Archivos estáticos (imágenes, fuentes, iconos).
--   `/lib` o `/utils`: Utilidades y configuraciones compartidas.
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+
+## Comandos
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run lint` | Ejecuta ESLint |
+| `npm run build` | Genera y valida la compilación de producción |
+| `npm run start` | Ejecuta una compilación de producción |
+
+## Estructura
+
+```text
+app/                     Rutas, layouts, acciones del servidor y metadatos
+components/              Componentes compartidos y secciones de la interfaz
+components/ui/           Primitivas reutilizables de la interfaz
+lib/                     Datos, esquemas y utilidades
+public/                  Imágenes y recursos estáticos
+```
+
+## Calidad y seguridad
+
+Antes de abrir un pull request:
+
+```bash
+npm run lint
+npm run build
+```
+
+Los datos del formulario se validan en cliente y servidor. Las credenciales se utilizan únicamente en el servidor y deben almacenarse como variables de entorno. Consulta [SECURITY.md](SECURITY.md) para informar vulnerabilidades.
+
+## Despliegue
+
+La rama `main` se despliega automáticamente en Vercel. La URL canónica de producción es:
+
+<https://scriptordigital.vercel.app/>
+
+## Colaboración
+
+Las pautas para proponer cambios se encuentran en [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Derechos de uso
+
+Este repositorio contiene el código de un sitio comercial de Scriptor Digital. No se concede permiso de reutilización, redistribución o explotación comercial sin autorización expresa de sus titulares.
 
 ---
 
-Desarrollado con ❤️ para Scriptor Digital.
+Desarrollado y mantenido por [Luciano Nicolini](https://github.com/luchonicolini) para Scriptor Digital.
