@@ -20,7 +20,7 @@ export function Workshop() {
             {/* Background Decorations */}
             <div className="absolute inset-0 z-0 opacity-40">
                 <div className="absolute right-[-10%] top-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]" />
-                <div className="absolute left-[-10%] bottom-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]" />
+                <div className="absolute left-[-10%] bottom-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -29,7 +29,7 @@ export function Workshop() {
                     <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         CONTENIDO DE VALOR
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
+                    <h2 className="font-heading text-4xl font-medium leading-tight text-foreground md:text-5xl">
                         Taller <span className="text-muted-foreground italic">Estratégico</span>
                     </h2>
                 </div>
@@ -38,10 +38,10 @@ export function Workshop() {
                     <div className="grid md:grid-cols-2 gap-0 relative">
 
                         {/* Video / Visual Placeholder Column */}
-                        <div
-                            onClick={() => setShowComingSoon(true)}
-                            className="bg-muted/30 relative flex items-center justify-center p-12 min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-border/50 overflow-hidden group cursor-pointer"
-                        >
+                        <div className="bg-muted/30 relative flex items-center justify-center p-12 min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-border/50 overflow-hidden group">
+                            <span className="absolute left-4 top-4 z-20 rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-amber-600 dark:text-amber-400">
+                                Próximamente
+                            </span>
                             <AnimatePresence>
                                 {showComingSoon ? (
                                     <motion.div
@@ -49,22 +49,29 @@ export function Workshop() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.9 }}
                                         className="relative z-20 flex flex-col items-center justify-center text-center p-6 bg-background/80 backdrop-blur-md border border-primary/20 rounded-2xl shadow-xl max-w-[85%]"
-                                        onClick={(e) => {
-                                            e.stopPropagation()
-                                            setShowComingSoon(false)
-                                        }}
                                     >
                                         <Clock className="w-8 h-8 text-primary mb-3" />
-                                        <h4 className="font-serif text-xl font-medium text-foreground mb-2">Próximamente</h4>
-                                        <p className="text-xs text-muted-foreground mb-4">Estamos finalizando la edición de esta Masterclass para brindarte el mejor nivel.</p>
-                                        <Button variant="ghost" size="sm" className="h-8 text-xs font-bold uppercase tracking-wider">Cerrar</Button>
+                                        <h4 className="mb-2 font-heading text-xl font-medium text-foreground">Próximamente</h4>
+                                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">Estamos finalizando la edición de esta Masterclass para brindarte el mejor nivel.</p>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => setShowComingSoon(false)}
+                                            className="h-8 text-xs font-bold uppercase tracking-wider"
+                                        >
+                                            Cerrar
+                                        </Button>
                                     </motion.div>
                                 ) : (
-                                    <motion.div
+                                    <motion.button
+                                        type="button"
+                                        onClick={() => setShowComingSoon(true)}
+                                        aria-label="Ver información del taller gratuito, disponible próximamente"
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.9 }}
-                                        className="relative z-10 flex flex-col items-center text-center space-y-4 hover:scale-105 transition-transform duration-300"
+                                        className="relative z-10 flex flex-col items-center space-y-4 rounded-2xl p-4 text-center transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
                                     >
                                         <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center backdrop-blur-md border border-primary/30 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
                                             <PlayCircle className="w-10 h-10 text-primary translate-x-0.5" />
@@ -73,7 +80,7 @@ export function Workshop() {
                                             <p className="text-foreground font-medium text-lg tracking-wide">Taller Gratuito</p>
                                             <p className="text-muted-foreground text-sm">Duración: 15 min</p>
                                         </div>
-                                    </motion.div>
+                                    </motion.button>
                                 )}
                             </AnimatePresence>
                         </div>
@@ -88,11 +95,11 @@ export function Workshop() {
                                     <Lightbulb className="w-4 h-4 text-primary" />
                                     <span className="text-xs font-bold uppercase tracking-widest text-primary">Masterclass Breve</span>
                                 </div>
-                                <h3 className="text-3xl lg:text-4xl font-serif text-foreground leading-tight">
+                                <h3 className="font-heading text-3xl leading-tight text-foreground lg:text-4xl">
                                     ¿Trabado con tu <span className="italic text-muted-foreground">Tesis</span>?
                                 </h3>
                                 <p className="text-muted-foreground leading-relaxed text-lg font-light">
-                                    Descubrí los 3 errores fatales que retrasan tu defensa y cómo resolverlos hoy mismo. Consejos rápidos para estudiantes estancados.
+                                    Conocé tres obstáculos frecuentes que retrasan una defensa y aprendé cómo organizar los próximos pasos para retomar el trabajo.
                                 </p>
                             </div>
 
@@ -114,7 +121,7 @@ export function Workshop() {
 
                             <div className="pt-6 border-t border-border/50 space-y-4">
                                 <p className="text-sm text-foreground italic">
-                                    ¿Buscás una solución definitiva en lugar de más consejos?
+                                    ¿Buscás acompañamiento para avanzar con un plan propio?
                                 </p>
                                 <ContactModal defaultService="tesis">
                                     <Button className="w-full sm:w-auto h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground text-base tracking-wide rounded-xl font-bold shadow-lg shadow-primary/20 transition-all hover:-translate-y-1">

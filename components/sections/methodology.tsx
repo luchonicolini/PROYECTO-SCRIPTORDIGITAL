@@ -1,46 +1,34 @@
-"use client"
-
-import { motion } from "framer-motion"
 import { METHODOLOGY_STEPS } from "@/lib/data"
 
 
 export function Methodology() {
     return (
-        <section id="metodologia" className="py-48 bg-secondary/50 dark:bg-background relative overflow-hidden">
+        <section id="metodologia" className="py-24 md:py-32 bg-secondary/50 dark:bg-background relative overflow-hidden">
             {/* Subtle Grid Background (Matches UseCases) */}
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
 
             <div className="container mx-auto px-4 relative z-10">
 
                 {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-24 text-center max-w-3xl mx-auto space-y-4"
-                >
+                <div className="mb-14 text-center max-w-3xl mx-auto space-y-4">
                     <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         NUESTRO PROCESO
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                        El camino hacia la <span className="text-muted-foreground italic">Excelencia</span>
+                    <h2 className="font-heading text-4xl font-medium leading-tight text-foreground md:text-5xl">
+                        Un proceso claro, de la <span className="text-muted-foreground italic">idea a la entrega</span>
                     </h2>
                     <p className="text-muted-foreground text-lg leading-relaxed font-light mt-6">
-                        Un recorrido estructurado y transparente. Desde la primera idea hasta la entrega final,
-                        cada paso está diseñado para garantizar resultados excepcionales.
+                        Organizamos cada proyecto en etapas concretas. Vas a saber qué estamos haciendo,
+                        qué necesitamos de tu parte y cuál es el próximo paso.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Horizontal Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
 
-                    {METHODOLOGY_STEPS.map((step, index) => (
-                        <motion.div
+                    {METHODOLOGY_STEPS.map((step) => (
+                        <article
                             key={step.number}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="group relative p-8 rounded-3xl bg-card backdrop-blur-md border border-border overflow-hidden hover:bg-muted/50 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                         >
                             <div className="flex flex-col h-full justify-between space-y-6">
@@ -56,17 +44,17 @@ export function Methodology() {
                                         </span>
                                     </div>
 
-                                    <h3 className="text-xl font-serif text-foreground font-medium leading-tight mb-4 group-hover:text-foreground/90">
+                                    <h3 className="mb-4 font-heading text-xl font-medium leading-tight text-foreground group-hover:text-foreground/90">
                                         {step.title}
                                     </h3>
                                     <div className="h-px w-8 bg-border group-hover:w-full transition-all duration-500 mb-4" />
 
-                                    <p className="text-muted-foreground text-sm leading-relaxed font-light">
+                                    <p className="text-base leading-relaxed text-muted-foreground">
                                         {step.description}
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </article>
                     ))}
                 </div>
 

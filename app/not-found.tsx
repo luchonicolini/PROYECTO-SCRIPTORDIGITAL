@@ -17,7 +17,7 @@ export default function NotFound() {
 
                 {/* Typography */}
                 <div className="space-y-4">
-                    <h1 className="text-8xl font-heading font-medium text-foreground/10 tracking-widest select-none">
+                <h1 className="text-8xl font-heading font-medium text-foreground/25 tracking-widest select-none">
                         404
                     </h1>
                     <h2 className="text-2xl font-serif text-foreground">

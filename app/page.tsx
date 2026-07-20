@@ -2,8 +2,6 @@
 
 import { HeroSection } from "@/components/sections/hero-section"
 import { SocialProof } from "@/components/sections/social-proof"
-import { Manifesto } from "@/components/sections/manifesto"
-import { UseCases } from "@/components/sections/use-cases"
 import { AboutSection } from "@/components/sections/about-section"
 import { FinalCTA } from "@/components/sections/final-cta"
 
@@ -14,6 +12,8 @@ import { Footer } from "@/components/sections/footer"
 
 import { ServicesTabs } from "@/components/sections/services-tabs"
 import { Workshop } from "@/components/sections/workshop"
+import { CaseStudies } from "@/components/sections/case-studies"
+import { AcademicIntegrity } from "@/components/sections/academic-integrity"
 
 export default function Home() {
   return (
@@ -21,34 +21,26 @@ export default function Home() {
       <HeroSection />
       <SocialProof />
 
-      {/* 1. Identidad Filosófica Profunda */}
-      <section id="manifiesto">
-        <Manifesto />
-      </section>
+      {/* 1. Oferta principal */}
+      <ServicesTabs />
 
-      {/* 2. Uso / El Dolor Principal */}
-      <UseCases />
+      {/* 2. Compromiso de autoría e integridad académica */}
+      <AcademicIntegrity />
 
-      {/* 3. Solución / Core Business */}
-      <section id="servicios">
-        <ServicesTabs />
-      </section>
+      {/* 3. Recorridos de intervención y resultados */}
+      <CaseStudies />
 
-      {/* 4. Lead Magnet / Aporte de Valor Gratuito */}
+      {/* 4. Recurso educativo — se revisará en la fase siguiente */}
       <Workshop />
 
-      {/* 5. Construcción de Confianza: Metodología */}
-      <section id="metodologia">
-        <Methodology />
-      </section>
+      {/* 5. Proceso de trabajo */}
+      <Methodology />
 
-      {/* 6. Autoridad / Perfiles y Expertos */}
+      {/* 6. Equipo */}
       <AboutSection />
 
-      {/* 7. Empuje Final de Conversión */}
-      <section id="faq">
-        <FAQ />
-      </section>
+      {/* 7. Preguntas y conversión */}
+      <FAQ />
       <FinalCTA />
 
       <Footer />

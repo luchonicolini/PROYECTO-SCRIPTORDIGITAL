@@ -1,11 +1,8 @@
-"use client"
-
 import Image from "next/image"
-import { motion } from "framer-motion"
 
 export function AboutSection() {
     return (
-        <section id="sobre-nosotros" className="py-32 md:py-48 bg-background relative overflow-hidden">
+        <section id="equipo" className="py-24 md:py-32 bg-background relative overflow-hidden">
             {/* Background elements for premium feel */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]" />
@@ -22,7 +19,7 @@ export function AboutSection() {
                             <span className="inline-block px-3 py-1 text-xs font-bold tracking-[0.2em] text-primary uppercase border border-primary/20 rounded-full bg-primary/5">
                                 Quiénes Somos
                             </span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground font-medium leading-[1.1]">
+                    <h2 className="font-heading text-4xl font-medium leading-[1.1] text-foreground md:text-5xl lg:text-6xl">
                                 Nuestro <br />
                                 <span className="text-muted-foreground italic font-light">Equipo</span>
                             </h2>
@@ -30,25 +27,25 @@ export function AboutSection() {
 
                         <div className="space-y-6 text-muted-foreground text-lg leading-relaxed font-light">
                             <p>
-                                Scriptor Digital es un equipo multidisciplinario liderado por profesionales que entienden ambos extremos del espectro: el <strong className="font-medium text-foreground">rigor académico</strong> y la <strong className="font-medium text-foreground">ingeniería de software moderna</strong>.
+                                Scriptor Digital combina dos áreas complementarias: el <strong className="font-medium text-foreground">acompañamiento académico</strong> y el <strong className="font-medium text-foreground">desarrollo de sitios web y aplicaciones móviles</strong>.
                             </p>
                             <p>
                                 Sabemos que detrás de cada gran proyecto hay más que solo código; hay procesos, calidad intelectual y la necesidad de escalar sin perder la esencia.
                             </p>
                             <p>
-                                Por eso, hemos consolidado un equipo de trabajo capaz de abordar desde la estructura de los datos hasta la precisión del texto, asegurando excelencia en cada etapa.
+                                Trabajamos de forma complementaria para abordar tanto la estructura de los datos como la precisión del texto, con criterios claros en cada etapa.
                             </p>
                         </div>
 
                         {/* Stats / Highlight */}
                         <div className="grid grid-cols-2 gap-6 pt-6 border-t border-border">
                             <div>
-                                <h4 className="text-3xl font-serif text-foreground mb-1">100%</h4>
+                                <h4 className="mb-1 font-heading text-3xl text-foreground">100%</h4>
                                 <p className="text-sm tracking-wider text-muted-foreground uppercase font-medium">Enfoque a Medida</p>
                             </div>
                             <div>
-                                <h4 className="text-3xl font-serif text-foreground mb-1">Rigor</h4>
-                                <p className="text-sm tracking-wider text-muted-foreground uppercase font-medium">Científico & Técnico</p>
+                                <h4 className="mb-1 font-heading text-3xl text-foreground">Web & Apps</h4>
+                                <p className="text-sm tracking-wider text-muted-foreground uppercase font-medium">Desarrollo a medida</p>
                             </div>
                         </div>
                     </div>
@@ -58,13 +55,7 @@ export function AboutSection() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                             {/* Profile 1 - Mercedes (Offset slightly down) */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.7 }}
-                                className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 md:mt-12"
-                            >
+                            <article className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden hover:border-primary/30 hover:shadow-xl transition-all duration-300 md:mt-8">
                                 <div className="aspect-[4/5] relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                                     <Image
                                         src="/team/mercedes.webp"
@@ -75,27 +66,21 @@ export function AboutSection() {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
                                 </div>
-                                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                                    <h3 className="text-2xl font-serif text-white font-medium mb-1">
+                                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-10">
+                                    <h3 className="mb-1 font-heading text-2xl font-medium text-white">
                                         Mercedes Díaz Colodrero
                                     </h3>
                                     <p className="text-sky-400 text-xs font-bold tracking-widest uppercase mb-4">
                                         Escribana & Especialista
                                     </p>
-                                    <p className="text-white/80 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                        Especialista en docencia universitaria y gestión educativa. Garante del rigor metodológico y la excelencia en cada producción intelectual.
+                                    <p className="text-base leading-relaxed text-white/80">
+                                        Especialista en docencia universitaria y gestión educativa. Aporta criterio metodológico y experiencia en producción académica.
                                     </p>
                                 </div>
-                            </motion.div>
+                            </article>
 
                             {/* Profile 2 - Luciano */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.7, delay: 0.2 }}
-                                className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 md:-mt-12 md:mb-24"
-                            >
+                            <article className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden hover:border-primary/30 hover:shadow-xl transition-all duration-300 md:-mt-8 md:mb-16">
                                 <div className="aspect-[4/5] relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                                     <Image
                                         src="/team/luciano.webp"
@@ -106,18 +91,18 @@ export function AboutSection() {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
                                 </div>
-                                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                                    <h3 className="text-2xl font-serif text-white font-medium mb-1">
+                                <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-10">
+                                    <h3 className="mb-1 font-heading text-2xl font-medium text-white">
                                         Luciano Nicolini
                                     </h3>
                                     <p className="text-sky-400 text-xs font-bold tracking-widest uppercase mb-4">
-                                        Desarrollador iOS & Web
+                                        Programador Web & Mobile
                                     </p>
-                                    <p className="text-white/80 text-sm leading-relaxed font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                        Arquitecto de ecosistemas digitales escalables. Intersección precisa entre el diseño de interacciones y la ingeniería moderna segura.
+                                    <p className="text-base leading-relaxed text-white/80">
+                                        Crea sitios web, aplicaciones móviles y productos digitales orientados a ventas, gestión y crecimiento de negocios.
                                     </p>
                                 </div>
-                            </motion.div>
+                            </article>
 
                         </div>
                     </div>

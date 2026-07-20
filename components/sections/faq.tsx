@@ -1,99 +1,40 @@
-"use client"
-
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Minus } from "lucide-react"
-import { cn } from "@/lib/utils"
-
+import { Plus } from "lucide-react"
 import { FAQ_ITEMS } from "@/lib/data"
 
 export function FAQ() {
-    const [openItem, setOpenItem] = useState<string | null>(null)
-
     return (
-        <section id="faq" className="py-36 relative overflow-hidden bg-background">
-            {/* Subtle Background (Matches Team/UseCases) */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-50" />
+        <section id="faq" className="relative overflow-hidden bg-background py-24 md:py-32">
+            <div className="absolute right-0 top-0 -z-10 h-[600px] w-[600px] rounded-full bg-cyan-500/10 opacity-50 blur-[120px]" />
 
-            <div className="container mx-auto px-4 max-w-6xl relative z-10">
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
-
-                    {/* LEFT: Header (Col 5) */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="lg:col-span-4 lg:sticky lg:top-32 space-y-4"
-                    >
-                        <span className="block text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">
-                            SOPORTE & DUDAS
+            <div className="container relative z-10 mx-auto max-w-6xl px-4">
+                <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-24">
+                    <div className="space-y-4 lg:sticky lg:top-32 lg:col-span-4">
+                        <span className="mb-4 block text-sm font-bold uppercase tracking-[0.2em] text-primary">
+                            Preguntas y respuestas
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-serif text-foreground font-medium leading-tight">
-                            Preguntas <span className="text-muted-foreground italic">Frecuentes</span>
+                        <h2 className="font-heading text-4xl font-medium leading-tight text-foreground md:text-5xl">
+                            Preguntas <span className="italic text-muted-foreground">frecuentes</span>
                         </h2>
-                        <div className="h-px w-12 bg-border mb-6" />
-                        <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                            Claridad ante todo. Resolvemos las inquietudes más comunes sobre propiedad intelectual, tiempos y garantías.
+                        <div className="mb-6 h-px w-12 bg-border" />
+                        <p className="text-lg font-light leading-relaxed text-muted-foreground">
+                            Resolvemos las dudas más comunes sobre autoría, confidencialidad, tiempos y forma de trabajo.
                         </p>
-                    </motion.div>
+                    </div>
 
-                    {/* RIGHT: Accordion (Col 7) */}
-                    <div className="lg:col-span-8 flex flex-col gap-4">
-                        {FAQ_ITEMS.map((faq, index) => {
-                            const isOpen = openItem === faq.id
-                            return (
-                                <motion.div
-                                    key={faq.id}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.05, duration: 0.3 }}
-                                >
-                                    <button
-                                        onClick={() => setOpenItem(isOpen ? null : faq.id)}
-                                        className={cn(
-                                            "w-full text-left p-6 md:p-8 rounded-3xl transition-all duration-500 border group",
-                                            isOpen
-                                                ? "bg-card backdrop-blur-md border-border shadow-2xl"
-                                                : "bg-muted/50 border-border/50 hover:border-border"
-                                        )}
-                                    >
-                                        <div className="flex justify-between items-center gap-6">
-                                            <h3 className={cn(
-                                                "text-lg md:text-xl font-serif font-medium transition-colors duration-300",
-                                                isOpen ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                                            )}>
-                                                {faq.question}
-                                            </h3>
-                                            <span className={cn(
-                                                "flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-500",
-                                                isOpen
-                                                    ? "bg-foreground text-background border-foreground rotate-180"
-                                                    : "border-border text-muted-foreground group-hover:border-foreground group-hover:text-foreground"
-                                            )}>
-                                                {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                                            </span>
-                                        </div>
-
-                                        <AnimatePresence>
-                                            {isOpen && (
-                                                <motion.div
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: "auto", opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                                                    className="overflow-hidden"
-                                                >
-                                                    <p className="text-muted-foreground mt-6 text-base md:text-lg leading-relaxed font-light pr-12 border-t border-border pt-6">
-                                                        {faq.answer}
-                                                    </p>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </button>
-                                </motion.div>
-                            )
-                        })}
+                    <div className="flex flex-col gap-3 lg:col-span-8">
+                        {FAQ_ITEMS.map((faq) => (
+                            <details key={faq.id} className="group rounded-2xl border border-border/60 bg-muted/30 open:border-border open:bg-card open:shadow-lg">
+                                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:p-7 [&::-webkit-details-marker]:hidden">
+                                    <h3 className="font-heading text-lg font-medium text-foreground md:text-xl">{faq.question}</h3>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-transform group-open:rotate-45 group-open:bg-foreground group-open:text-background">
+                                        <Plus className="h-4 w-4" />
+                                    </span>
+                                </summary>
+                                <p className="mx-6 border-t border-border pb-7 pt-5 text-base font-light leading-relaxed text-muted-foreground md:mx-7 md:pr-10 md:text-lg">
+                                    {faq.answer}
+                                </p>
+                            </details>
+                        ))}
                     </div>
                 </div>
             </div>
