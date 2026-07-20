@@ -51,40 +51,6 @@ La experiencia fue diseñada con una dirección visual editorial, navegación re
 | `/privacy` | Política de privacidad |
 | `/terms` | Términos de uso |
 
-## Desarrollo local
-
-### Requisitos
-
-- Node.js 20.9 o posterior.
-- npm 10 o posterior recomendado.
-
-### Instalación
-
-```bash
-git clone https://github.com/luchonicolini/PROYECTO-SCRIPTORDIGITAL.git
-cd PROYECTO-SCRIPTORDIGITAL
-npm ci
-```
-
-Copia `.env.example` como `.env.local` y completa únicamente las variables necesarias:
-
-```env
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-RESEND_API_KEY=re_xxxxxxxxx
-WHATSAPP_PHONE_NUMBER=54911xxxxxxxx
-WHATSAPP_API_KEY=xxxxxxxx
-```
-
-Las variables de WhatsApp son opcionales. `RESEND_API_KEY` es necesaria para enviar el formulario. Ningún archivo `.env.local` debe incorporarse al repositorio.
-
-Inicia el entorno de desarrollo:
-
-```bash
-npm run dev
-```
-
-La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
-
 ## Comandos
 
 | Comando | Descripción |
